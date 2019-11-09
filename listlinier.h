@@ -11,7 +11,7 @@
 
 #define Nil NULL
 
-typedef int infotype;
+typedef infotype_posisi infotype;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist { 
 	infotype info;

@@ -1,81 +1,143 @@
 #include <stdio.h>
-#include "listlinier.h"
-#include "queue.h"
+#include "cek_bisa_gerak.c"
+#include "cekSemuaGerak.c"
 
-void move();
+void move(piece *board, stack *history, stack *termakan, stack *history, int *poin_putih, int *poin_hitam, List *list_ada_putih, List *list_ada_hitam, Queue giliransiapa);
 
-// dalam list linier, ada struct nama yang minta jenis bidanya dan struct posisi yang ngasi tau posisinya
-// buat tipe data baru bernama Map, nama map : pion1, pion2, benteng1, buat 16 (nama-nama di list linier)
-// isi structnya jenis bidak (pion, queen, benteng, dll) dan nomor (1,2,...,16)
-// arr_bidak = ['Pion1','Pion2', .... , 'Benteng2']
-
-void move() {
+void move(piece *board, stack *history, stack *termakan, stack *history, int *poin_putih, int *poin_hitam, List *list_ada_putih, List *list_ada_hitam, Queue giliransiapa) {
+    piece board2;
+    stack history2;
+    stack termakan2;
+    termakan2 = *termakan;
+    history2 = *history;
+    board2 = *board;
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
-    if (Head(queue) == putih) {
-        giliran = list_ada_putih;
+    List giliran;
+    List lawan;
+    int poin;
+    CreateEmpty(&giliran);
+    if (Head(giliransiapa) == 1) {
+        giliran = *list_ada_putih;
+        lawan = *list_ada_hitam;
+        poin = *poin_putih;
     }
     else {
-        giliran = list_hitam;
+        giliran = *list_ada_hitam;
+        lawan = *list_ada_putih;
+        poin = *poin_hitam;
     }
-    // lihat bidak yang masih ada di papan dari list linier
+    // lihat bidak yang masih ada di papan dari list linier dan memasukkan ke list_bisa_gerak
+    List list_bisa_gerak;
+    CreateEmpty(&list_bisa_gerak);
     address P;
-    P = Head(giliran);
-    // buat array untuk menyimpan informasi bidak apa saja yang dapat digerakkan
-    // jika dapat digerakkan, nilainya 1, jika tidak 0
-    char arr_available[16];
-    int i;
-    for (i = 1 ; i <= 16 ; i++) {
-        arr_available[i] = 0;
-    }
-    // proses mengisi array arr_available dengan 0 dan 1
-    while (P != Nil) { // cek satu per satu bidak yang ada di list linier
-        if (cekGerak(P)) {
-            arr_available[P.nomor] = 1;
+    P = First(giliran);
+    while (P != Nil) {
+        if (cekbisagerak(Info(P).nama , board2)) {
+            InsVLast_reborn(&list_bisa_gerak , Info(P)); //reborn tambahin reborn
         }
-        P = Next(P);
     }
-    
+        
     // tampilkan bidak yang dapat bergerak
-    P = Head(giliran);
+    address R;
+    R = First(list_bisa_gerak);
     int i;
     i = 1;
     printf("Daftar bidak yang bisa bergerak:\n");
-    while (P != Nil) {
-        if (arr_available[P.nomor] == 1) {
-            printf("  %d. ",i);
-            i++;
-            printf("%s ",P.jenis);
-            printf("%s", P.posisi);
-            printf("\n");
-        }
-        P = Next(P);
+    while (R != Nil) {
+        printf("  %d. ", i);
+        i++;
+        PrintNamaBidak(Info(R).nama);
+        printf(" (");
+        PrintKolom(Info(R).posisiC);
+        printf(",%d)\n",Info(R).posisiR)
     }
 
     // disini user input nomor bidak yang ingin ia gerakkan
     printf("Pilih bidak yang ingin digerakkan: ");
     int input_nomor_bidak;
     scanf("%d",&input_nomor_bidak);
-    // buat arr_available_kum itu arr_available versi kumulatif, jadi kita tau user ingin bidak apa yang digerakkan
-    int arr_available_kum[16];
-    // isi nilai arr_available_kum
-    int jumlah_sementara;
-    jumlah_sementara = 0;
-    for (i = 1 ; i <= 16 ; i++) {
-        if (arr_available[i] != 0) {
-            arr_available_kum[i] = arr_available[i] + jumlah_sementara;
-            jumlah_sementara = arr_available_kum[i];
-        }
-    }
-    // kasi pilihan gerak berdasarkan input user
+    // cari list linier dengan indeks ke input_nomor_bidak
+    R = First(list_bisa_gerak);
     i = 1;
-    while (arr_available_kum[i] != input_nomor_bidak) {
+    while (i < input_nomor_bidak) {
+        R = Next(R);
+        i++;
+    } // R sudah menunjukkan address bidak yang ingin diganti posisinya
+    
+
+    // pertama-tama buat list posisi yang mungkin dijalani
+    list_posisi daftar_posisi;
+    CreateEmpty(&daftar_posisi)
+    // cari semua posisi tujuan yang mungkin dari bidak itu dan masukkan ke daftar_posisi
+    cekSemuaGerak(Info(R).nama , &daftar_posisi);
+    
+    // print daftar pilihan posisi yang mungkin
+    // address Q;
+    // i = 1;
+    // Q = First(daftar_posisi);
+    // while(Q != Nil) {
+    //     printf("  %d. (", i);
+    //     i++;
+    //     PrintKolom(Info(Q).posisiC);
+    //     printf(",%d)\n",Info(Q).posisiR)
+    // }
+
+    // user memilih posisi tujuan bidak
+    int inputan_pilihan_posisi;
+    printf("Pilih posisi tujuan bidak: ");
+    scanf("%d",inputan_pilihan_posisi);
+    address Q;
+    i = 1;
+    // Q akan pergi ke bidak yang dimaksud
+    Q = First(daftar_posisi);
+    while (i < inputan_pilihan_posisi) {
+        Q = Next(Q);
         i++;
     }
-    // sekarang i berisi indeks arr_kum yang mengandung nomor bidak yang ingin digerakkan menurut arr_bidak
-    cekPilihanGerak(arr_bidak[i]); // prosedur ini menampilkan pilihan kemana aja dia bisa gerak, ingat variabel statik biar bisa diakses selanjutnya
-    char input_posisi_selanjutnya[8];
-    scanf("%s",&input_posisi_selanjutnya);
-    // akses array yang ada di pilihan gerak bidaknya
-    printf("Bidak kuda telah berpindah dari %s ke %s\n", {{gatau apa}} , {{gatau apa}});
-}
 
+    // Q sudah menunjukkan pilihan posisi bidak yang ingin dituju
+    // lakukan fungsi swap
+    infotype_stack X;
+    if (adaorang(*board , Info(Q).posisiC , Info(Q).posisiR)) { //cek apakah ada bidak lawan
+        address A;
+        A = Search_reborn(lawan , Info(Q).posisiC , Info(Q).posisiR); //address bidak lawan yang termakan
+        poin = poin + Info(A).poin;
+        X.nama = Info(A).nama;
+        X.player = (Head(giliransiapa) % 2) + 1;
+        X.turn = turn;
+        X.posisiR = Info(Q).posisiR;
+        X.posisiC = Info(Q).posisiC;
+        Push_reborn(&termakan , X); //masukkan ke stack termakan
+        DelP_reborn(&lawan , Info(Q).posisiC , Info(Q).posisiR); // hapus bidak lawan dari list linier lawan 
+    }
+    int tempR;
+    int tempC;
+    // simpan nilai awal pada temp
+    tempR = Info(Parent(R)).posisiR;
+    tempC = Info(Parent(R)).posisiC;
+    // update nilai awal menjadi nilai akhir
+    Info(Parent(R)).posisiR = Info(Q).posisiR;
+    Info(Parent(R)).posisiC = Info(Q).posisiC;
+    // update stack dengan posisi bidak terbaru
+    X.nama = Info(R).nama;
+    X.player = Head(giliransiapa);
+    X.turn = turn;
+    X.posisiR = tempR;
+    X.posisiC = tempC;
+    Push_reborn(&history2 , X);
+
+    // simpan kembali datanya ke variabel global
+    if (Head(giliransiapa) == 1) {
+        *list_ada_putih = giliran;
+        *list_ada_hitam = lawan;
+        *poin_putih = poin;
+    }
+    else {
+        *list_ada_hitam = giliran;
+        *list_ada_putih = lawan;
+        *poin_hitam = poin;
+    }
+    *board = board2;
+    *history = history2;
+    *termakan = termakan2;
+}

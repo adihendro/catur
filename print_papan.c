@@ -50,24 +50,24 @@ void PrintPapan(piece board[8][8]){
 
 	//representasi klo piece di board[8][8] bakal ditaroh dimana di board gede
 	//displayrow
-	int dR0 = 29;
-	int dR1 = 25;
-	int dR2 = 21;
-	int dR3 = 17;
-	int dR4 = 13;
-	int dR5 = 9;
-	int dR6 = 5;
-	int dR7 = 2;
+	int dR0 = 2;
+	int dR1 = 6;
+	int dR2 = 10;
+	int dR3 = 14;
+	int dR4 = 18;
+	int dR5 = 22;
+	int dR6 = 26;
+	int dR7 = 30;
 
 	//"displayColumn"
-	int dC0 = 5;
-	int dC1 = 9;
-	int dC2 = 13;
-	int dC3 = 17;
-	int dC4 = 21;
-	int dC5 = 25;
-	int dC6 = 29;
-	int dC7 = 33;
+	int dC0 = 4;
+	int dC1 = 8;
+	int dC2 = 12;
+	int dC3 = 16;
+	int dC4 = 20;
+	int dC5 = 24;
+	int dC6 = 28;
+	int dC7 = 32;
 
 	int tempRow; // nyimpen row dan column sementara
 	int tempCol;
@@ -110,10 +110,10 @@ void PrintPapan(piece board[8][8]){
 				tempCol = dC7;
 
             //update display board pieces to match the real board
-            if(board[i][j].piece == NULL){
+            if(board[i][j].piece == ' '){
                 papan[tempRow][tempCol] = ' ';
             }
-            else if(board[i][j].nama=="Pawn"){
+            else if(board[i][j].nama=='P'){
                 if(board[i][j].player == 1){
                     papan[tempRow][tempCol] = 'P';
                 }
@@ -121,7 +121,7 @@ void PrintPapan(piece board[8][8]){
                     papan[tempRow][tempCol] = 'p';
                 }        
             }
-            else if(board[i][j].nama=="King"){
+            else if(board[i][j].nama=='K'){
                 if(board[i][j].player == 1){
                     papan[tempRow][tempCol] = 'K';
                 }
@@ -129,7 +129,7 @@ void PrintPapan(piece board[8][8]){
                     papan[tempRow][tempCol] = 'k';
                 }        
             }
-            else if(board[i][j].nama=="Queen"){
+            else if(board[i][j].nama=='Q'){
                 if(board[i][j].player == 1){
                     papan[tempRow][tempCol] = 'Q';
                 }
@@ -137,7 +137,7 @@ void PrintPapan(piece board[8][8]){
                     papan[tempRow][tempCol] = 'q';
                 }        
             }
-            else if(board[i][j].nama=="Bishop"){
+            else if(board[i][j].nama=='B'){
                 if(board[i][j].player == 1){
                     papan[tempRow][tempCol] = 'B';
                 }
@@ -145,7 +145,7 @@ void PrintPapan(piece board[8][8]){
                     papan[tempRow][tempCol] = 'b';
                 }        
             }
-            else if(board[i][j].nama=="Knight"){
+            else if(board[i][j].nama=='N'){
                 if(board[i][j].player == 1){
                     papan[tempRow][tempCol] = 'N';
                 }
@@ -153,7 +153,7 @@ void PrintPapan(piece board[8][8]){
                     papan[tempRow][tempCol] = 'n';
                 }        
             }
-            else if(board[i][j].nama=="Rook"){
+            else if(board[i][j].nama=='R'){
                 if(board[i][j].player == 1){
                     papan[tempRow][tempCol] = 'R';
                 }
@@ -169,5 +169,6 @@ void PrintPapan(piece board[8][8]){
             printf("%c ", papan[i][j]);
         }
         printf("\n");
+    }
 }
 
