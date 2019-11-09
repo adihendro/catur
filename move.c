@@ -10,7 +10,7 @@ void move();
 void move() {
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
     if (Head(queue) == putih) {
-        giliran = list_putih;
+        giliran = list_ada_putih;
     }
     else {
         giliran = list_hitam;
