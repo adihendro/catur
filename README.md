@@ -9,13 +9,12 @@ ADT :
 	typedef struct {
 			infotype info;
 			address next;
-		} list //untuk list_ada_putih & list_ada_hitam
+		} List //untuk list_ada_putih & list_ada_hitam
 
 	typedef struct {
 			infotype info;
 			address next;
-			int index;
-		} list //untuk list_bisa_gerak
+		} List //untuk list_bisa_gerak
 
 	typedef struct {
 			infotype_posisi info;
@@ -43,4 +42,5 @@ Fungsi yang digunakan :
 	move();
 		int cekbisagerak(piece P); //cek bisa atau tidak {1:bisa ; 0:tidak} kalo bisa kita masukin ke list linier list_bisa_gerak
 		void ceksemuagerak(piece P , list_posisi *L); //print semua kotak yang bisa ditempati
+		PrintNamaBidak(char c); // ngeprint nama bidak misal Pion , Benteng
 	

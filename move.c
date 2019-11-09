@@ -9,44 +9,35 @@ void move();
 
 void move() {
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
+    List giliran;
+    CreateEmpty(&giliran);
     if (Head(queue) == putih) {
         giliran = list_ada_putih;
     }
     else {
-        giliran = list_hitam;
+        giliran = list_ada_hitam;
     }
-    // lihat bidak yang masih ada di papan dari list linier
+    // lihat bidak yang masih ada di papan dari list linier dan memasukkan ke list_bisa_gerak
+    List list_bisa_gerak;
+    CreateEmpty(&list_bisa_gerak);
     address P;
-    P = Head(giliran);
-    // buat array untuk menyimpan informasi bidak apa saja yang dapat digerakkan
-    // jika dapat digerakkan, nilainya 1, jika tidak 0
-    char arr_available[16];
-    int i;
-    for (i = 1 ; i <= 16 ; i++) {
-        arr_available[i] = 0;
-    }
-    // proses mengisi array arr_available dengan 0 dan 1
-    while (P != Nil) { // cek satu per satu bidak yang ada di list linier
-        if (cekGerak(P)) {
-            arr_available[P.nomor] = 1;
+    P = First(giliran);
+    while (P != Nil) {
+        if (cekbisagerak(Info(P).nama)) {
+            InsVLast(&list_bisa_gerak , Info(P));
         }
-        P = Next(P);
     }
-    
+        
     // tampilkan bidak yang dapat bergerak
-    P = Head(giliran);
+    P = First(list_bisa_gerak);
     int i;
     i = 1;
     printf("Daftar bidak yang bisa bergerak:\n");
     while (P != Nil) {
-        if (arr_available[P.nomor] == 1) {
-            printf("  %d. ",i);
-            i++;
-            printf("%s ",P.jenis);
-            printf("%s", P.posisi);
-            printf("\n");
-        }
-        P = Next(P);
+        printf("  %d. ", i);
+        i++;
+        PrintNamaBidak(Info(P).nama);
+        printf(" (%d,%d)\n",Info(P).PosisiC,Info(P).PosisiR);
     }
 
     // disini user input nomor bidak yang ingin ia gerakkan
