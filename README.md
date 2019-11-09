@@ -65,6 +65,7 @@ ADT :
 	keterangan char nama : {P:pion ; K:King ; Q:Queen ; B:Bishop ; N:Knight ; R:Rook}
 	
 Fungsi yang digunakan :
+
 	PrintPapan(piece board[8][8]);
 	move();
 		int cekbisagerak(piece P); //cek bisa atau tidak {1:bisa ; 0:tidak} kalo bisa kita masukin ke list linier list_bisa_gerak
