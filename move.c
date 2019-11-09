@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "listlinier.h"
+#include "queue.h"
 
 void move();
 
@@ -76,3 +78,4 @@ void move() {
     // akses array yang ada di pilihan gerak bidaknya
     printf("Bidak kuda telah berpindah dari %s ke %s\n", {{gatau apa}} , {{gatau apa}});
 }
+
