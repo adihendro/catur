@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "listlinier.h": "c"
+    },
+    "git.ignoreLimitWarning": true
+}

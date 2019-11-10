@@ -1,6 +1,6 @@
-#include "tipe_bentukan.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "tipe_bentukan.h"
 #include "boolean.h"
 
 //posisiR dan posisiC terdefinisi

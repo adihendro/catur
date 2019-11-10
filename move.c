@@ -52,7 +52,7 @@ void move(piece *board, stack *history, stack *termakan, stack *history, int *po
         printf(",%d)\n",Info(R).posisiR)
     }
 
-    // disini user input nomor bidak yang ingin ia gerakkan
+    // di sini user input nomor bidak yang ingin dia gerakkan
     printf("Pilih bidak yang ingin digerakkan: ");
     int input_nomor_bidak;
     scanf("%d",&input_nomor_bidak);
@@ -67,7 +67,7 @@ void move(piece *board, stack *history, stack *termakan, stack *history, int *po
 
     // pertama-tama buat list posisi yang mungkin dijalani
     list_posisi daftar_posisi;
-    CreateEmpty(&daftar_posisi)
+    CreateEmpty(&daftar_posisi);
     // cari semua posisi tujuan yang mungkin dari bidak itu dan masukkan ke daftar_posisi
     cekSemuaGerak(Info(R).nama , &daftar_posisi);
     

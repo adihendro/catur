@@ -6,11 +6,9 @@ typedef struct
    int posisiC; /* data */
 }square;
 
-square board[8][8];
-
-board [1][1] = {2,3};
-
 int main()
 {
-    printf("%d %d",&board[1][1].posisiR,&board[1][1].posisiC);
+square board[8][8];
+board[1][1].posisiC = 5;
+    printf("%d %d\n",board[1][1].posisiC,board[1][1].posisiR);
 }

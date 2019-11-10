@@ -27,7 +27,7 @@ typedef piece infotype;
 
 void printKotak (piece square) // ngeprint square yang terdapat pada papan catur, sekaligus menkonversi dari papan kecil ke papan GUI
 {
-    if (squa)
+    // if (squa)
 }
 
 void cekSemuaGerak (piece P , list_posisi *L)
