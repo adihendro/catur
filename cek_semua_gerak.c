@@ -61,14 +61,14 @@ void bishop(piece F, papan board[10][10]){
 
 void king(piece F, papan board[10][10]){
     int a=1, b=1;
-    for(i=0;i<2;i++){
-        for(j=0;j<4;j++){
-            cek(a,b,1,1,F,board);
-            temp=a;
-            a=b;
-            b=-temp;
+    for(i=0;i<8;i++){
+        cek(a,b,1,1,F,board);
+        temp=a;
+        a=b;
+        b=-temp;
+        if(i==4){
+            a=0;
         }
-        a=0;
     }
 }
 
