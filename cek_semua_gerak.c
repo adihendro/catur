@@ -7,6 +7,8 @@
 #define kotak board[F.posisiR + a*x1*x2][F.posisiC + b*x1*x2]
 int i,j,k,a,b,temp;
 boolean br, enemy;
+// List L;
+// CreateEmpty(&L);
 
 void cek(int a, int b, int x1, int x2, piece F, papan board[10][10]){
     br=false;
