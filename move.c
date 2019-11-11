@@ -2,9 +2,9 @@
 #include "cek_bisa_gerak.c"
 #include "cekSemuaGerak.c"
 
-void move(piece *board, stack *history, stack *termakan, stack *history, int *poin_putih, int *poin_hitam, List *list_ada_putih, List *list_ada_hitam, Queue giliransiapa);
+void move(piece *board, stack *history, stack *termakan, int *poin_putih, int *poin_hitam, List *list_ada_putih, List *list_ada_hitam, Queue giliransiapa);
 
-void move(piece *board, stack *history, stack *termakan, stack *history, int *poin_putih, int *poin_hitam, List *list_ada_putih, List *list_ada_hitam, Queue giliransiapa) {
+void move(piece *board, stack *history, stack *termakan, int *poin_putih, int *poin_hitam, List *list_ada_putih, List *list_ada_hitam, Queue giliransiapa) {
     piece board2;
     stack history2;
     stack termakan2;
@@ -12,8 +12,8 @@ void move(piece *board, stack *history, stack *termakan, stack *history, int *po
     history2 = *history;
     board2 = *board;
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
-    List giliran;
-    List lawan;
+    list giliran;
+    list lawan;
     int poin;
     CreateEmpty(&giliran);
     if (Head(giliransiapa) == 1) {
@@ -27,7 +27,7 @@ void move(piece *board, stack *history, stack *termakan, stack *history, int *po
         poin = *poin_hitam;
     }
     // lihat bidak yang masih ada di papan dari list linier dan memasukkan ke list_bisa_gerak
-    List list_bisa_gerak;
+    list list_bisa_gerak;
     CreateEmpty(&list_bisa_gerak);
     address P;
     P = First(giliran);
@@ -40,8 +40,7 @@ void move(piece *board, stack *history, stack *termakan, stack *history, int *po
     // tampilkan bidak yang dapat bergerak
     address R;
     R = First(list_bisa_gerak);
-    int i;
-    i = 1;
+    int i = 1;
     printf("Daftar bidak yang bisa bergerak:\n");
     while (R != Nil) {
         printf("  %d. ", i);
@@ -69,7 +68,7 @@ void move(piece *board, stack *history, stack *termakan, stack *history, int *po
     list_posisi daftar_posisi;
     CreateEmpty(&daftar_posisi);
     // cari semua posisi tujuan yang mungkin dari bidak itu dan masukkan ke daftar_posisi
-    cekSemuaGerak(Info(R).nama , &daftar_posisi);
+    ceksemuagerak(Info(R).nama , &daftar_posisi);
     
     // print daftar pilihan posisi yang mungkin
     // address Q;
