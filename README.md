@@ -4,8 +4,8 @@ Tugas Besar Alstrukdat Semester 3
 variabel global :
 	int poin_putih;
 	int poin_hitam;
-	List list_ada_putih;
-	List list_ada_hitam;
+	list list_ada_putih;
+	list list_ada_hitam;
 	piece board[10][10];
 	stack history;
 	stack termakan;
@@ -13,7 +13,7 @@ variabel global :
 
 
 ADT :
-	List linier, list : (list_ada_putih ; list_ada_hitam)
+	List linier, list: (list_ada_putih ; list_ada_hitam)
 	List linier, list_bisa_gerak
 	List linier, list_posisi //daftar kotak yang bisa ditempati kemudian
 	
