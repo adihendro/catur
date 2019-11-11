@@ -1,8 +1,5 @@
 #include <stdio.h>
-#include "cek_bisa_gerak.c"
-#include "cekSemuaGerak.c"
 
-void move(piece *board, stack *history, stack *termakan, int *poin_putih, int *poin_hitam, List *list_ada_putih, List *list_ada_hitam, Queue giliransiapa);
 
 void move(piece *board, stack *history, stack *termakan, int *poin_putih, int *poin_hitam, List *list_ada_putih, List *list_ada_hitam, Queue giliransiapa) {
     piece board2;

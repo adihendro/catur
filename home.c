@@ -1,15 +1,15 @@
 #include <stdio.h>
 
-int main () {
+void start () {
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
     printf("**                                                                            **\n");
     printf("**                                                                            **\n");
-    printf("**               ccccc    hh    hh    eeeee    ssssss   ssssss                **\n");
-    printf("**              cc        hh    hh    e        ss       ss                    **\n");
-    printf("**             cc         hhhhhhhh    eeeee    ssssss   ssssss                **\n");
-    printf("**              cc        hh    hh    e            ss       ss                **\n");
-    printf("**               ccccc    hh    hh    eeeee    ssssss   ssssss                **\n");
+    printf("**               ccccc    hh    hh    eeeeee    ssssss   ssssss               **\n");
+    printf("**              cc        hh    hh    ee        ss       ss                   **\n");
+    printf("**             cc         hhhhhhhh    eeeeee    ssssss   ssssss               **\n");
+    printf("**              cc        hh    hh    ee            ss       ss               **\n");
+    printf("**               ccccc    hh    hh    eeeeee    ssssss   ssssss               **\n");
     printf("**                                                                            **\n");
     printf("**                                                                            **\n");
     printf("**                                                                            **\n");
@@ -20,5 +20,4 @@ int main () {
     printf("**                                                                            **\n");
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
-    return 0;
 }
