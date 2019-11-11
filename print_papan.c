@@ -73,40 +73,40 @@ void PrintPapan(piece board[8][8]){
 	int tempCol;
 
 	//update lokasi bidak di display board
-	for(int i = 0; i < 8; i++){
-		if(i == 0)
+	for(int i = 1; i < 9; i++){
+		if(i == 1)
 			tempRow = dR0;
-		else if(i == 1)
-			tempRow = dR1;
 		else if(i == 2)
-			tempRow = dR2;
+			tempRow = dR1;
 		else if(i == 3)
-			tempRow = dR3;
+			tempRow = dR2;
 		else if(i == 4)
-			tempRow = dR4;
+			tempRow = dR3;
 		else if(i == 5)
-			tempRow = dR5;
+			tempRow = dR4;
 		else if(i == 6)
+			tempRow = dR5;
+		else if(i == 7)
 			tempRow = dR6;
-		else
+		else if(i == 8);
 			tempRow = dR7;
 		
-		for(int j = 0; j < 8; j++){	
-			if(j == 0)
+		for(int j = 1; j < 9; j++){	
+			if(j == 1)
 				tempCol = dC0;
-			else if(j == 1)
+			else if(j == 2)
 				tempCol = dC1;
-			else if(j == 2)	
+			else if(j == 3)	
 				tempCol = dC2;
-			else if(j == 3)
-				tempCol = dC3;
 			else if(j == 4)
-				tempCol = dC4;
+				tempCol = dC3;
 			else if(j == 5)
-				tempCol = dC5;
+				tempCol = dC4;
 			else if(j == 6)
+				tempCol = dC5;
+			else if(j == 7)
 				tempCol = dC6;
-			else
+			else if(j == 8)
 				tempCol = dC7;
 
             //update display board pieces to match the real board
