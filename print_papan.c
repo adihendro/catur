@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "tipe_bentukan.h"
 
-void PrintPapan(papan board[8][8]){
+void PrintPapan(papan board[10][10]){
 	/*jadi gw mikirnya board ini array yang terdiri dari tipe bentukan piece
 	  yang isinya: 
       1. namanya "king,queen,dsb" (string). bisa juga pake integer kaya king 1, queen 2 ato gmn
@@ -48,8 +49,8 @@ void PrintPapan(papan board[8][8]){
     };
 
 
-	//representasi klo piece di board[8][8] bakal ditaroh dimana di board gede
-	//displayrow
+	//representasi klo piece di board[10][10] bakal ditaroh dimana di board gede
+	//displayRow
 	int dR0 = 2;
 	int dR1 = 6;
 	int dR2 = 10;
@@ -59,7 +60,7 @@ void PrintPapan(papan board[8][8]){
 	int dR6 = 26;
 	int dR7 = 30;
 
-	//"displayColumn"
+	//displayColumn
 	int dC0 = 4;
 	int dC1 = 8;
 	int dC2 = 12;
@@ -69,11 +70,12 @@ void PrintPapan(papan board[8][8]){
 	int dC6 = 28;
 	int dC7 = 32;
 
-	int tempRow; // nyimpen row dan column sementara
+    //nyimpen row dan column sementara
+	int tempRow;
 	int tempCol;
 
 	//update lokasi bidak di display board
-	for(int i = 1; i < 9; i++){
+	for(int i = 1; i <= 8; i++){
 		if(i == 1)
 			tempRow = dR0;
 		else if(i == 2)
@@ -91,7 +93,7 @@ void PrintPapan(papan board[8][8]){
 		else if(i == 8);
 			tempRow = dR7;
 		
-		for(int j = 1; j < 9; j++){	
+		for(int j = 1; j <= 8; j++){	
 			if(j == 1)
 				tempCol = dC0;
 			else if(j == 2)
@@ -110,7 +112,7 @@ void PrintPapan(papan board[8][8]){
 				tempCol = dC7;
 
             //update display board pieces to match the real board
-            if(board[i][j].piece == ' '){
+            if(board[i][j].nama==' '){
                 papan[tempRow][tempCol] = ' ';
             }
             else if(board[i][j].nama=='P'){
