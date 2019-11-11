@@ -31,6 +31,11 @@ void pawn(piece F, papan board[10][10]){
     for(i=-1;i<=1;i++){
         cek(a,i,1,1,F,board);
     }
+    if(F.player==1 && F.posisiR==7){
+        cek(-2,0,1,1,F,board);
+    } else if(F.player==2 && F.posisiR==2){
+        cek(2,0,1,1,F,board);
+    }
 }
 
 void rook(piece F, papan board[10][10]){
