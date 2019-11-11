@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void PrintPapan(piece board[8][8]){
+void PrintPapan(papan board[8][8]){
 	/*jadi gw mikirnya board ini array yang terdiri dari tipe bentukan piece
 	  yang isinya: 
       1. namanya "king,queen,dsb" (string). bisa juga pake integer kaya king 1, queen 2 ato gmn
