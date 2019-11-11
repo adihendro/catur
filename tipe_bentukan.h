@@ -14,4 +14,6 @@ typedef struct {
 			int player;
 		} papan;
 
+char command;
+
 #endif

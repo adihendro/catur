@@ -90,7 +90,7 @@ void PrintPapan(papan board[10][10]){
 			tempRow = dR5;
 		else if(i == 7)
 			tempRow = dR6;
-		else if(i == 8);
+		else if(i == 8)
 			tempRow = dR7;
 		
 		for(int j = 1; j <= 8; j++){	
