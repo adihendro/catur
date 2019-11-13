@@ -8,10 +8,11 @@
 
 #include <stdio.h>
 #include "boolean.h"
+#include "tipe_bentukan.h"
 
 #define Nil NULL
 
-typedef infotype_posisi infotype;
+typedef piece infotype;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist { 
 	infotype info;
