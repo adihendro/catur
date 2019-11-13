@@ -16,6 +16,7 @@ int main () {
     int j;
     i = 1;
     j = 1;
+    int temp;
 	while (CC != ';') {
         while (CC != '|') {
             nama[i][j] = CC;
@@ -23,7 +24,7 @@ int main () {
             retval = fscanf(pita,"%c",&CC);
         }
         while (CC != '%') {
-            skor[i] = skor
+            skor[i] = skor;
         }
     }
 	printf("\n");

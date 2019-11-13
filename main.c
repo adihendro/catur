@@ -15,7 +15,7 @@ int main(){
     scanf("%s",&command);
 
     switch (command){
-    case "MOVE":
+    case MOVE:
         /* code */
         break;
     default:

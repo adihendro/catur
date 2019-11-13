@@ -14,12 +14,12 @@ void cek(int a, int b, int x1, int x2, piece F, papan board[10][10]){
     enemy=false;
     if(kotak.nama==' '){ //kalau kotak kosong
         InsVLast(&L,F);
-        printf("kosong\n");
+
     } else{ //kotak = */temen/musuh
         br=true; //break loop
         if(kotak.nama!='*' && kotak.player!=F.player){ //kalau kotak = musuh
             InsVLast(&L,F);
-            printf("musuh\n");
+
             enemy=true;       
         }
     }

@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include "tipe_bentukan.h"
+#include "fungsi.h"
+#include ""
 
 
 void move(piece *board, stack *history, stack *termakan, int *poin_putih, int *poin_hitam, List *list_ada_putih, List *list_ada_hitam, Queue giliransiapa) {
