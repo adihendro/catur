@@ -20,11 +20,11 @@ void CreateEmpty_list (list *L)
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-address Alokasi (infotype X)
+address_list Alokasi (infotype_list X)
 {
-    address P;
+    address_list P;
 
-    P = (address) malloc (sizeof(ElmtList));
+    P = (address_list) malloc (sizeof(ElmtList));
 
     if (P != Nil)
     {
@@ -38,15 +38,15 @@ address Alokasi (infotype X)
         return Nil;
     }
 }
-/* Mengirimkan address hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
+/* Mengirimkan address_list hasil alokasi sebuah elemen */
+/* Jika alokasi berhasil, maka address_list tidak nil, dan misalnya */
 /* menghasilkan P, maka Info(P)=X, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
 
-void Dealokasi (address *P)
+void Dealokasi (address_list *P)
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
-/* Melakukan dealokasi/pengembalian address P */
+/* Melakukan dealokasi/pengembalian address_list P */
 {
     free(*P);
 }
@@ -54,12 +54,12 @@ void Dealokasi (address *P)
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (list *L, infotype X)
+void InsVFirst (list *L, infotype_list X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
 {
-    address P;
+    address_list P;
 
     P = Alokasi(X);
     if(P!=Nil)
@@ -68,13 +68,13 @@ void InsVFirst (list *L, infotype X)
     }
 }
 
-void InsVLast (list *L, infotype X)
+void InsVLast (list *L, infotype_list X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 {
-    address P;
+    address_list P;
 
     /* Algoritma */
     P = Alokasi(X);
@@ -85,12 +85,12 @@ void InsVLast (list *L, infotype X)
 }
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirst (list *L, infotype *X)
+void DelVFirst (list *L, infotype_list *X)
 /* I.S. list L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
 {
-    address P;
+    address_list P;
 
     /* Algoritma */
     P = First(*L);
@@ -100,12 +100,12 @@ void DelVFirst (list *L, infotype *X)
     Dealokasi(&P);
 }
 
-void DelVLast (list *L, infotype *X)
+void DelVLast (list *L, infotype_list *X)
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
 {
-    address P;
+    address_list P;
 
     /* Algoritma */
     DelLast(L,&P);
@@ -115,14 +115,14 @@ void DelVLast (list *L, infotype *X)
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
-void InsertFirst (list *L, address P)
+void InsertFirst (list *L, address_list P)
 {
     Next(P) = First(*L);
     First(*L) = P;
 }
 /* I.S. Sembarang, P sudah dialokasi  */
-/* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
-void InsertAfter (list *L, address P, address Prec)
+/* F.S. Menambahkan elemen ber-address_list P sebagai elemen pertama */
+void InsertAfter (list *L, address_list P, address_list Prec)
 {
     Next(P) = Next(Prec);
     Next(Prec) = P;
@@ -130,9 +130,9 @@ void InsertAfter (list *L, address P, address Prec)
 /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
 /*      P sudah dialokasi  */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-void InsertLast (list *L, address P)
+void InsertLast (list *L, address_list P)
 {
-        address Last;
+        address_list Last;
     
     /* Algoritma */
     Last = First(*L);
@@ -149,7 +149,7 @@ void InsertLast (list *L, address P)
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
 /*** PENGHAPUSAN SEBUAH ELEMEN ***/
-void DelFirst (list *L, address *P)
+void DelFirst (list *L, address_list *P)
 {
     *P = First(*L);
     First(*L) = Next(First(*L));
@@ -159,9 +159,9 @@ void DelFirst (list *L, address *P)
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
 
-void DelLast (list *L, address *P)
+void DelLast (list *L, address_list *P)
 {
-     address Last, PrecLast;
+     address_list Last, PrecLast;
   
   /* Algoritma */
   Last = First(*L);
@@ -182,7 +182,7 @@ void DelLast (list *L, address *P)
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen terakhir yg lama, */
 /* jika ada */
-void DelAfter (list *L, address *Pdel, address Prec)
+void DelAfter (list *L, address_list *Pdel, address_list Prec)
 {
    *Pdel = Next(Prec);
     Next(Prec) = Next(Next(Prec));
@@ -196,7 +196,7 @@ int NbElmt (list L)
 {
     /* Kamus Lokal */
         /* Kamus Lokal */
-    address P;
+    address_list P;
     int i;
 
     /* Algoritma */
@@ -215,7 +215,7 @@ void Konkat1 (list *L1, list *L2, list *L3)
 {
 
     /* Algoritma */
-    address P;
+    address_list P;
 
     /* Algoritma */
     P = First(*L1);
@@ -248,8 +248,8 @@ void Konkat1 (list *L1, list *L2, list *L3)
 
 
 //Fungsi reborn
-address Search (list L, int X, int Y){
-    address a, a1;
+address_list Search (list L, int X, int Y){
+    address_list a, a1;
     a=First(L);
     a1=a;
     boolean ketemu=false;

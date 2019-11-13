@@ -1,6 +1,7 @@
 {
     "git.ignoreLimitWarning": true,
     "files.associations": {
-        "tipe_bentukan.h": "c"
+        "tipe_bentukan.h": "c",
+        "stack.h": "c"
     }
 }

@@ -219,9 +219,11 @@ int cekbisagerak(piece F, papan board[10][10]){ //cek bisa atau tidak {1:bisa ; 
 
             return hasil;
     }
-    else {return 4;}
+    else {return 0;}
 }
 
+
+/*  
 int main() {
     piece F;
     papan board[10][10];
@@ -264,3 +266,4 @@ int main() {
     
     printf("%d\n",cekbisagerak(F,board));
 }
+*/

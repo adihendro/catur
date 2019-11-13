@@ -92,7 +92,7 @@ void knight(piece F, papan board[10][10]){
 }
 
 void ceksemuagerak(piece F, papan board[10][10]){
-    CreateEmpty(&L);
+    CreateEmpty_list(&L);
     switch(F.nama){
         case 'P': pawn(F, board); break;
         case 'R': rook(F, board); break;

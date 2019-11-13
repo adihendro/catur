@@ -7,17 +7,18 @@
 #include "boolean.h"
 
 #define Nil 0
+
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
-typedef int infotype;
+typedef int infotype_queue;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
-typedef struct { infotype * T;   /* tabel penyimpan elemen */
+typedef struct { infotype_queue * T;   /* tabel penyimpan elemen */
                  address HEAD;  /* alamat penghapusan */
                  address TAIL;  /* alamat penambahan */
-                 int MaxEl;     /* Max elemen queue */
+                 int Maxel;     /* Max elemen queue */
                } queue;
 /* Definisi queue kosong: HEAD=Nil; TAIL=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */

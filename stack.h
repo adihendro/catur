@@ -13,7 +13,7 @@ TOP adalah alamat elemen puncak*/
 #define MaxEl 100
 #define Top(S) (S).TOP
 
-typedef int address;
+typedef int address_stack;
 
 typedef struct {
     char nama;
@@ -26,7 +26,7 @@ typedef struct {
 
 typedef struct {
     infotype_stack T[MaxEl+1];
-    address TOP;
+    address_stack TOP;
 } stack;
 
 /* Definisi stack S kosong : S.TOP = Nil */
@@ -46,7 +46,7 @@ void CreateEmpty_stack(stack *S);
 boolean IsEmpty_stack(stack S);
 /* Mengirim true jika stack kosong*/
 /* Ciri stack kosong : TOP bernilai Nil */
-boolean IsFull(stack S);
+boolean IsFull_stack(stack S);
 /* Mengirim true jika stack S penuh */
 /* Ciri stack penuh : TOP bernilai MaxEl */
 
