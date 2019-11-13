@@ -14,6 +14,11 @@ typedef struct {
 			int player;
 		} papan;
 
+typedef struct {
+			int posisiR;
+			int posisiC;
+		} posisi;
+
 char command;
 
 #endif

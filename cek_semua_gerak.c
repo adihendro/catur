@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "listlinier.h"
+#include "listposisi.h"
 #include "tipe_bentukan.h"
 #include "boolean.h"
 
@@ -8,16 +8,21 @@
 int i,j,k,a,b,temp;
 boolean br;
 list L;
+posisi P;
 
 void cek(int a, int b, int x1, int x2, piece F, papan board[10][10]){
     br=false;
     if(kotak.nama==' '){ //kalau kotak kosong
-        InsVLast(&L,F);
+        P.posisiC = F.posisiC;
+        P.posisiR = F.posisiR;
+        InsVLastposisi(&L,P);
 
     } else{ //kotak = */temen/musuh
         br=true; //break loop
         if(kotak.nama!='*' && kotak.player!=F.player){ //kalau kotak = musuh
-            InsVLast(&L,F);      
+            P.posisiC = F.posisiC;
+            P.posisiR = F.posisiR;
+            InsVLastposisi(&L,P);      
         }
     }
 }
@@ -92,7 +97,7 @@ void knight(piece F, papan board[10][10]){
 }
 
 void ceksemuagerak(piece F, papan board[10][10]){
-    CreateEmpty(&L);
+    CreateEmpty_list(&L);
     switch(F.nama){
         case 'P': pawn(F, board); break;
         case 'R': rook(F, board); break;
