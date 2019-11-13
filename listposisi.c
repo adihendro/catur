@@ -2,11 +2,16 @@
 #include <stdlib.h>
 #include "listposisi.h"
 
-address Alokasi (infotype_posisi X)
+void CreateEmpty_posisi (list_posisi *L)
 {
-    address P;
+    First(*L) = Nil;
+}
 
-    P = (address) malloc (sizeof(ElmtList));
+address_posisi Alokasi_posisi (infotype_posisi X)
+{
+    address_posisi P;
+
+    P = (address_posisi) malloc (sizeof(ElmtList));
 
     if (P != Nil)
     {
@@ -21,16 +26,16 @@ address Alokasi (infotype_posisi X)
     }
 }
 
-void InsVLastposisi (list *L, infotype_posisi X)
+void InsVLastposisi (list_posisi *L, infotype_posisi X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 {
-    address P;
+    address_posisi P;
 
     /* Algoritma */
-    P = Alokasi(X);
+    P = Alokasi_posisi(X);
     if (P != Nil) 
     {
       InsertLast(L,P);

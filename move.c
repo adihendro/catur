@@ -71,20 +71,20 @@ void move(papan *board, stack *history, stack *termakan, int *poin_putih, int *p
 
     // pertama-tama buat list posisi yang mungkin dijalani
     list_posisi daftar_posisi;
-    CreateEmpty(&daftar_posisi);
+    CreateEmpty_posisi(&daftar_posisi);
     // cari semua posisi tujuan yang mungkin dari bidak itu dan masukkan ke daftar_posisi
-    ceksemuagerak(Info(R).nama , &daftar_posisi);
+    ceksemuagerak(Info(R) ,&board2, &daftar_posisi);
     
     // print daftar pilihan posisi yang mungkin
-    // address Q;
-    // i = 1;
-    // Q = First(daftar_posisi);
-    // while(Q != Nil) {
-    //     printf("  %d. (", i);
-    //     i++;
-    //     PrintKolom(Info(Q).posisiC);
-    //     printf(",%d)\n",Info(Q).posisiR)
-    // }
+    address Q;
+    i = 1;
+    Q = First(daftar_posisi);
+    while(Q != Nil) {
+        printf("  %d. (", i);
+        i++;
+        PrintKolom(Info(Q).posisiC);
+        printf(",%d)\n",Info(Q).posisiR)
+    }
 
     // user memilih posisi tujuan bidak
     int inputan_pilihan_posisi;

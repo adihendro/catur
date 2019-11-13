@@ -96,8 +96,7 @@ void knight(piece F, papan board[10][10]){
     }
 }
 
-void ceksemuagerak(piece F, papan board[10][10]){
-    CreateEmpty_list(&L);
+void ceksemuagerak(piece F, papan board[10][10], list_posisi *L){
     switch(F.nama){
         case 'P': pawn(F, board); break;
         case 'R': rook(F, board); break;
