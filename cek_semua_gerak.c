@@ -1,25 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-// #include "listlinier.h"
+#include "listlinier.h"
 #include "tipe_bentukan.h"
 #include "boolean.h"
 
 #define kotak board[F.posisiR + a*x1*x2][F.posisiC + b*x1*x2]
 int i,j,k,a,b,temp;
 boolean br, enemy;
-// List L;
-// CreateEmpty(&L);
+List L;
 
 void cek(int a, int b, int x1, int x2, piece F, papan board[10][10]){
     br=false;
     enemy=false;
     if(kotak.nama==' '){ //kalau kotak kosong
-        //InsVLast(L,F);
+        InsVLast(&L,F);
         printf("kosong\n");
     } else{ //kotak = */temen/musuh
         br=true; //break loop
         if(kotak.nama!='*' && kotak.player!=F.player){ //kalau kotak = musuh
-            //InsVLast(L,F);
+            InsVLast(&L,F);
             printf("musuh\n");
             enemy=true;       
         }
@@ -96,6 +95,7 @@ void knight(piece F, papan board[10][10]){
 }
 
 void ceksemuagerak(piece F, papan board[10][10]){
+    CreateEmpty(&L);
     switch(F.nama){
         case 'P': pawn(F, board); break;
         case 'R': rook(F, board); break;
@@ -107,7 +107,7 @@ void ceksemuagerak(piece F, papan board[10][10]){
 }
 
 
-
+/*
 int main() {
     piece F;
     papan board[10][10];
@@ -151,3 +151,4 @@ int main() {
     
     return 0;
 }
+*/
