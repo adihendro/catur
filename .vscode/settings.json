@@ -1,3 +1,6 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "files.associations": {
+        "tipe_bentukan.h": "c"
+    }
 }
