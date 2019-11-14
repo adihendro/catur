@@ -1,16 +1,15 @@
-#include "boolean.h"
-#include <stdio.h>
-
 #ifndef stack_H
 #define stack_H
 
+#include "boolean.h"
+#include <stdio.h>
+
 /* MODUL STACK
-Deklarasi stack yang diimplementasi dengan tabel kontigu alokasi statik
-dan ukuran sama
+Deklarasi stack yang diimplementasi dengan tabel kontigu alokasi statik dan ukuran sama
 TOP adalah alamat elemen puncak*/
 
-#define Nil 0
-#define MaxEl 100
+#define Nil_stack 0
+#define MaxEl_stack 100
 #define Top(S) (S).TOP
 
 typedef int address_stack;
@@ -23,9 +22,8 @@ typedef struct {
     int posisiC;
 } infotype_stack;
 
-
 typedef struct {
-    infotype_stack T[MaxEl+1];
+    infotype_stack T[MaxEl_stack+1];
     address_stack TOP;
 } stack;
 
@@ -51,11 +49,11 @@ boolean IsFull_stack(stack S);
 /* Ciri stack penuh : TOP bernilai MaxEl */
 
 /* ********** Operator Dasar stack ********* */
-void Push(stack *S, infotype X);
+void Push(stack *S, infotype_stack X);
 /* Menambahkan X sebagai elemen stack S. */
 /* I.S. S mungkin kosong, S tidak penuh */
 /*F.S. X menjadi element TOP yang baru, TOP bertambah 1 */
-void Pop (stack *S, infotype *X);
+void Pop (stack *S, infotype_stack *X);
 /* Menghapus X dari stack S. */
 /* I.S. S tidak kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */

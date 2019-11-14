@@ -1,4 +1,3 @@
-
 #include "stack.h"
 
 void CreateEmpty_stack(stack *S){

@@ -5,7 +5,7 @@ int main () {
 	char CC;
 	static FILE *pita;
     list A; // list yang dimaksud
-    CreateEmpty(&A); // buat gampang overwritenya
+    CreateEmpty_list(&A); // buat gampang overwritenya
 	strcpy(str,"contohList.txt");
     pita = fopen(str,"r");
     int retval;

@@ -7,7 +7,7 @@
 #define kotak board[F.posisiR + a*x1*x2][F.posisiC + b*x1*x2]
 int i,j,k,a,b,temp;
 boolean br;
-list L;
+list_posisi L;
 posisi P;
 
 void cek(int a, int b, int x1, int x2, piece F, papan board[10][10]){
@@ -15,14 +15,14 @@ void cek(int a, int b, int x1, int x2, piece F, papan board[10][10]){
     if(kotak.nama==' '){ //kalau kotak kosong
         P.posisiC = F.posisiC;
         P.posisiR = F.posisiR;
-        InsVLastposisi(&L,P);
+        InsVLast_posisi(&L,P);
 
     } else{ //kotak = */temen/musuh
         br=true; //break loop
         if(kotak.nama!='*' && kotak.player!=F.player){ //kalau kotak = musuh
             P.posisiC = F.posisiC;
             P.posisiR = F.posisiR;
-            InsVLastposisi(&L,P);      
+            InsVLast_posisi(&L,P);      
         }
     }
 }

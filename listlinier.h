@@ -9,7 +9,7 @@
 #include "boolean.h"
 #include "tipe_bentukan.h"
 
-#define Nil NULL
+#define Nil_list NULL
 
 typedef piece infotype_list;
 
