@@ -4,15 +4,13 @@
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty_list (list L)
-{
+boolean IsEmpty_list (list L){
     return First(L) == Nil_list;
 }
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty_list (list *L)
-{
+void CreateEmpty_list (list *L){
     First(*L) = Nil_list;
 }
 
@@ -20,21 +18,16 @@ void CreateEmpty_list (list *L)
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-address_list Alokasi (infotype_list X)
-{
+address_list Alokasi (infotype_list X){
     address_list P;
 
     P = (address_list) malloc (sizeof(ElmtList));
 
-    if (P != Nil_list)
-    {
+    if (P != Nil_list){
         Info(P) = X;
         Next(P) = Nil_list;
         return P;
-    }
-
-    else
-    {
+    } else{
         return Nil_list;
     }
 }
@@ -221,12 +214,10 @@ address_list Search (list L, int X, int Y){
     while(!ketemu){
         if(Info(a).posisiC==X && Info(a).posisiR==Y){
             ketemu=true;
-        }
-        else{
+        } else{
             a1=a;
             a=Next(a);
         }
     }
     return a1;
 }
-
