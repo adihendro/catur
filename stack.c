@@ -1,7 +1,6 @@
-
 #include "stack.h"
 
-void CreateEmpty(Stack *S){
+void CreateEmpty_stack(stack *S){
     (*S).TOP = Nil;
 }
 /* I.S. Sembarang */
@@ -9,29 +8,29 @@ void CreateEmpty(Stack *S){
 /* Ciri stack kosong : TOP bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Stack S){
+boolean IsEmpty_stack(stack S){
     return (S).TOP == Nil;
 }
-/* Mengirim true jika Stack kosong*/
+/* Mengirim true jika stack kosong*/
 /* Ciri stack kosong : TOP bernilai Nil */
-boolean IsFull(Stack S){
+boolean IsFull(stack S){
     return (S).TOP == MaxEl;
 }
 /* Mengirim true jika stack S penuh */
 /* Ciri stack penuh : TOP bernilai MaxEl */
 
-/* ********** Operator Dasar Stack ********* */
-void Push(Stack *S, infotype_stack X){
+/* ********** Operator Dasar stack ********* */
+void Push(stack *S, infotype_stack X){
     (*S).TOP ++;
     (*S).T[(*S).TOP] = X;
 }
-/* Menambahkan X sebagai elemen Stack S. */
+/* Menambahkan X sebagai elemen stack S. */
 /* I.S. S mungkin kosong, S tidak penuh */
 /*F.S. X menjadi element TOP yang baru, TOP bertambah 1 */
-void Pop (Stack *S, infotype_stack *X){
+void Pop (stack *S, infotype_stack *X){
     *X = (*S).T[(*S).TOP];
     (*S).TOP--;
 }
-/* Menghapus X dari Stack S. */
+/* Menghapus X dari stack S. */
 /* I.S. S tidak kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */

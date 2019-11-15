@@ -219,9 +219,11 @@ int cekbisagerak(piece F, papan board[10][10]){ //cek bisa atau tidak {1:bisa ; 
 
             return hasil;
     }
-    else {return 4;}
+    else {return 0;}
 }
 
+
+/*  
 int main() {
     piece F;
     papan board[10][10];
@@ -264,18 +266,4 @@ int main() {
     
     printf("%d\n",cekbisagerak(F,board));
 }
-
-
-// if(board[F.posisiR+1][F.posisiC].nama != '*'){
-//                 if(board[F.posisiR+1][F.posisiC+1].nama != '*'){
-//                     if((board[F.posisiR+1][F.posisiC+2].nama == ' ') || ((board[F.posisiR+1][F.posisiC+2].nama != '*')&&(board[F.posisiR+1][F.posisiC+2].player == 2))){
-//                         return 7;
-//                     }
-//                 } else if(board[F.posisiR+1][F.posisiC-1].nama != '*'){
-//                     if((board[F.posisiR+1][F.posisiC-2].nama == ' ') || ((board[F.posisiR+1][F.posisiC-2].nama != '*')&&(board[F.posisiR+1][F.posisiC-2].player != 1))){
-//                         return 9;
-//                     }
-//                 }
-//             } else {
-//                 return 8;
-//             }
+*/

@@ -2,29 +2,9 @@
 #include "fungsi.h"
 #include "tipe_bentukan.h"
 
+#include "print_papan.c"
+
 int main(){
-    int i,j,k;
-    piece F;
-    papan board[10][10];
-    char command[10];
-
-    start();
-    // PrintPapan(board);
-
-    printf("Masukkan command: ");
-    scanf("%s",&command);
-
-    switch (command){
-    case MOVE:
-        /* code */
-        break;
-    default:
-        //command salah
-        break;
-    }
-
-
-
     F.nama = 'K';
     F.poin = 1;
     F.player = 1;
@@ -61,7 +41,24 @@ int main(){
     board[3][3].nama = ' ';
     board[3][3].player = 1;
 
-    ceksemuagerak(F,board);
+    CreateEmpty_stack(&history);
+    CreateEmpty_stack(&termakan);
+    CreateEmpty_list(&list_ada_putih);
+    CreateEmpty_list(&list_ada_hitam);
+    CreateEmpty_queue(&giliransiapa, 2);
+
+
+
+    start();
+    PrintPapan(board);
+
+    printf("Masukkan command: ");
+    scanf("%s",&command);
+
+    if(command=="MOVE"){
+        move(&board, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, giliransiapa);
+    }
+
 
 
     return 0;
