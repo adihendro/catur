@@ -7,26 +7,31 @@
 // #include "cek_bisa_gerak.c"
 
 
-void move(papan *board, stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue giliransiapa) {
-    papan board2;
-    stack history2;
-    stack termakan2;
-    termakan2 = *termakan;
-    history2 = *history;
-    board2 = *board;
+void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue giliransiapa) {
+    // papan board2[10][10];
+    // stack history2;
+    // stack termakan2;
+    // termakan2 = *termakan;
+    // history2 = *history;
+    // for(int i=0;i<=10;i++){
+    //     for(int j=0;j<=10;j++){
+    //         board2[i][j] = *board[i][j];
+    //     }
+    // }
+
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
-    list giliran; //list piece apa yg ada di papan
+    list kawan; //list piece apa yg ada di papan
     list lawan;
     int poin;
 
-    CreateEmpty_list(&giliran);
+    CreateEmpty_list(&kawan);
     if (Head(giliransiapa) == 1) { //putih
-        giliran = *list_ada_putih; //piece yg ada di papan
+        kawan = *list_ada_putih; //piece yg masih ada di papan
         lawan = *list_ada_hitam;
         poin = *poin_putih;
     }
     else { //giliransiapa == 2, hitam
-        giliran = *list_ada_hitam;
+        kawan = *list_ada_hitam;
         lawan = *list_ada_putih;
         poin = *poin_hitam;
     }
@@ -35,9 +40,9 @@ void move(papan *board, stack *history, stack *termakan, int *poin_putih, int *p
     list list_bisa_gerak; //ditunjuk pake R
     CreateEmpty_list(&list_bisa_gerak);
     address_list P;
-    P = First(giliran);
+    P = First(kawan);
     while (P != Nil_list) {
-        if (cekbisagerak(Info(P), &board2)) { //Info(P) == piece
+        if (cekbisagerak(Info(P), board)) { //Info(P) == piece
             InsVLast(&list_bisa_gerak, Info(P)); //reborn tambahin reborn
         }
     }
@@ -45,7 +50,7 @@ void move(papan *board, stack *history, stack *termakan, int *poin_putih, int *p
     // tampilkan bidak yang dapat bergerak
     address_list R;
     R = First(list_bisa_gerak);
-    int i = 1;
+    int i = 1;  
     printf("Daftar bidak yang bisa bergerak:\n");
     while (R != Nil_list) {
         printf("  %d. ", i);
@@ -76,10 +81,10 @@ void move(papan *board, stack *history, stack *termakan, int *poin_putih, int *p
     list_posisi daftar_posisi;
     CreateEmpty_posisi(&daftar_posisi);
     // cari semua posisi tujuan yang mungkin dari bidak itu dan masukkan ke daftar_posisi
-    ceksemuagerak(Info(R), &board2, &daftar_posisi); //Info(R) == piece
+    ceksemuagerak(Info(R), board, &daftar_posisi); //Info(R) == piece
     
     // print daftar pilihan posisi yang mungkin
-    address_list Q;
+    address_posisi Q;
     i = 1;
     Q = First(daftar_posisi);
     while(Q != Nil_list) {
@@ -96,7 +101,6 @@ void move(papan *board, stack *history, stack *termakan, int *poin_putih, int *p
     int input_pilihan_posisi;
     printf("Pilih posisi tujuan bidak: ");
     scanf("%d",&input_pilihan_posisi);
-    address_list *Q;
     i = 1;
     // Q akan pergi ke bidak yang dimaksud
     Q = First(daftar_posisi);
@@ -110,19 +114,19 @@ void move(papan *board, stack *history, stack *termakan, int *poin_putih, int *p
     // lakukan fungsi swap
     infotype_stack X;
     
-    if (adaorang(lawan, board2, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
+    if (adaorang(lawan, board, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
         address_list A, A1;
         A1 = Search(lawan, Info(Q).posisiC, Info(Q).posisiR); //address sebelum bidak lawan yang termakan
         A = Next(A1); //address bidak lawan yang termakan
         poin += Info(A).poin;
 
         //stack
-        X.nama = Info(A).nama;
+        X.nama = Info_stack(A).nama;
         X.player = (Head(giliransiapa) % 2) + 1;
         // X.turn = turn;
-        X.posisiR = Info(Q).posisiR;
-        X.posisiC = Info(Q).posisiC;
-        Push(&termakan, X); //masukkan ke stack termakan
+        X.posisiR = Info_stack(Q).posisiR;
+        X.posisiC = Info_stack(Q).posisiC;
+        Push(termakan, X); //masukkan ke stack termakan
 
         //list
         DelAfter(&lawan, &A, A1); // hapus bidak lawan dari list linier lawan 
@@ -145,27 +149,28 @@ void move(papan *board, stack *history, stack *termakan, int *poin_putih, int *p
     X.posisiR = tempR;
     X.posisiC = tempC;
 
-    Push(&history2, X);
+    Push(history, X);
 
 
     // simpan kembali datanya ke variabel global
     if (Head(giliransiapa) == 1) { //putih
-        *list_ada_putih = giliran;
+        *list_ada_putih = kawan;
         *list_ada_hitam = lawan;
         *poin_putih = poin;
     }
     else { //giliransiapa == 2, hitam
-        *list_ada_hitam = giliran;
+        *list_ada_hitam = kawan;
         *list_ada_putih = lawan;
         *poin_hitam = poin;
     }
-    *board = board2;
-    *history = history2;
-    *termakan = termakan2;
+    // *board = board2;
+    // *history = history2;
+    // *termakan = termakan2;
+ 
 }
 
 
 int main(){
-    move(&board, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, giliransiapa);
+    move(board, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, giliransiapa);
     return 0;
 }
