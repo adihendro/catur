@@ -1,8 +1,8 @@
 #ifndef stack_H
 #define stack_H
 
-#include "boolean.h"
 #include <stdio.h>
+#include "boolean.h"
 
 /* MODUL STACK
 Deklarasi stack yang diimplementasi dengan tabel kontigu alokasi statik dan ukuran sama
@@ -11,18 +11,7 @@ TOP adalah alamat elemen puncak*/
 #define Nil_stack 0
 #define MaxEl_stack 100
 #define Top(S) (S).TOP
-#define Info(S) (S).infotype_stack;
-
-typedef struct 
-{
-    char nama;
-    int player;
-    int turn;
-    int posisiR;
-    int posisiC;
-} infotype_stack;
-
-typedef int address_stack;
+#define Info_stack(S) (S).infotype_stack;
 
 typedef struct {
     char nama;
@@ -31,6 +20,8 @@ typedef struct {
     int posisiR;
     int posisiC;
 } infotype_stack;
+
+typedef int address_stack;
 
 typedef struct {
     infotype_stack T[MaxEl_stack+1];
