@@ -12,12 +12,21 @@ TOP adalah alamat elemen puncak*/
 #define Nil 0
 #define MaxEl 10
 #define Top(S) (S).TOP
+#define Info(S) (S).infotype_stack;
 
-typedef char infotype;
+typedef struct 
+{
+    char nama;
+    int player;
+    int turn;
+    int posisiR;
+    int posisiC;
+} infotype_stack;
+
 typedef int address;
 
 typedef struct {
-    infotype T[MaxEl + 1];
+    infotype_stack T[MaxEl + 1];
     address TOP;
 } Stack;
 
@@ -43,11 +52,11 @@ boolean IsFull(Stack S);
 /* Ciri stack penuh : TOP bernilai MaxEl */
 
 /* ********** Operator Dasar Stack ********* */
-void Push(Stack *S, infotype X);
+void Push(Stack *S, infotype_stack X);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, S tidak penuh */
 /*F.S. X menjadi element TOP yang baru, TOP bertambah 1 */
-void Pop (Stack *S, infotype *X);
+void Pop (Stack *S, infotype_stack *X);
 /* Menghapus X dari Stack S. */
 /* I.S. S tidak kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */

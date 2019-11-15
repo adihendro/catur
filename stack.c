@@ -21,14 +21,14 @@ boolean IsFull(Stack S){
 /* Ciri stack penuh : TOP bernilai MaxEl */
 
 /* ********** Operator Dasar Stack ********* */
-void Push(Stack *S, infotype X){
+void Push(Stack *S, infotype_stack X){
     (*S).TOP ++;
     (*S).T[(*S).TOP] = X;
 }
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, S tidak penuh */
 /*F.S. X menjadi element TOP yang baru, TOP bertambah 1 */
-void Pop (Stack *S, infotype *X){
+void Pop (Stack *S, infotype_stack *X){
     *X = (*S).T[(*S).TOP];
     (*S).TOP--;
 }
