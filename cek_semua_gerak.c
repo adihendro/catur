@@ -4,13 +4,13 @@
 #include "tipe_bentukan.h"
 #include "boolean.h"
 
-#define kotak board[F.posisiR + a*x1*x2][F.posisiC + b*x1*x2]
+#define kotak (*board[F.posisiR + a*x1*x2][F.posisiC + b*x1*x2])
 int i,j,k,a,b,temp;
 boolean br;
 list_posisi L;
 posisi P;
 
-void cek(int a, int b, int x1, int x2, piece F, papan board[10][10]){
+void cek(int a, int b, int x1, int x2, piece F, papan *board[10][10]){
     br=false;
     if(kotak.nama==' '){ //kalau kotak kosong
         P.posisiC = F.posisiC;
@@ -27,7 +27,7 @@ void cek(int a, int b, int x1, int x2, piece F, papan board[10][10]){
     }
 }
 
-void pawn(piece F, papan board[10][10]){
+void pawn(piece F, papan *board[10][10]){
     a = F.player==1 ? -1 : 1;
     for(i=-1;i<=1;i++){
         cek(a,i,1,1,F,board);
@@ -39,7 +39,7 @@ void pawn(piece F, papan board[10][10]){
     }
 }
 
-void rook(piece F, papan board[10][10]){
+void rook(piece F, papan *board[10][10]){
     a=1, b=0;
     for(i=0;i<2;i++){
         for(j=-1;j<=1;j=j+2){
@@ -53,7 +53,7 @@ void rook(piece F, papan board[10][10]){
     }
 }
 
-void bishop(piece F, papan board[10][10]){
+void bishop(piece F, papan *board[10][10]){
     a=1;
     for(i=0;i<2;i++){
         for(j=-1;j<=1;j=j+2){
@@ -66,7 +66,7 @@ void bishop(piece F, papan board[10][10]){
     }
 }
 
-void king(piece F, papan board[10][10]){
+void king(piece F, papan *board[10][10]){
     a=1, b=1;
     for(i=0;i<8;i++){
         cek(a,b,1,1,F,board);
@@ -79,7 +79,7 @@ void king(piece F, papan board[10][10]){
     }
 }
 
-void knight(piece F, papan board[10][10]){
+void knight(piece F, papan *board[10][10]){
     a=1, b=2;
     for(i=0;i<8;i++){
         if((F.posisiR+a) >=1 && (F.posisiR+a) <=8 && 
@@ -96,7 +96,7 @@ void knight(piece F, papan board[10][10]){
     }
 }
 
-void ceksemuagerak(piece F, papan board[10][10], list_posisi *L){
+void ceksemuagerak(piece F, papan *board[10][10], list_posisi *L){
     switch(F.nama){
         case 'P': pawn(F, board); break;
         case 'R': rook(F, board); break;
