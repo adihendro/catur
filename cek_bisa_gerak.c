@@ -14,19 +14,19 @@ int cekbisagerak(piece F, papan *board_temp[10][10]){ //cek bisa atau tidak {1:b
     if(F.nama=='P'){
         if(F.player==1){ //putih
             if(board[F.posisiR-1][F.posisiC].nama == ' '){
-                return 1;
+                return 12;
             } else if(((board[F.posisiR-1][F.posisiC+1].nama != '*') && (board[F.posisiR-1][F.posisiC+1].nama != ' ') && (board[F.posisiR-1][F.posisiC+1].player != 1))
             || ((board[F.posisiR-1][F.posisiC-1].nama != '*') && (board[F.posisiR-1][F.posisiC-1].nama != ' ') && (board[F.posisiR-1][F.posisiC-1].player != 1))){
-                return 1;
+                return 11;
             } else{
                 return 0;
             }
         } else{ //F.player==2, hitam
             if(board[F.posisiR+1][F.posisiC].nama == ' '){
-                return 1;
+                return 4;
             } else if(((board[F.posisiR+1][F.posisiC+1].nama != '*') && (board[F.posisiR+1][F.posisiC+1].nama != ' ') && (board[F.posisiR+1][F.posisiC+1].player != 2))
             || ((board[F.posisiR+1][F.posisiC-1].nama != '*') && (board[F.posisiR+1][F.posisiC-1].nama != ' ') && (board[F.posisiR+1][F.posisiC-1].player != 2))){
-                return 1;
+                return 6;
             } else{
                 return 0;
             }
