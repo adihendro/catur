@@ -32,9 +32,9 @@ typedef struct { infotype_queue * T;   /* tabel penyimpan elemen */
 #define MaxEl(Q) (Q).maxEl
 
 /* ********* Prototype ********* */
-boolean IsEmpty (queue Q);
+boolean IsEmpty_queue (queue Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull (queue Q);
+boolean IsFull_queue (queue Q);
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 int NBElmt (queue Q);
