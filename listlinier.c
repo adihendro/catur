@@ -125,7 +125,7 @@ void InsertAfter (list *L, address_list P, address_list Prec)
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
 void InsertLast (list *L, address_list P)
 {
-        address_list Last;
+    address_list Last;
     
     /* Algoritma */
     Last = First(*L);
@@ -154,21 +154,21 @@ void DelFirst (list *L, address_list *P)
 
 void DelLast (list *L, address_list *P)
 {
-     address_list Last, PrecLast;
+    address_list Last, PrecLast;
   
-  /* Algoritma */
-  Last = First(*L);
-  PrecLast = Nil_list;
-  while (Next(Last) != Nil_list) {
-    PrecLast = Last;
-    Last = Next(Last);;
-  }
-  *P = Last;
-  if (PrecLast == Nil_list) {
-    First(*L) = Nil_list;
-  } else {
-    Next(PrecLast) = Nil_list;
-  }
+    /* Algoritma */
+    Last = First(*L);
+    PrecLast = Nil_list;
+    while (Next(Last) != Nil_list) {
+        PrecLast = Last;
+        Last = Next(Last);;
+    }
+    *P = Last;
+    if (PrecLast == Nil_list) {
+        First(*L) = Nil_list;
+    } else {
+        Next(PrecLast) = Nil_list;
+    }
 }
 /* I.S. list tidak kosong */
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
