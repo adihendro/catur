@@ -33,6 +33,7 @@ typedef struct tElmtlist {
 
 typedef struct {
 	address_list First;
+	address_list Parent; //dipakai di parent (list_bisa_gerak –> list_putih/hitam (parent))
 } list;
 
 
@@ -52,6 +53,7 @@ typedef struct {
 
 
 
+#include "boolean.h"
 #include "listlinier.h"
 #include "listposisi.h"
 #include "stack.h"
@@ -61,13 +63,16 @@ typedef struct {
 #define Info(P) (P)->info
 #define Next(P) (P)->next
 #define First(L) (L).First
+#define Parent(L) (L).Parent
 
 int i,j,k;
-int poin_putih=0, poin_hitam=0;
+int poin_putih, poin_hitam;
 
-piece F;
+boolean go;
+// piece F;
 papan board[10][10];
-char command[12];
+int choice;
+char command[100];
 
 stack history, termakan;
 list list_ada_putih, list_ada_hitam;
