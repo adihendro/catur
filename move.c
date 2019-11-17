@@ -1,9 +1,8 @@
 #include <stdio.h>
-#include "fungsi.h"
+#include "tipe_bentukan.h"
 
 #include "print_semua.c"
 #include "ada_orang.c"
-
 #include "cek_semua_gerak.c"
 #include "cek_bisa_gerak.c"
 
@@ -26,7 +25,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     int poin;
 
     CreateEmpty_list(&kawan);
-    if (Head(giliransiapa) == 1) { //putih
+    if (InfoTail(giliransiapa) == 1) { //putih
         kawan = *list_ada_putih; //piece yg masih ada di papan
         lawan = *list_ada_hitam;
         poin = *poin_putih;
@@ -42,10 +41,11 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     CreateEmpty_list(&list_bisa_gerak);
     address_list P;
     P = First(kawan);
+
     while (P != Nil_list) {
         if (cekbisagerak(Info(P), board)) { //Info(P) == piece
             InsVLast(&list_bisa_gerak, Info(P)); //dari list kawan dimasukkin ke list_bisa_gerak
-            list_bisa_gerak.Parent = P;
+            Parent(list_bisa_gerak) = P;
         }
         P = Next(P);
     }
@@ -83,6 +83,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     // pertama-tama buat list posisi yang mungkin dijalani
     list_posisi daftar_posisi;
     CreateEmpty_posisi(&daftar_posisi);
+
     // cari semua posisi tujuan yang mungkin dari bidak itu dan masukkan ke daftar_posisi
     ceksemuagerak(Info(R), board, &daftar_posisi); //Info(R) == piece
     
@@ -90,28 +91,28 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     address_posisi Q;
     i = 1;
     Q = First(daftar_posisi);
+    printf("Daftar posisi tujuan yang mungkin:\n");
     while(Q != Nil_list) {
         printf("  %d. (", i);
         i++;
         PrintKolom(Info(Q).posisiC);
         printf(", ");
-        PrintBaris(Info(R).posisiR);
+        PrintBaris(Info(Q).posisiR);
         printf(")\n");
         Q = Next(Q);
     }
 
     // user memilih posisi tujuan bidak
-    int input_pilihan_posisi;
     printf("Pilih posisi tujuan bidak: ");
+    int input_pilihan_posisi;
     scanf("%d",&input_pilihan_posisi);
-    i = 1;
     // Q akan pergi ke bidak yang dimaksud
     Q = First(daftar_posisi);
+    i = 1;
     while (i < input_pilihan_posisi){
         Q = Next(Q);
         i++;
-    }
-    // Q sudah menunjukkan pilihan posisi bidak yang ingin dituju
+    } // Q sudah menunjukkan pilihan posisi bidak yang ingin dituju
 
 
     // lakukan fungsi swap
@@ -125,7 +126,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
         //stack
         X.nama = Info(A).nama;
-        X.player = (Head(giliransiapa) % 2) + 1; //lawan
+        X.player = (InfoTail(giliransiapa) % 2) + 1; //lawan
         // X.turn = turn;
         X.posisiR = Info(Q).posisiR;
         X.posisiC = Info(Q).posisiC;
@@ -145,31 +146,34 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     Info(R).posisiR = Info(Q).posisiR;
     Info(R).posisiC = Info(Q).posisiC;
 
-
     // update stack dengan posisi bidak terbaru
     X.nama = Info(R).nama;
-    X.player = Head(giliransiapa);
+    X.player = InfoTail(giliransiapa);
     // X.turn = turn;
     X.posisiR = tempR;
     X.posisiC = tempC;
     Push(history, X);
 
 
+
     // simpan kembali datanya ke variabel global
-    if (Head(giliransiapa) == 1) { //putih
+    if (InfoTail(giliransiapa) == 1) { //putih
         *list_ada_putih = kawan;
         *list_ada_hitam = lawan;
         *poin_putih = poin;
+        Add (&giliransiapa, 2);
     }
     else { //giliransiapa == 2, hitam
         *list_ada_hitam = kawan;
         *list_ada_putih = lawan;
         *poin_hitam = poin;
+        Add (&giliransiapa, 1);
     }
+    
+
     // *board = board2;
     // *history = history2;
     // *termakan = termakan2;
- 
 }
 
 /*
