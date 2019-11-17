@@ -34,7 +34,7 @@ ADT:
 		} posisi;
 		
 	typedef struct {
-			infotype_posisi info;
+			posisi info;
 			address next;
 		} list_posisi;
 
