@@ -11,12 +11,15 @@
 /* Elemen terakhir list_posisi : jika addressnya Last, maka Next(Last)=Nil */
 
 
-#define Parent(P) (P)->info
-
 void CreateEmpty_posisi (list_posisi *L);
 
 address_posisi Alokasi_posisi (infotype_posisi X);
 
 void InsVLast_posisi (list_posisi *L, infotype_posisi X);
+
+void InsertFirst_posisi (list_posisi *L, address_posisi P);
+void InsertAfter_posisi (list_posisi *L, address_posisi P, address_posisi Prec);
+void InsertLast_posisi (list_posisi *L, address_posisi P);
+
 
 #endif
