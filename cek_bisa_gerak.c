@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "tipe_bentukan.h"
 #include "boolean.h"
 
@@ -22,7 +21,7 @@ int cekbisagerak(piece F, papan *board_temp[10][10]){ //cek bisa atau tidak {1:b
             } else{
                 return 0;
             }
-        } else if (F.player==2){ //hitam
+        } else{ //F.player==2, hitam
             if(board[F.posisiR+1][F.posisiC].nama == ' '){
                 return 1;
             } else if(((board[F.posisiR+1][F.posisiC+1].nama != '*') && (board[F.posisiR+1][F.posisiC+1].nama != ' ') && (board[F.posisiR+1][F.posisiC+1].player != 2))
@@ -50,7 +49,7 @@ int cekbisagerak(piece F, papan *board_temp[10][10]){ //cek bisa atau tidak {1:b
             } else{
                 return 0;
             }
-        } else if (F.player==2){
+        } else{ //F.player==2, hitam
             if(board[F.posisiR-1][F.posisiC].nama == ' ' || board[F.posisiR-1][F.posisiC-1].nama == ' ' || board[F.posisiR][F.posisiC-1].nama == ' '
             || board[F.posisiR+1][F.posisiC-1].nama == ' ' || board[F.posisiR+1][F.posisiC].nama == ' ' || board[F.posisiR+1][F.posisiC+1].nama == ' '
             || board[F.posisiR][F.posisiC+1].nama == ' ' || board[F.posisiR-1][F.posisiC+1].nama == ' '){
@@ -86,7 +85,7 @@ int cekbisagerak(piece F, papan *board_temp[10][10]){ //cek bisa atau tidak {1:b
             } else{
                 return 0;
             }
-        } else if (F.player==2){
+        } else{ //F.player==2, hitam
             if(board[F.posisiR-1][F.posisiC].nama == ' ' || board[F.posisiR-1][F.posisiC-1].nama == ' ' || board[F.posisiR][F.posisiC-1].nama == ' '
             || board[F.posisiR+1][F.posisiC-1].nama == ' ' || board[F.posisiR+1][F.posisiC].nama == ' ' || board[F.posisiR+1][F.posisiC+1].nama == ' '
             || board[F.posisiR][F.posisiC+1].nama == ' ' || board[F.posisiR-1][F.posisiC+1].nama == ' '){
@@ -118,7 +117,7 @@ int cekbisagerak(piece F, papan *board_temp[10][10]){ //cek bisa atau tidak {1:b
             } else {
                 return 0;
             }
-        } else if (F.player==2){
+        } else{ //F.player==2, hitam
             if(board[F.posisiR-1][F.posisiC].nama == ' ' ||  board[F.posisiR][F.posisiC-1].nama == ' '
             || board[F.posisiR+1][F.posisiC].nama == ' ' || board[F.posisiR][F.posisiC+1].nama == ' ') {
                 return 16;
@@ -145,7 +144,7 @@ int cekbisagerak(piece F, papan *board_temp[10][10]){ //cek bisa atau tidak {1:b
             } else{
                 return 0;
             }
-        } else if (F.player==2){
+        } else{ //F.player==2, hitam
             if(board[F.posisiR-1][F.posisiC-1].nama == ' ' || board[F.posisiR+1][F.posisiC-1].nama == ' ' || board[F.posisiR+1][F.posisiC+1].nama == ' '
             || board[F.posisiR-1][F.posisiC+1].nama == ' '){
                 return 210;
@@ -158,7 +157,7 @@ int cekbisagerak(piece F, papan *board_temp[10][10]){ //cek bisa atau tidak {1:b
                 return 0;
             }
         }
-    }  else if (F.nama=='N'){
+    } else if (F.nama=='N'){
         int hasil=0;
         int pemain=F.player;
             if(F.posisiR>=2 && F.posisiR<=7 && F.posisiC>=2 && F.posisiC <=7){
