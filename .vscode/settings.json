@@ -6,6 +6,7 @@
         "boolean.h": "c",
         "listposisi.h": "c",
         "listlinier.h": "c",
-        "queue.h": "c"
+        "queue.h": "c",
+        "stdio.h": "c"
     }
 }
