@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include "listposisi.h"
 #include "tipe_bentukan.h"
 #include "boolean.h"
 
