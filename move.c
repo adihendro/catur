@@ -1,10 +1,11 @@
 #include <stdio.h>
-
 #include "fungsi.h"
-#include "print_semua.c"
 
-// #include "cek_semua_gerak.c"
-// #include "cek_bisa_gerak.c"
+#include "print_semua.c"
+#include "ada_orang.c"
+
+#include "cek_semua_gerak.c"
+#include "cek_bisa_gerak.c"
 
 
 void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue giliransiapa) {
@@ -37,14 +38,16 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
     
     // lihat bidak yang masih ada di papan dari list linier dan memasukkan ke list_bisa_gerak
-    list list_bisa_gerak; //ditunjuk pake R
+    list list_bisa_gerak; //akan ditunjuk pake R
     CreateEmpty_list(&list_bisa_gerak);
     address_list P;
     P = First(kawan);
     while (P != Nil_list) {
         if (cekbisagerak(Info(P), board)) { //Info(P) == piece
-            InsVLast(&list_bisa_gerak, Info(P)); //reborn tambahin reborn
+            InsVLast(&list_bisa_gerak, Info(P)); //dari list kawan dimasukkin ke list_bisa_gerak
+            list_bisa_gerak.Parent = P;
         }
+        P = Next(P);
     }
         
     // tampilkan bidak yang dapat bergerak
@@ -121,11 +124,11 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         poin += Info(A).poin;
 
         //stack
-        X.nama = Info_stack(A).nama;
-        X.player = (Head(giliransiapa) % 2) + 1;
+        X.nama = Info(A).nama;
+        X.player = (Head(giliransiapa) % 2) + 1; //lawan
         // X.turn = turn;
-        X.posisiR = Info_stack(Q).posisiR;
-        X.posisiC = Info_stack(Q).posisiC;
+        X.posisiR = Info(Q).posisiR;
+        X.posisiC = Info(Q).posisiC;
         Push(termakan, X); //masukkan ke stack termakan
 
         //list
@@ -134,13 +137,14 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
     int tempR;
     int tempC;
-    Parent(R)=P;
+    R = Parent(list_bisa_gerak); //R nunjuk ke parent
     // simpan nilai awal pada temp
-    tempR = Info(Parent(R)).posisiR; //R adalah bidak yang ingin digerakkan
-    tempC = Info(Parent(R)).posisiC;
+    tempR = Info(R).posisiR; //R adalah bidak yang ingin digerakkan
+    tempC = Info(R).posisiC;
     // update nilai awal menjadi nilai akhir
-    Info(Parent(R)).posisiR = Info(Q).posisiR;
-    Info(Parent(R)).posisiC = Info(Q).posisiC;
+    Info(R).posisiR = Info(Q).posisiR;
+    Info(R).posisiC = Info(Q).posisiC;
+
 
     // update stack dengan posisi bidak terbaru
     X.nama = Info(R).nama;
@@ -148,7 +152,6 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     // X.turn = turn;
     X.posisiR = tempR;
     X.posisiC = tempC;
-
     Push(history, X);
 
 
@@ -169,8 +172,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
  
 }
 
-
+/*
 int main(){
     move(board, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, giliransiapa);
     return 0;
 }
+*/
