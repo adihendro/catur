@@ -22,7 +22,7 @@ typedef struct {
 
 
 
-//head listlinier piece
+//head listlinier
 typedef piece infotype_list;
 
 typedef struct tElmtlist *address_list;
@@ -65,18 +65,19 @@ typedef struct {
 #define First(L) (L).First
 #define Parent(L) (L).Parent
 
+
 int i,j,k;
-int poin_putih, poin_hitam;
 
 boolean go;
-// piece F;
 papan board[10][10];
+
 int choice;
 char command[100];
 
 stack history, termakan;
 list list_ada_putih, list_ada_hitam;
 queue giliransiapa;
+int poin_putih, poin_hitam;
 
 
 #endif
