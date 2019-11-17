@@ -76,7 +76,7 @@ char command[100];
 
 stack history, termakan;
 list list_ada_putih, list_ada_hitam;
-queue giliransiapa;
+queue giliran;
 int poin_putih, poin_hitam;
 
 

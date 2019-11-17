@@ -75,7 +75,7 @@ int main(){
 
     
         if(strcmp(command,"MOVE") == 0){
-            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, giliransiapa);
+            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, giliran);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
         

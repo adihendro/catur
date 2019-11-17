@@ -17,8 +17,8 @@ void inisialisasi(){
     CreateEmpty_stack(&termakan);
     CreateEmpty_list(&list_ada_putih);
     CreateEmpty_list(&list_ada_hitam);
-    CreateEmpty_queue(&giliransiapa, 2);
-    Add (&giliransiapa, 1); //giliran pertama putih (1)
+    CreateEmpty_queue(&giliran, 2);
+    Add (&giliran, 1); //giliran pertama putih (1)
     poin_putih=0;
     poin_hitam=0;
 
