@@ -4,17 +4,17 @@
 #include "queue.h"
 
 /* ********* Prototype ********* */
-boolean IsEmpty (queue Q){
+boolean IsEmpty_queue (queue Q){
   return Head(Q)==Nil_queue && Tail(Q)==Nil_queue;
 }
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull (queue Q){
+boolean IsFull_queue (queue Q){
   return NBElmt(Q)==MaxEl(Q);
 }
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 int NBElmt (queue Q){
-  if(IsEmpty(Q)){
+  if(IsEmpty_queue(Q)){
     return 0;
   }else{
     if(Head(Q)<=Tail(Q)){
@@ -54,7 +54,7 @@ void DeAlokasi(queue *Q){
 
 /* *** Primitif Add/Delete *** */
 void Add (queue * Q, infotype_queue X){
-  if(IsEmpty(*Q)){
+  if(IsEmpty_queue(*Q)){
     Head(*Q)=1;
   }
   Tail(*Q)=Tail(*Q)%MaxEl(*Q)+1;
