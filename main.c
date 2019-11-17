@@ -73,7 +73,6 @@ int main(){
             }
         } while(!go);
 
-
     
         if(strcmp(command,"MOVE") == 0){
             move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, giliransiapa);
