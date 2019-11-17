@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <time.h>
-#include "tipe_bentukan.h"
 
 void delay(int milliseconds){
     long pause;
@@ -12,20 +11,7 @@ void delay(int milliseconds){
         now = clock();
 }
 
-void inisialisasi(){
-    piece bidak;
-    bidak.nama='p';
-    bidak.player=1;
-    bidak.poin=1;
-    bidak.posisiR=7;
-    bidak.posisiC=2;
-
-    InsVFirst(&list_ada_putih,bidak);
-}
-
 void start() {
-    inisialisasi();
-    
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
     printf("**                                                                            **\n");
@@ -44,12 +30,20 @@ void start() {
     printf("**                                 2. Load Game                               **\n");
     printf("**                                 3. Leaderboard                             **\n");
     printf("**                                                                            **\n");
+    printf("**                                                                            **\n");
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
     printf("\n");
-    // delay(1000);
+    delay(1000);
     printf("                                  Choose Wisely\n\n");
-    // delay(1000);
+    delay(1000);
     printf("                                      1/2/3\n\n");
-    // delay(1000);
+    delay(1000);
+
+    do{
+        printf("Your choice: ");
+        scanf("%d",&choice);
+        if(!(choice==1 || choice==2 || choice==3))
+            printf("WRONG! It's must be a number from 1-3!\n\n");
+    } while(!(choice==1 || choice==2 || choice==3));
 }
