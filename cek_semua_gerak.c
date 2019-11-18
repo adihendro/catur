@@ -19,16 +19,21 @@ void cek(int a, int b, int x1, int x2, piece F, papan *board[10][10], list_posis
         if(kotak.nama!='*' && kotak.player!=F.player){ //kalau kotak = musuh
             P.posisiR = F.posisiR + a*x1*x2;
             P.posisiC = F.posisiC + b*x1*x2;
-            InsVLast_posisi(L,P);      
+            InsVLast_posisi(L,P);
         }
     }
 }
 
 void pawn(piece F, papan *board[10][10], list_posisi *L){
     a = F.player==1 ? -1 : 1;
-    for(i=-1;i<=1;i++){
-        cek(a,i,1,1,F,board, L);
+    b = F.player==1 ? 2 : 1;
+    cek(a,0,1,1,F,board, L);
+    for(i=-1;i<=1;i=i+2){
+        if((*board[F.posisiR + a][F.posisiC + i]).player==b){ //kalau kotak = musuh
+            cek(a,i,1,1,F,board, L);
+        }
     }
+    
     if(F.player==1 && F.posisiR==7){
         cek(-2,0,1,1,F,board, L);
     } else if(F.player==2 && F.posisiR==2){
