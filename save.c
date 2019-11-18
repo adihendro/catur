@@ -8,29 +8,25 @@
 #define LEN 256
 int main ()
 {
-   FILE * fp;
-   int i;
-   /* open the file for writing*/
-   fp = fopen ("nyoba.txt","w");
+    FILE * fp;
+
+    /* open the file for writing*/
+    fp = fopen ("list_ada_putih.txt","w");
  
-   /* write 10 lines of text into the file stream*/
-   for(i = 0; i < 10;i++){
-       fprintf (fp, "This iszz line %d\n",i + 1);
-   }
- 
-   /* close the file*/  
-   fclose (fp);
-   return 0;
+    /* write 10 lines of text into the file stream*/
+    address P;
+    P = First(list_ada_putih);
+    while (P != Nil) {
+        fprintf(fp,"%c",Info(P).nama);
+        fprintf(fp,"%d",Info(P).player);
+        fprintf(fp,"%d",Info(P).poin);
+        fprintf(fp,"%d",Info(P).PosisiR);
+        fprintf(fp,"%d",Info(P).PosisiC);
+        P = Next(P);
+    }
+    fprintf(fp,";"); // tanda berakhir
+    /* close the file*/  
+    fclose (fp);
+    return 0;
 }
 
-void save();
-
-void save () {
-    FILE *fp;
-    fp = fopen("list_ada_hitam.txt","w");
-
-    // write
-    
-
-    fclose(fp);
-}

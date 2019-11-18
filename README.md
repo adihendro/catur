@@ -1,7 +1,7 @@
 # catur
 Tugas Besar Alstrukdat Semester 3
 
-variabel global :
+variabel global:
 	int poin_putih;
 	int poin_hitam;
 	list list_ada_putih;
@@ -12,7 +12,7 @@ variabel global :
 	Queue giliransiapa;
 
 
-ADT :
+ADT:
 	List linier, list: (list_ada_putih ; list_ada_hitam)
 	List linier, list_bisa_gerak
 	List linier, list_posisi //daftar kotak yang bisa ditempati kemudian
@@ -20,23 +20,23 @@ ADT :
 	typedef struct {
 			infotype info;
 			address next;
-		} list //untuk list_ada_putih & list_ada_hitam
+		} list; //untuk list_ada_putih & list_ada_hitam
 
 	typedef struct {
 			infotype info;
 			address next;
 			address parent;
-		} list_gerak //untuk list_bisa_gerak
+		} list_gerak; //untuk list_bisa_gerak
 
 	typedef struct {
 			int posisiR;
 			int posisiC;
-		} infotype_posisi
+		} posisi;
 		
 	typedef struct {
 			infotype_posisi info;
 			address next;
-		} list_posisi
+		} list_posisi;
 
 	typedef struct {
 			char nama;
@@ -44,7 +44,7 @@ ADT :
 			int poin;
 			int posisiR;
 			int posisiC;
-		} piece
+		} piece;
 		
 	typedef piece infotype;
 	
@@ -59,18 +59,19 @@ ADT :
 			int turn;
 			int posisiR;
 			int posisiC;
-		} infotype_stack
+		} infotype_stack;
 
 	typedef struct {
 			address Top;
 			infotype_stack T[MaxEl]; //MaxEl = 40
-		} stack // untuk history dan termakan
+		} stack; // untuk history dan termakan
 		
 	stack history;
 	
-	keterangan char nama : {P:Pawn ; K:King ; Q:Queen ; B:Bishop ; N:Knight ; R:Rook}
+	keterangan char nama: {P:Pawn ; K:King ; Q:Queen ; B:Bishop ; N:Knight ; R:Rook}
 	
-Fungsi yang digunakan :
+	
+Fungsi yang digunakan:
 
 	PrintPapan(piece board[10][10]);
 	move();

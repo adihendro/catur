@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 
 void PrintNamaBidak(char c){
     if (c=='K'){
@@ -10,7 +10,7 @@ void PrintNamaBidak(char c){
     } else if(c=='N'){
         printf("Kuda");
     } else if(c=='R'){
-        printf("Rook");
+        printf("Benteng");
     } else if(c=='P'){
         printf("Pion");
     }

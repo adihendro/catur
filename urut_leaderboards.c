@@ -59,7 +59,7 @@ int main () {
     i = 1;
     j = 1;
     int temp;
-	while (CC != ';') {
+	while ((CC != ';') && (i <= 9)) {
         j = 1;
         while (CC != '|') {
             nama[i][j] = CC;
@@ -67,7 +67,7 @@ int main () {
             retval = fscanf(pita,"%c",&CC);
         }
         retval = fscanf(pita,"%c",&CC);
-        while (CC != '%') {
+        while (CC != '^') {
             temp = CC - '0';
             skor[i] = skor[i]*10 + temp;
             retval = fscanf(pita,"%c",&CC);
@@ -168,7 +168,20 @@ int main () {
     }
     
     // write ke leaderboards.txt
-    
+    fclose(pita);
+    pita = fopen(str,"w");
+    i = 0;
+    j = 1;
+    while (skor[i] != 0) {
+        for (j = 1 ; j <= 3 ; j++) {
+            fprintf(pita,"%c",nama[i][j]);
+        }
+        fprintf(pita,"|");
+        fprintf(pita,"%d",skor[i]);
+        fprintf(pita,"^"); 
+        i++;
+    }
+    fprintf(pita,";");
 	return 0;
 }
 
