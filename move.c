@@ -7,7 +7,7 @@
 #include "cek_bisa_gerak.c"
 
 
-void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue giliran) {
+void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran) {
     // papan board2[10][10];
     // stack history2;
     // stack termakan2;
@@ -25,7 +25,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     int poin;
 
     CreateEmpty_list(&kawan);
-    if (InfoTail(giliran) == 1) { //putih
+    if (InfoTail(*giliran) == 1) { //putih
         kawan = *list_ada_putih; //piece yg masih ada di papan
         lawan = *list_ada_hitam;
         poin = *poin_putih;
@@ -126,7 +126,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
         //stack
         X.nama = Info(A).nama;
-        X.player = (InfoTail(giliran) % 2) + 1; //lawan
+        X.player = (InfoTail(*giliran) % 2) + 1; //lawan
         // X.turn = turn;
         X.posisiR = Info(Q).posisiR;
         X.posisiC = Info(Q).posisiC;
@@ -148,7 +148,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
     // update stack dengan posisi bidak terbaru
     X.nama = Info(R).nama;
-    X.player = InfoTail(giliran);
+    X.player = InfoTail(*giliran);
     // X.turn = turn;
     X.posisiR = tempR;
     X.posisiC = tempC;
@@ -168,19 +168,18 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     printf(")\n");
     
 
-
     // simpan kembali datanya ke variabel global
-    if (InfoTail(giliran) == 1) { //putih
+    if (InfoTail(*giliran) == 1) { //putih
         *list_ada_putih = kawan;
         *list_ada_hitam = lawan;
         *poin_putih = poin;
-        Add (&giliran, 2);
+        Add(giliran, 2);
     }
     else { //giliran == 2, hitam
         *list_ada_hitam = kawan;
         *list_ada_putih = lawan;
         *poin_hitam = poin;
-        Add (&giliran, 1);
+        Add(giliran, 1);
     }
     
 
