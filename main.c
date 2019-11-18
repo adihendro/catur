@@ -19,20 +19,8 @@ int main(){
     //     }
     // }
 
-    // board[1][1].nama = 'P';
-    // board[1][1].player = 1;
-
-    // board[1][2].nama = 'P';
-    // board[1][2].player = 2;
-
-    // board[1][3].nama = ' ';
-    // board[1][3].player = 1;
-
-    // board[2][1].nama = ' ';
-    // board[2][1].player = 1;
-
     board[6][1].nama = ' ';
-    // board[2][3].player = 1;
+    // board[6][1].player = 1;
     
     board[6][2].nama = ' ';
     // board[3][1].player = 2;
@@ -72,10 +60,11 @@ int main(){
                 printf("Command salah!\n\n");
             }
         } while(!go);
-
+   
     
         if(strcmp(command,"MOVE") == 0){
             move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, giliran);
+            delay(2000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
         
