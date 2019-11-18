@@ -32,5 +32,4 @@ void inisialisasi(){
 
 
 
-    printf("\n\n\n");
 }
