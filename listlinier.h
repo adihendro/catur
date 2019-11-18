@@ -1,36 +1,20 @@
+#ifndef listlinier_H
+#define listlinier_H
+
 /* File : listlinier.h */
 /* contoh ADT list berkait dengan representasi fisik pointer  */
 /* Representasi address_list dengan pointer */
-
-#ifndef listlinier_H
-#define listlinier_H
 
 #include <stdio.h>
 #include "boolean.h"
 #include "tipe_bentukan.h"
 
-#define Nil NULL
-
-typedef piece infotype_list;
-
-typedef struct tElmtlist *address_list;
-typedef struct tElmtlist { 
-	infotype_list info;
-	address_list next;
-} ElmtList;
-
-typedef struct {
-	address_list First;
-} list;
 
 /* Definisi list : */
 /* list kosong : First(L) = Nil */
 /* Setiap elemen dengan address_list P dapat diacu Info(P), Next(P) */
 /* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
 
-#define Info(P) (P)->info
-#define Next(P) (P)->next
-#define First(L) (L).First
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/

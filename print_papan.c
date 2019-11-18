@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "tipe_bentukan.h"
 
-void PrintPapan(papan board[10][10]){
+void PrintPapan(papan *board[10][10]){
 	/*jadi gw mikirnya board ini array yang terdiri dari tipe bentukan piece
 	  yang isinya: 
       1. namanya "king,queen,dsb" (string). bisa juga pake integer kaya king 1, queen 2 ato gmn
@@ -10,7 +10,7 @@ void PrintPapan(papan board[10][10]){
 	  3. poinnya(int) biar bisa dijumlah. ato gk klo mau ntar if king trus +10 gt
 	*/
 	int i,j;
-    char papan[35][35] = {
+    char gameboard[35][35] = {
         {' ',' ','+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+'},
         {' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|'},
         {' ','8','|',' ','R',' ','|',' ','N',' ','|',' ','B',' ','|',' ','Q',' ','|',' ','K',' ','|',' ','B',' ','|',' ','N',' ','|',' ','R',' ','|'},
@@ -112,55 +112,55 @@ void PrintPapan(papan board[10][10]){
 				tempCol = dC7;
 
             //update display board pieces to match the real board
-            if(board[i][j].nama==' '){
-                papan[tempRow][tempCol] = ' ';
+            if((*board[i][j]).nama==' '){
+                gameboard[tempRow][tempCol] = ' ';
             }
-            else if(board[i][j].nama=='P'){
-                if(board[i][j].player == 1){
-                    papan[tempRow][tempCol] = 'P';
+            else if((*board[i][j]).nama=='P'){
+                if((*board[i][j]).player == 1){
+                    gameboard[tempRow][tempCol] = 'P';
                 }
                 else{
-                    papan[tempRow][tempCol] = 'p';
+                    gameboard[tempRow][tempCol] = 'p';
                 }        
             }
-            else if(board[i][j].nama=='K'){
-                if(board[i][j].player == 1){
-                    papan[tempRow][tempCol] = 'K';
+            else if((*board[i][j]).nama=='K'){
+                if((*board[i][j]).player == 1){
+                    gameboard[tempRow][tempCol] = 'K';
                 }
                 else{
-                    papan[tempRow][tempCol] = 'k';
+                    gameboard[tempRow][tempCol] = 'k';
                 }        
             }
-            else if(board[i][j].nama=='Q'){
-                if(board[i][j].player == 1){
-                    papan[tempRow][tempCol] = 'Q';
+            else if((*board[i][j]).nama=='Q'){
+                if((*board[i][j]).player == 1){
+                    gameboard[tempRow][tempCol] = 'Q';
                 }
                 else{
-                    papan[tempRow][tempCol] = 'q';
+                    gameboard[tempRow][tempCol] = 'q';
                 }        
             }
-            else if(board[i][j].nama=='B'){
-                if(board[i][j].player == 1){
-                    papan[tempRow][tempCol] = 'B';
+            else if((*board[i][j]).nama=='B'){
+                if((*board[i][j]).player == 1){
+                    gameboard[tempRow][tempCol] = 'B';
                 }
                 else{
-                    papan[tempRow][tempCol] = 'b';
+                    gameboard[tempRow][tempCol] = 'b';
                 }        
             }
-            else if(board[i][j].nama=='N'){
-                if(board[i][j].player == 1){
-                    papan[tempRow][tempCol] = 'N';
+            else if((*board[i][j]).nama=='N'){
+                if((*board[i][j]).player == 1){
+                    gameboard[tempRow][tempCol] = 'N';
                 }
                 else{
-                    papan[tempRow][tempCol] = 'n';
+                    gameboard[tempRow][tempCol] = 'n';
                 }        
             }
-            else if(board[i][j].nama=='R'){
-                if(board[i][j].player == 1){
-                    papan[tempRow][tempCol] = 'R';
+            else if((*board[i][j]).nama=='R'){
+                if((*board[i][j]).player == 1){
+                    gameboard[tempRow][tempCol] = 'R';
                 }
                 else{
-                    papan[tempRow][tempCol] = 'r';
+                    gameboard[tempRow][tempCol] = 'r';
                 }        
             }
         }
@@ -168,7 +168,7 @@ void PrintPapan(papan board[10][10]){
 
 	for (i = 0; i < 35 ; i++) {
         for (j = 0; j < 35; j++) {
-            printf("%c ", papan[i][j]);
+            printf("%c ", gameboard[i][j]);
         }
         printf("\n");
     }

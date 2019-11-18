@@ -4,17 +4,17 @@
 #include "queue.h"
 
 /* ********* Prototype ********* */
-boolean IsEmpty (queue Q){
-  return Head(Q)==Nil && Tail(Q)==Nil;
+boolean IsEmpty_queue (queue Q){
+  return Head(Q)==Nil_queue && Tail(Q)==Nil_queue;
 }
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsFull (queue Q){
+boolean IsFull_queue (queue Q){
   return NBElmt(Q)==MaxEl(Q);
 }
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 int NBElmt (queue Q){
-  if(IsEmpty(Q)){
+  if(IsEmpty_queue(Q)){
     return 0;
   }else{
     if(Head(Q)<=Tail(Q)){
@@ -27,12 +27,12 @@ int NBElmt (queue Q){
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void CreateEmpty (queue *Q, int Max){
-  (*Q).T=(infotype*) malloc ((Max+1)*sizeof(infotype));
+void CreateEmpty_queue (queue *Q, int Max){
+  (*Q).T=(infotype_queue*) malloc ((Max+1)*sizeof(infotype_queue));
   if((*Q).T!=NULL){
     MaxEl(*Q)=Max;
-    Head(*Q)=Nil;
-    Tail(*Q)=Nil;
+    Head(*Q)=Nil_queue;
+    Tail(*Q)=Nil_queue;
   }else{ /*alokasi gagal*/
     MaxEl(*Q)=0;
   }
@@ -53,8 +53,8 @@ void DeAlokasi(queue *Q){
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void Add (queue * Q, infotype X){
-  if(IsEmpty(*Q)){
+void Add (queue * Q, infotype_queue X){
+  if(IsEmpty_queue(*Q)){
     Head(*Q)=1;
   }
   Tail(*Q)=Tail(*Q)%MaxEl(*Q)+1;
@@ -64,11 +64,11 @@ void Add (queue * Q, infotype X){
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
 
-void Del (queue * Q, infotype * X){
+void Del (queue * Q, infotype_queue * X){
   (*X)=InfoHead(*Q);
   if(NBElmt(*Q)==1){ //Head(*Q)==Tail(*Q)
-    Head(*Q)=Nil;
-    Tail(*Q)=Nil;
+    Head(*Q)=Nil_queue;
+    Tail(*Q)=Nil_queue;
   }else{
     Head(*Q)=Head(*Q)%MaxEl(*Q)+1;
   }

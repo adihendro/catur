@@ -1,21 +1,20 @@
-
 #include "stack.h"
 
 void CreateEmpty_stack(stack *S){
-    (*S).TOP = Nil;
+    (*S).TOP = Nil_stack;
 }
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* Ciri stack kosong : TOP bernilai Nil */
+/* Ciri stack kosong : TOP bernilai Nil_stack */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
 boolean IsEmpty_stack(stack S){
-    return (S).TOP == Nil;
+    return (S).TOP == Nil_stack;
 }
 /* Mengirim true jika stack kosong*/
-/* Ciri stack kosong : TOP bernilai Nil */
-boolean IsFull(stack S){
-    return (S).TOP == MaxEl;
+/* Ciri stack kosong : TOP bernilai Nil_stack */
+boolean IsFull_stack(stack S){
+    return (S).TOP == MaxEl_stack;
 }
 /* Mengirim true jika stack S penuh */
 /* Ciri stack penuh : TOP bernilai MaxEl */

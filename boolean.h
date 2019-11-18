@@ -1,4 +1,3 @@
-
 #ifndef boolean_H
 #define boolean_H
 #define true 1
