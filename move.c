@@ -56,7 +56,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     int i = 1;  
     printf("Daftar bidak yang bisa bergerak:\n");
     while (R != Nil_list) {
-        printf("  %d. ", i);
+        printf("   %d. ", i);
         i++;
         PrintNamaBidak(Info(R).nama);
         printf(" (");
@@ -93,10 +93,10 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     Q = First(daftar_posisi);
     printf("Daftar posisi tujuan yang mungkin:\n");
     while(Q != Nil_list) {
-        printf("  %d. (", i);
+        printf("   %d. (", i);
         i++;
         PrintKolom(Info(Q).posisiC);
-        printf(", ");
+        printf(",");
         PrintBaris(Info(Q).posisiR);
         printf(")\n");
         Q = Next(Q);
@@ -155,6 +155,19 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     Push(history, X);
 
 
+    printf("Bidak ");
+    PrintNamaBidak(Info(R).nama);
+    printf(" telah berpindah dari (");
+    PrintKolom(tempC);
+    printf(",");
+    PrintBaris(tempR);
+    printf(") ke (");
+    PrintKolom(Info(R).posisiC);
+    printf(",");
+    PrintBaris(Info(R).posisiR);
+    printf(")\n");
+    
+
 
     // simpan kembali datanya ke variabel global
     if (InfoTail(giliran) == 1) { //putih
@@ -175,10 +188,3 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     // *history = history2;
     // *termakan = termakan2;
 }
-
-/*
-int main(){
-    move(board, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, giliran);
-    return 0;
-}
-*/
