@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 void delay(int milliseconds){
@@ -12,6 +13,8 @@ void delay(int milliseconds){
 }
 
 void start() {
+    system("clear");
+
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
     printf("**                                                                            **\n");
@@ -33,6 +36,7 @@ void start() {
     printf("**                                                                            **\n");
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
+    
     printf("\n");
     delay(1000);
     printf("                                  Choose Wisely\n\n");
@@ -46,4 +50,6 @@ void start() {
         if(!(choice==1 || choice==2 || choice==3))
             printf("WRONG! It's must be a number from 1-3!\n\n");
     } while(!(choice==1 || choice==2 || choice==3));
+
+    system("clear");
 }
