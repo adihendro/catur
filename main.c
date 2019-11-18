@@ -13,7 +13,7 @@
 
 
 int main(){
-    
+
     //GAME START 
     start();
     inisialisasi();
@@ -27,7 +27,7 @@ int main(){
 
 
     do{
-        updatepapan(board2, list_ada_putih, list_ada_hitam);
+        updateboard(board2, list_ada_putih, list_ada_hitam);
         PrintPapan(board2);
 
         do{

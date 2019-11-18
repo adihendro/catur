@@ -12,14 +12,15 @@ void construct(char nama, int player, int poin, int posisiR, int posisiC, list *
     InsVFirst(L,bidak);
 }
 
-void updatepapan(papan *board[10][10], list list_ada_putih, list list_ada_hitam){
+void updateboard(papan *board[10][10], list list_ada_putih, list list_ada_hitam){
     for(i=0;i<=9;i=i+9){
         for(j=0;j<=9;j++){
             (*board[i][j]).nama = '*';
-            k=i;
-            i=j;
-            j=k;
-            (*board[i][j]).nama = '*';
+        }
+    }
+    for(i=0;i<=9;i=i+9){
+        for(j=1;j<=8;j++){
+            (*board[j][i]).nama = '*';
         }
     }
 
