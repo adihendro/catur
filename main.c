@@ -13,27 +13,7 @@
 
 
 int main(){
-    for(i=1;i<=8;i++){
-        for(j=1;j<=8;j++){
-            board[i][j].nama = ' ';
-        }
-    }
-
-    board[6][1].nama = ' ';
-    // board[6][1].player = 1;
     
-    board[6][2].nama = ' ';
-    // board[3][1].player = 2;
-
-    board[6][3].nama = ' ';
-    // board[3][2].player = 2;
-
-    board[5][2].nama = ' ';
-    // board[3][3].player = 1;
-
-
-
-
     //GAME START 
     start();
     inisialisasi();
@@ -47,6 +27,7 @@ int main(){
 
 
     do{
+        updatepapan(board2, list_ada_putih, list_ada_hitam);
         PrintPapan(board2);
 
         do{
@@ -64,7 +45,7 @@ int main(){
 
         if(strcmp(command,"MOVE") == 0){
             move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran);
-            delay(2000);
+            // delay(1000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
         

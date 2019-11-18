@@ -51,6 +51,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
         
     // tampilkan bidak yang dapat bergerak
+    InversList(&list_bisa_gerak);
     address_list R;
     R = First(list_bisa_gerak);
     int i = 1;  
