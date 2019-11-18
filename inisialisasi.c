@@ -22,14 +22,25 @@ void inisialisasi(){
     poin_putih=0;
     poin_hitam=0;
 
+    construct('P', 1, 1, 7, 1, &list_ada_putih); //pion putih
     construct('P', 1, 1, 7, 2, &list_ada_putih); //pion putih
+    construct('P', 1, 1, 7, 3, &list_ada_putih); //pion putih
+    construct('P', 1, 1, 7, 4, &list_ada_putih); //pion putih
+    construct('P', 1, 1, 7, 5, &list_ada_putih); //pion putih
+    construct('P', 1, 1, 7, 6, &list_ada_putih); //pion putih
+    construct('P', 1, 1, 7, 7, &list_ada_putih); //pion putih
+    construct('P', 1, 1, 7, 8, &list_ada_putih); //pion putih
 
+
+    construct('P', 2, 1, 2, 1, &list_ada_hitam); //pion hitam
+    construct('P', 2, 1, 2, 2, &list_ada_hitam); //pion hitam
+    construct('P', 2, 1, 2, 3, &list_ada_hitam); //pion hitam
+    construct('P', 2, 1, 2, 4, &list_ada_hitam); //pion hitam
+    construct('P', 2, 1, 2, 5, &list_ada_hitam); //pion hitam
+    construct('P', 2, 1, 2, 6, &list_ada_hitam); //pion hitam
+    construct('P', 2, 1, 2, 7, &list_ada_hitam); //pion hitam
+    construct('P', 2, 1, 2, 8, &list_ada_hitam); //pion hitam
 
     construct('Q', 2, 8, 1, 4, &list_ada_hitam); //ratu hitam
-
-
-
-
-
 
 }
