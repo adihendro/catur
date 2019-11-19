@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "tipe_bentukan.h"
 
 void delay(int milliseconds){
     long pause;
