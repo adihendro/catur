@@ -166,6 +166,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     printf(",");
     PrintBaris(Info(R).posisiR);
     printf(")\n");
+
+    //free
+    // free(&list_bisa_gerak);
     
 
 
