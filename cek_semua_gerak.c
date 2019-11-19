@@ -47,7 +47,7 @@ void rook(piece F, papan *board[10][10], list_posisi *L){
         for(j=-1;j<=1;j=j+2){
             for(k=1;k<=7;k++){
                 cek(a,b,j,k,F,board, L);
-                if(br){printf("\n");break;}
+                if(br){break;}
             }
         }
         a=0;
@@ -61,7 +61,7 @@ void bishop(piece F, papan *board[10][10], list_posisi *L){
         for(j=-1;j<=1;j=j+2){
             for(k=1;k<=7;k++){
                 cek(a,1,j,k,F,board, L);
-                if(br){printf("\n");break;}
+                if(br){break;}
             }
         }
         a=-1;
@@ -108,50 +108,3 @@ void ceksemuagerak(piece F, papan *board[10][10], list_posisi *L){
         case 'N': knight(F, board, L); break;
     }
 }
-
-
-/*
-int main() {
-    piece F;
-    papan board[10][10];
-    F.nama = 'K';
-    F.poin = 1;
-    F.player = 1;
-    F.posisiR = 2;
-    F.posisiC = 2;
-
-    for(i=1;i<=8;i++){
-        for(j=1;j<=8;j++){
-            board[i][j].nama = ' ';
-        }
-    }
-
-    board[1][1].nama = 'P';
-    board[1][1].player = 1;
-
-    board[1][2].nama = 'P';
-    board[1][2].player = 2;
-
-    board[1][3].nama = ' ';
-    board[1][3].player = 1;
-
-    board[2][1].nama = ' ';
-    board[2][1].player = 1;
-
-    board[2][3].nama = 'Q';
-    board[2][3].player = 1;
-    
-    board[3][1].nama = 'P';
-    board[3][1].player = 2;
-
-    board[3][2].nama = ' ';
-    board[3][2].player = 2;
-
-    board[3][3].nama = ' ';
-    board[3][3].player = 1;
-
-    ceksemuagerak(F,board);
-    
-    return 0;
-}
-*/

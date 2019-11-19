@@ -203,6 +203,20 @@ int NbElmt (list L)
 }
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
+void InversList (list *L){
+	address_list P, Pt;
+	P=First(*L);
+	if(P!=Nil_list){
+        while(Next(P)!=Nil_list){
+            DelAfter(L,&Pt,P);
+            InsertFirst(L,Pt);
+        }
+    }
+}
+/* I.S. sembarang. */
+/* F.S. elemen list dibalik : */
+/* Elemen terakhir menjadi elemen pertama, dan seterusnya. */
+/* Membalik elemen list, tanpa melakukan alokasi/dealokasi. */
 
 
 //Fungsi reborn

@@ -1,5 +1,6 @@
 #include "listlinier.h"
 #include "listposisi.h"
+#include "tipe_bentukan.h"
 
 boolean isthreaten(list lawan, list_posisi daftar_posisi, int x, int y, papan board[10][10]){ //mengefound apakah suatu spot berbahaya untuk raja
     address_list P; 
@@ -7,10 +8,10 @@ boolean isthreaten(list lawan, list_posisi daftar_posisi, int x, int y, papan bo
     boolean found = false;
     P = First(lawan);
     CreateEmpty_posisi(&daftar_posisi);
-    while (P!=Nil && found!=false){
+    while (P!=Nil_list && found!=false){
         ceksemuagerak(Info(P), board, daftar_posisi);
         R = First(daftar_posisi);
-        while (R!=Nil && found!=false){
+        while (R!=Nil_list && found!=false){
             if((Info(R).posisiC==x)&&(Info(R).posisiR==y)){
                 found = true;
             }
