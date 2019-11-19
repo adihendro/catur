@@ -14,7 +14,7 @@ void delay(int milliseconds){
 }
 
 void start() {
-    system("clear");
+    system("cls");
 
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
@@ -52,5 +52,5 @@ void start() {
             printf("WRONG! It's must be a number from 1-3!\n\n");
     } while(!(choice==1 || choice==2 || choice==3));
 
-    system("clear");
+    system("cls");
 }

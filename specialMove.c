@@ -97,7 +97,7 @@ void enPassant(piece P, Stack* history)
 }
 
 
-boolean HasMoved(piece P, Stack history)
+boolean HasMoved(piece P, stack history)
 {
     int counter = 1;
     boolean Moved = false;
@@ -120,12 +120,12 @@ boolean HasMoved(piece P, Stack history)
     return Moved;
 }
 
-void Castling(piece Raja, piece Benteng , Stack history, piece* board[10][10])
+void Castling(piece Raja, piece Benteng , stack history, papan* board[10][10])
 {
     if (!(HasMoved(Raja,history)))
     {
-        if (((*board)[Raja.posisiR][Raja.posisiC+2] == ' ') && (board[Raja.posisiR][Raja.posisiC+1] == " ") && (!(HasMoved(Benteng, history))))
+        if (((*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ') && ((*board[Raja.posisiR][Raja.posisiC+1]).nama == " ") && (!(HasMoved(Benteng, history))))
         {
-            board[Raja.posisiR][Raja.posisiC+2].nama == ' ';
+            (*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ';
         }
     }
