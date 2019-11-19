@@ -1,9 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "tipe_bentukan.h"
 #include "stack.h"
-
-piece board[10][10];
 
 void promotion(piece P)
 {

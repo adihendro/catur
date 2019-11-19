@@ -29,6 +29,11 @@ int main(){
     do{
         updateboard(board2, list_ada_putih, list_ada_hitam);
         PrintPapan(board2);
+        if (InfoTail(giliran) == 1){ //putih
+            printf("Giliran Putih\n");
+        } else{ //InfoTail(giliran) == 2, hitam
+            printf("Giliran Hitam\n");
+        }
 
         do{
             go=false;

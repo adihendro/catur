@@ -33,7 +33,6 @@ typedef struct tElmtlist {
 
 typedef struct {
 	address_list First;
-	address_list Parent; //dipakai di parent (list_bisa_gerak –> list_putih/hitam (parent))
 } list;
 
 
