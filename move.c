@@ -23,6 +23,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     list kawan; //list piece apa yg ada di papan
     list lawan;
     int poin;
+    static int turn = 0;
 
     CreateEmpty_list(&kawan);
     if (InfoTail(*giliran) == 1) { //putih
@@ -134,9 +135,11 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         //stack
         X.nama = Info(A).nama;
         X.player = (InfoTail(*giliran) % 2) + 1; //lawan
-        // X.turn = turn;
-        X.posisiR = Info(Q).posisiR;
-        X.posisiC = Info(Q).posisiC;
+        X.turn = turn;
+        X.posisiR_lama = Info(R).posisiR;
+        X.posisiC_lama = Info(R).posisiC;
+        X.posisiR_baru = Info(Q).posisiR;
+        X.posisiC_baru = Info(Q).posisiC;
         Push(termakan, X); //masukkan ke stack termakan
 
         //list
@@ -151,11 +154,14 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     // update stack dengan posisi bidak terbaru
     X.nama = Info(R).nama;
     X.player = InfoTail(*giliran);
-    // X.turn = turn;
-    X.posisiR = Info(R).posisiR;
-    X.posisiC = Info(R).posisiC;
+    X.turn = turn;
+    X.posisiR_lama = Info(R).posisiR;
+    X.posisiC_lama = Info(R).posisiC;
+    X.posisiR_baru = Info(Q).posisiR;
+    X.posisiC_baru = Info(Q).posisiC;
     Push(history, X);
 
+    turn++;
 
     printf("Bidak ");
     PrintNamaBidak(Info(R).nama);
@@ -169,7 +175,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     PrintBaris(Info(Q).posisiR);
     printf(")\n");
     
-
+    
     // simpan kembali datanya ke variabel global
     if (InfoTail(*giliran) == 1) { //putih
         *list_ada_putih = kawan;
