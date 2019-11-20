@@ -1,31 +1,49 @@
-/* 
- *  Author: zentut.com
- *  Description: C Write text file demo
- */
- 
+
 #include <stdio.h>
  
-#define LEN 256
 int main ()
 {
     FILE * fp;
 
-    /* open the file for writing*/
     fp = fopen ("list_ada_putih.txt","w");
  
-    /* write 10 lines of text into the file stream*/
     address P;
     P = First(list_ada_putih);
     while (P != Nil) {
         fprintf(fp,"%c",Info(P).nama);
+        fprintf(fp,"^");
         fprintf(fp,"%d",Info(P).player);
+        fprintf(fp,"^");
         fprintf(fp,"%d",Info(P).poin);
+        fprintf(fp,"^");
         fprintf(fp,"%d",Info(P).PosisiR);
+        fprintf(fp,"^");
         fprintf(fp,"%d",Info(P).PosisiC);
+        fprintf(fp,".");
         P = Next(P);
     }
     fprintf(fp,";"); // tanda berakhir
-    /* close the file*/  
+    fclose (fp);
+
+
+    fp = fopen ("list_ada_hitam.txt","w");
+ 
+    address P;
+    P = First(list_ada_hitam);
+    while (P != Nil) {
+        fprintf(fp,"%c",Info(P).nama);
+        fprintf(fp,"^");
+        fprintf(fp,"%d",Info(P).player);
+        fprintf(fp,"^");
+        fprintf(fp,"%d",Info(P).poin);
+        fprintf(fp,"^");
+        fprintf(fp,"%d",Info(P).PosisiR);
+        fprintf(fp,"^");
+        fprintf(fp,"%d",Info(P).PosisiC);
+        fprintf(fp,".");
+        P = Next(P);
+    }
+    fprintf(fp,";"); // tanda berakhir
     fclose (fp);
     return 0;
 }
