@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include "tipe_bentukan.h"
 #include "stack.h"
+#include "ada_orang.c"
+
+void specialmove(piece P)
+{
+    if(canCastle())
+    {
+        Castling();
+    }
+
+    promotion(P);
+}
 
 void promotion(piece P)
 {
@@ -94,7 +105,7 @@ void Castling(piece Raja, piece Benteng , stack history, papan* board[10][10])
 {
     if (!(HasMoved(Raja,history)))
     {
-        if (((*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ') && ((*board[Raja.posisiR][Raja.posisiC+1]).nama == " ") && (!(HasMoved(Benteng, history))))
+        if (((*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ') && ((*board[Raja.posisiR][Raja.posisiC+1]).nama == ' ') && (!(HasMoved(Benteng, history))))
         {
             (*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ';
         }
