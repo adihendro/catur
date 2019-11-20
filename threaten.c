@@ -40,7 +40,7 @@ boolean skakmat(list kawan, list lawan, papan *board[10][10]){
     K = First(kawan);
     for (i=-1;i<=1;i++){
         for (j=-1;j<=1;j++){
-            
+
         }
     }
 }

@@ -8,6 +8,7 @@
         "listlinier.h": "c",
         "queue.h": "c",
         "stdio.h": "c",
-        "fungsi.h": "c"
+        "fungsi.h": "c",
+        "time.h": "c"
     }
 }
