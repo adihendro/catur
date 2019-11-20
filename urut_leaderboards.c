@@ -27,13 +27,13 @@ int main () {
 	strcpy(str,"leaderboards.txt");
     pita = fopen(str,"r");
     int retval;
-    char nama[10][3]; //ada 10 nama, maks 20 karakter per nama
-    int skor[10];
+    char nama[11][3]; //ada 10 nama, maks 20 karakter per nama
+    int skor[11];
     retval = fscanf(pita,"%c",&CC);
     int i;
     int j;
 
-    for (i = 0 ; i <= 10 ; i++) { // inisialisasi semua skor dengan 0 dan string dengan spasi
+    for (i = 0 ; i <= 11 ; i++) { // inisialisasi semua skor dengan 0 dan string dengan spasi
         skor[i] = 0;
         for (j = 1 ; j <= 3 ; j++) {
             nama[i][j] = ' ';
@@ -59,7 +59,7 @@ int main () {
     i = 1;
     j = 1;
     int temp;
-	while ((CC != ';') && (i <= 9)) {
+	while ((CC != ';') && (i <= 10)) {
         j = 1;
         while (CC != '|') {
             nama[i][j] = CC;
@@ -158,13 +158,16 @@ int main () {
 
     i = 0;
     j = 1;
-    while (skor[i] != 0) {
+    int printed;
+    printed = 0;
+    while ((skor[i] != 0) && (printed < 10)) {
         for (j = 1 ; j <= 3 ; j++) {
             printf("%c",nama[i][j]);
         }
         printf(" - ");
         printf("%d\n",skor[i]);
         i++;
+        printed++;
     }
     
     // write ke leaderboards.txt

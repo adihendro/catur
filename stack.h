@@ -17,8 +17,10 @@ typedef struct {
     char nama;
     int player;
     int turn;
-    int posisiR;
-    int posisiC;
+    int posisiR_lama;
+    int posisiC_lama;
+    int posisiR_baru;
+    int posisiC_baru;
 } infotype_stack;
 
 typedef int address_stack;

@@ -3,7 +3,7 @@
 #include "boolean.h"
 
 #define kotak (*board[F.posisiR + a*x1*x2][F.posisiC + b*x1*x2])
-int i,j,k,a,b,temp;
+int a,b,temp;
 boolean br;
 posisi P;
 

@@ -33,7 +33,6 @@ typedef struct tElmtlist {
 
 typedef struct {
 	address_list First;
-	address_list Parent; //dipakai di parent (list_bisa_gerak –> list_putih/hitam (parent))
 } list;
 
 
@@ -71,7 +70,7 @@ int i,j,k;
 boolean go;
 papan board[10][10];
 
-int choice;
+char* choice;
 char command[100];
 
 stack history, termakan;
