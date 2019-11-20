@@ -126,7 +126,8 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     // lakukan fungsi swap
     infotype_stack X;
     
-    if (adaorang(lawan, board, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
+    if (adaorang(board, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
+        printf("MUSUHH\n");
         address_list A, A1;
         A1 = Search(lawan, Info(Q).posisiC, Info(Q).posisiR); //address sebelum bidak lawan yang termakan
         A = Next(A1); //address bidak lawan yang termakan

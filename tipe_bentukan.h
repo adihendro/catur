@@ -70,7 +70,7 @@ int i,j,k;
 boolean go;
 papan board[10][10];
 
-int choice;
+char* choice;
 char command[100];
 
 stack history, termakan;

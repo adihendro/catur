@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include "tipe_bentukan.h"
  
 int main ()
 {
@@ -9,7 +10,7 @@ int main ()
  
     address P;
     P = First(list_ada_putih);
-    while (P != Nil) {
+    while (P != Nil_list) {
         fprintf(fp,"%c",Info(P).nama);
         fprintf(fp,"^");
         fprintf(fp,"%d",Info(P).player);

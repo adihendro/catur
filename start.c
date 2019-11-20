@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "tipe_bentukan.h"
 
 void delay(int milliseconds){
@@ -12,9 +13,29 @@ void delay(int milliseconds){
     while( (now-then) < pause )
         now = clock();
 }
-
+void string2ByteArray(char* input, int* output)
+{
+    // mengubah byte string ke array of integer
+    int loop;
+    int i;
+    
+    loop = 0;
+    i = 0;
+    
+    while(input[loop] != '\0')
+    {
+        output[i++] = input[loop++];
+    }
+}
+void stringToInt(char* ascii_str,int* Ret){
+    //mendapatkan nilai bilangan integer pertama dari array of string
+    int len = strlen(ascii_str);
+    int arr[len];
+    string2ByteArray(ascii_str, arr);
+    *Ret = arr[0];
+}
 void start() {
-    system("clear");
+    system("cls");
 
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
@@ -45,12 +66,18 @@ void start() {
     printf("                                      1/2/3\n\n");
     // delay(1000);
 
-    do{
-        printf("Your choice: ");
-        scanf("%d",&choice);
-        if(!(choice==1 || choice==2 || choice==3))
-            printf("WRONG! It's must be a number from 1-3!\n\n");
-    } while(!(choice==1 || choice==2 || choice==3));
 
-    system("clear");
+    
+    //printing
+    int X;
+    do{    
+        choice = (char*) malloc (sizeof(100));
+        printf("Your choice: ");
+        scanf("%s",choice);
+        stringToInt(choice,&X);
+        if(!(X==49 || X==50 || X==51))//49 adalah ascii untuk 1, 50 = 2, 51 = 3
+            printf("WRONG! It's must be a number from 1-3!\n\n");
+    } while(!(X==49 || X==50 || X==51));
+
+    system("cls");
 }

@@ -2,7 +2,8 @@
 #include "listposisi.h"
 #include "tipe_bentukan.h"
 
-boolean isthreaten(list lawan, list_posisi daftar_posisi, int x, int y, papan board[10][10]){ //mengefound apakah suatu spot berbahaya untuk raja
+boolean isthreaten(list lawan, list_posisi daftar_posisi, int x, int y, papan board[10][10]){ 
+    //mengefound apakah suatu spot berbahaya untuk raja
     address_list P; 
     address_posisi R;
     boolean found = false;
