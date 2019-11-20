@@ -6,7 +6,7 @@
 #include "cek_semua_gerak.c"
 #include "cek_bisa_gerak.c"
 
-piece promotion(piece P);
+piece promotion(piece P, boolean *ispromoted);
 
 void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran) {
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
@@ -14,6 +14,8 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     list lawan;
     int poin;
     static int turn = 0;
+    infotype_stack X;
+    boolean ispromoted;
 
     CreateEmpty_list(&kawan);
     if (InfoTail(*giliran) == 1) { //putih
@@ -115,15 +117,13 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
     //piece promotion
     if(Info(R).nama == 'P'){
-        Info(P)=Info(R)=promotion(Info(P));
+        Info(P)=Info(R)=promotion(Info(P), &ispromoted);
     }
-
+    X.promotion = ispromoted;
 
     // lakukan fungsi swap
-    infotype_stack X;
     
     if (adaorang(board, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
-        printf("MUSUHH\n");
         address_list A, A1;
         A1 = Search(lawan, Info(Q).posisiC, Info(Q).posisiR); //address sebelum bidak lawan yang termakan
         A = Next(A1); //address bidak lawan yang termakan
@@ -185,4 +185,45 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         Add(giliran, 1);
     }
     
+}
+
+
+piece promotion(piece P, boolean *ispromoted)
+{
+    int n;
+    *ispromoted = false;
+
+    if(((P.posisiR == 2) && (P.player == 1)) || ((P.posisiR == 7) && (P.player == 2)))
+    {
+        printf("\nPion telah mencapai ujung\n");
+        printf("Terjadi special move promosi\n");
+        
+        printf("   1. Queen (Q)\n");
+        printf("   2. Bishop (B)\n");
+        printf("   3. Knight (N)\n");
+        printf("   4. Rook (R)\n");
+
+        printf("Masukkan nomor perwira yang hendak dipilih: ");
+        
+        do{
+            scanf("%d", &n);
+        } while(n<1 || n>4);
+
+        if(n == 1){
+            P.nama = 'Q';
+            P.poin = 8;
+        } else if (n == 2){
+            P.nama = 'B';
+            P.poin = 4;
+        } else if(n == 3){
+            P.nama = 'N';
+            P.poin = 2;
+        } else if(n == 4){
+            P.nama = 'R';
+            P.poin = 4;
+        }
+
+        *ispromoted = true;
+    }
+    return P;
 }
