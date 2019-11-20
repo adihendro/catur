@@ -10,6 +10,7 @@
 #include "stack.c"
 #include "queue.c"
 #include "move.c"
+#include "special_move.c"
 
 
 int main(){

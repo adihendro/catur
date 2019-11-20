@@ -12,7 +12,7 @@ void cek(int a, int b, int x1, int x2, piece F, papan *board[10][10], list_posis
     if(kotak.nama==' '){ //kalau kotak kosong
         P.posisiR = F.posisiR + a*x1*x2;
         P.posisiC = F.posisiC + b*x1*x2;
-        InsVLast_posisi(L,P);
+        InsVLast_posisi(L,P); //masukkin ke list posisi
 
     } else{ //kotak = */temen/musuh
         br=true; //break loop
@@ -26,15 +26,18 @@ void cek(int a, int b, int x1, int x2, piece F, papan *board[10][10], list_posis
 
 void pawn(piece F, papan *board[10][10], list_posisi *L){
     a = F.player==1 ? -1 : 1;
-    b = F.player==1 ? 2 : 1;
-    cek(a,0,1,1,F,board, L);
-    for(i=-1;i<=1;i=i+2){
+    b = F.player==1 ? 2 : 1; //musuh
+
+    if((*board[F.posisiR + a][F.posisiC]).nama==' ') //kalau kotak depan kosong maka dicek
+        cek(a,0,1,1,F,board, L); //kalau depannya temen atau musuh ga perlu dicek
+
+    for(i=-1;i<=1;i=i+2){ //cek serong
         if((*board[F.posisiR + a][F.posisiC + i]).player==b){ //kalau kotak = musuh
             cek(a,i,1,1,F,board, L);
         }
     }
     
-    if(F.player==1 && F.posisiR==7){
+    if(F.player==1 && F.posisiR==7){ //buat di awal bisa maju 2 langkah
         cek(-2,0,1,1,F,board, L);
     } else if(F.player==2 && F.posisiR==2){
         cek(2,0,1,1,F,board, L);

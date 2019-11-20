@@ -13,64 +13,41 @@ void specialmove(piece P)
     promotion(P);
 }
 
-void promotion(piece P)
+piece promotion(piece P)
 {
-    int n = 0;
+    int n;
 
-    if((P.posisiR == 8) && (P.player == 2)){
-        printf("1. Queen (Q)");
-        printf("2. Bishop (B)");
-        printf("3. Knight (N)");
-        printf("4. Rook (R)");
-
-        printf("Masukkan nomor perwira yang hendak dipilih: ");
-        
-        while(n < 1 && n > 4)
-            scanf("%d", &n);
-        
-
-        if((n == 1)){
-            P.nama = "Q";
-            P.poin = 8;
-        } else if (n==2){
-            P.nama = "B";
-            P.poin = 4;
-        } else if(n == 3){
-            P.nama = "N";
-            P.poin = 2;
-        } else if(n == 4){
-            P.nama = "R";
-            P.poin = 4;
-        }
-    }
-
-    else if((P.posisiR == 1) && (P.player == 1))
+    if(((P.posisiR == 2) && (P.player == 1)) || ((P.posisiR == 7) && (P.player == 2)))
     {
-        printf("1. Queen (Q)");
-        printf("2. Bishop (B)");
-        printf("3. Knight (N)");
-        printf("4. Rook (R)");
+        printf("\nPion telah mencapai ujung\n");
+        printf("Terjadi special move promosi\n");
+        
+        printf("   1. Queen (Q)\n");
+        printf("   2. Bishop (B)\n");
+        printf("   3. Knight (N)\n");
+        printf("   4. Rook (R)\n");
 
         printf("Masukkan nomor perwira yang hendak dipilih: ");
         
-        while(n < 1 && n>4)
+        do{
             scanf("%d", &n);
-        
+        } while(n<1 || n>4);
 
-        if((n == 1)){
-            P.nama = "Q";
+        if(n == 1){
+            P.nama = 'Q';
             P.poin = 8;
-        } else if (n==2){
-            P.nama = "B";
+        } else if (n == 2){
+            P.nama = 'B';
             P.poin = 4;
         } else if(n == 3){
-            P.nama = "N";
+            P.nama = 'N';
             P.poin = 2;
         } else if(n == 4){
-            P.nama = "R";
+            P.nama = 'R';
             P.poin = 4;
         }
     }
+    return P;
 }
 
 void enPassant(piece P, stack* history)
@@ -78,7 +55,7 @@ void enPassant(piece P, stack* history)
   //  if (TOP(history) = );
 
 }
-
+/*
 
 boolean HasMoved(piece P, stack history)
 {
@@ -110,3 +87,4 @@ void Castling(piece Raja, piece Benteng , stack history, papan* board[10][10])
             (*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ';
         }
     }
+*/
