@@ -112,6 +112,15 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     } // Q sudah menunjukkan pilihan posisi bidak yang ingin dituju
 
 
+    //piece promotion
+    if(Info(R).nama == 'P'){
+        if (InfoTail(*giliran) == 1){ //putih
+            if(Info(R).posisiR == 2){
+                promotion(P);
+            }
+    }
+
+
     // lakukan fungsi swap
     infotype_stack X;
     
