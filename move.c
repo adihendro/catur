@@ -133,10 +133,8 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         X.nama = Info(A).nama;
         X.player = (InfoTail(*giliran) % 2) + 1; //lawan
         X.turn = turn;
-        X.posisiR_lama = Info(R).posisiR;
-        X.posisiC_lama = Info(R).posisiC;
-        X.posisiR_baru = Info(Q).posisiR;
-        X.posisiC_baru = Info(Q).posisiC;
+        X.posisiR_lama = X.posisiR_baru = Info(Q).posisiR;
+        X.posisiC_lama = X.posisiC_baru = Info(Q).posisiC;
         Push(termakan, X); //masukkan ke stack termakan
 
         //list
