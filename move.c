@@ -8,17 +8,6 @@
 
 
 void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran) {
-    // papan board2[10][10];
-    // stack history2;
-    // stack termakan2;
-    // termakan2 = *termakan;
-    // history2 = *history;
-    // for(int i=0;i<=10;i++){
-    //     for(int j=0;j<=10;j++){
-    //         board2[i][j] = *board[i][j];
-    //     }
-    // }
-
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
     list kawan; //list piece apa yg ada di papan
     list lawan;
@@ -123,6 +112,15 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     } // Q sudah menunjukkan pilihan posisi bidak yang ingin dituju
 
 
+    //piece promotion
+    if(Info(R).nama == 'P'){
+        if (InfoTail(*giliran) == 1){ //putih
+            if(Info(R).posisiR == 2){
+                promotion(P);
+            }
+    }
+
+
     // lakukan fungsi swap
     infotype_stack X;
     
@@ -176,10 +174,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     PrintBaris(Info(Q).posisiR);
     printf(")\n");
 
-    //free
-    // free(&list_bisa_gerak);
-    
-    
+
     // simpan kembali datanya ke variabel global
     if (InfoTail(*giliran) == 1) { //putih
         *list_ada_putih = kawan;
@@ -194,8 +189,4 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         Add(giliran, 1);
     }
     
-
-    // *board = board2;
-    // *history = history2;
-    // *termakan = termakan2;
 }

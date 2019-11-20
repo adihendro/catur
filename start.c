@@ -10,22 +10,17 @@ void delay(int milliseconds){
 
     pause = milliseconds*(CLOCKS_PER_SEC/1000);
     now = then = clock();
-    while( (now-then) < pause )
+    while((now-then) < pause)
         now = clock();
 }
 void string2ByteArray(char* input, int* output)
 {
     // mengubah byte string ke array of integer
-    int loop;
-    int i;
-    
-    loop = 0;
-    i = 0;
-    
+    int loop = 0;
+    int i = 0;
+
     while(input[loop] != '\0')
-    {
         output[i++] = input[loop++];
-    }
 }
 void stringToInt(char* ascii_str,int* Ret){
     //mendapatkan nilai bilangan integer pertama dari array of string
