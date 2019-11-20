@@ -4,6 +4,7 @@
  */
  
 #include <stdio.h>
+#include "tipe_bentukan.h"
  
 #define LEN 256
 int main ()
@@ -16,7 +17,7 @@ int main ()
     /* write 10 lines of text into the file stream*/
     address P;
     P = First(list_ada_putih);
-    while (P != Nil) {
+    while (P != Nil_list) {
         fprintf(fp,"%c",Info(P).nama);
         fprintf(fp,"%d",Info(P).player);
         fprintf(fp,"%d",Info(P).poin);

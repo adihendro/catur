@@ -35,7 +35,7 @@ void stringToInt(char* ascii_str,int* Ret){
     *Ret = arr[0];
 }
 void start() {
-    system("clear");
+    system("cls");
 
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
@@ -79,5 +79,5 @@ void start() {
             printf("WRONG! It's must be a number from 1-3!\n\n");
     } while(!(X==49 || X==50 || X==51));
 
-    system("clear");
+    system("cls");
 }
