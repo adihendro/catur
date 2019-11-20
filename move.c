@@ -6,6 +6,7 @@
 #include "cek_semua_gerak.c"
 #include "cek_bisa_gerak.c"
 
+piece promotion(piece P);
 
 void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran) {
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
@@ -114,10 +115,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
     //piece promotion
     if(Info(R).nama == 'P'){
-        if (InfoTail(*giliran) == 1){ //putih
-            if(Info(R).posisiR == 2){
-                promotion(P);
-            }
+        Info(P)=Info(R)=promotion(Info(P));
     }
 
 
