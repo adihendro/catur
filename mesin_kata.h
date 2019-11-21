@@ -5,7 +5,7 @@
 
 #define NMax 50
 #define BLANK ' '
-#define MARK '.'
+#define MARK ';'
 
 typedef struct {
 	char TabKata[NMax+1];

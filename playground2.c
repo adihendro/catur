@@ -3,6 +3,7 @@
 #include <string.h>
 #include "mesin_kar.c"
 
+
 void swap_skor(int skor[10] , int index_baru) {
     int temp;
     temp = skor[index_baru];
@@ -19,53 +20,27 @@ void swap_nama(char nama[10][3], int index_baru) {
         nama[index_baru + 1][q] = temp;
     }
 }
-
+// fungsi ini dijalankan kalo kita mau menyimpan nama dan poin pemain
 int main () {
-    // inisialisasi data nama dan skor
+    char str[50];
+	char CC;
+	static FILE *pita;
+	strcpy(str,"leaderboards.txt");
+    START(str);
+    int retval;
     char nama[11][3]; //ada 10 nama, maks 20 karakter per nama
     int skor[11];
+    retval = fscanf(pita,"%c",&CC);
     int i;
     int j;
+
     for (i = 0 ; i <= 11 ; i++) { // inisialisasi semua skor dengan 0 dan string dengan spasi
         skor[i] = 0;
         for (j = 1 ; j <= 3 ; j++) {
             nama[i][j] = ' ';
         }
-    };
+    }
 
-    // load leaderboards yang sudah ada
-    char str[50];
-    char CC;
-    FILE *filename;
-    strcpy(str,"leaderboards.txt");
-    START(str);
-    // filename = fopen("leaderboards.txt","r");
-    i = 1;
-    j = 1;
-    int temp;
-	while ((!EOP) && (i <= 10)) {
-        j = 1;
-        CC = GetCC();
-        while (CC != '|') {
-            nama[i][j] = CC;
-            j++;
-            // retval = fscanf(pita,"%c",&CC);
-            ADV();
-            CC = GetCC();
-        }
-        ADV();
-        CC = GetCC();
-        while (CC != '^') {
-            temp = CC - '0';
-            skor[i] = skor[i]*10 + temp;
-            ADV();
-            CC = GetCC();
-        }
-        i++;
-        ADV();
-    }   
-    
-    // user memasukkan nama dan skornya : hanya untuk test nanti bakal diilangin
     //user input nama mereka
     char inputan_nama[20];
     printf("nama : ");
@@ -74,10 +49,47 @@ int main () {
     for (z = 0 ; z <= 2 ; z++) { // masukkan nama pemain yang menang ke dalam list pemain yang ada
         nama[0][z+1] = inputan_nama[z];
     }
+
     //user input nilai
     int nilai;
     scanf("%d",&nilai);
     skor[0] = nilai; // nilai yang menang dimasukkan ke index 0
+    
+    // load leaderboards
+    // fungsi dibawah memasukkan nilai dan nama pemain terdahulu ke array
+    i = 1;
+    j = 1;
+    int temp;
+	while ((CC != ';') && (i <= 10)) {
+        j = 1;
+        while (CC != '|') {
+            nama[i][j] = CC;
+            j++;
+            retval = fscanf(pita,"%c",&CC);
+        }
+        retval = fscanf(pita,"%c",&CC);
+        while (CC != '^') {
+            temp = CC - '0';
+            skor[i] = skor[i]*10 + temp;
+            retval = fscanf(pita,"%c",&CC);
+        }
+        i++;
+        retval = fscanf(pita,"%c",&CC);
+    }
+
+    //fungsi print nama dan skor yang ada
+    // i = 0;
+    // j = 1;
+    // while(skor[i] != 0) {
+    //     j = 1;
+    //     printf("%d ",skor[i]);
+    //     while (j <= 20) {
+    //         printf("%c",nama[i][j]);
+    //         j++;
+    //     }
+    //     printf("\n");
+    //     i++;
+    // }
 
     // fungsi mengurutkan leaderboards berdasarkan skor dan nama
     int urut = 0; // ini sebenernya boolean cuma belum include booleanh
@@ -158,8 +170,9 @@ int main () {
         i++;
         printed++;
     }
-
+    
     // write ke leaderboards.txt
+    fclose(pita);
     pita = fopen(str,"w");
     i = 0;
     j = 1;
@@ -174,5 +187,5 @@ int main () {
     }
     fprintf(pita,";");
 	return 0;
-    return 0;
 }
+
