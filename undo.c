@@ -8,7 +8,7 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
     address_list P;
 
     if(turn==0){ //belum ada gerakan
-        printf("Belum ada gerakan.\n");
+        printf("\nBelum ada gerakan.\n");
         printf("Undo gagal.\n");
 
     } else if(turn==1){ //baru putih yang gerak
@@ -21,7 +21,7 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
         Info(P).posisiR = X.posisiR_lama;
         Add(giliran, 1);
 
-        printf("Gerakan sebelumnya berhasil dibatalkan.\n");
+        printf("\nGerakan sebelumnya berhasil dibatalkan.\n");
 
     } else{ //game udh jalan biasa
             Pop(history, &X);
@@ -42,7 +42,7 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'h');
         }
         
-        printf("Gerakan sampai giliran sebelumnya berhasil dibatalkan.\n");
+        printf("\nGerakan sampai giliran sebelumnya berhasil dibatalkan.\n");
     }
 }
 
@@ -60,8 +60,6 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
 
     //cek kalau ada di stack termakan
     Y = (*termakan).T[(*termakan).TOP];
-    printf("\nturnX: %d\n",X.turn);
-    printf("turnY: %d\n",Y.turn);
     if(X.turn == Y.turn){ //kalau barusan termakan
         Pop(termakan,&Y);
         Z.nama = Y.nama;
@@ -81,9 +79,12 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
 
     //cek kalau abis promotion
     if(X.promotion){
-        if(c=='h') //kalau hitam promosi yang diundo
+        if(c=='h'){ //kalau hitam promosi yang diundo
             Info(P).nama='p'; //pion hitam
-        else //c=='p', kalau putih promosi yang diundo
+            Info(P).poin = 1;
+        } else{ //c=='p', kalau putih promosi yang diundo
             Info(P).nama='P'; //pion putih
+            Info(P).poin = 1;
+        }
     }
 }

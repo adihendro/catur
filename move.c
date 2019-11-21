@@ -14,7 +14,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     list lawan;
     int poin;
     infotype_stack X;
-    boolean ispromoted;
+    boolean ispromoted = false;
 
     CreateEmpty_list(&kawan);
     if (InfoTail(*giliran) == 1) { //putih
@@ -165,7 +165,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     X.posisiC_baru = Info(Q).posisiC;
     Push(history, X);
 
-    printf("Bidak ");
+    printf("\nBidak ");
     PrintNamaBidak(Info(R).nama);
     printf(" telah berpindah dari (");
     PrintKolom(Info(R).posisiC);
@@ -193,6 +193,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
     
 }
+
 
 
 
