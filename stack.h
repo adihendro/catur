@@ -16,6 +16,7 @@ TOP adalah alamat elemen puncak*/
 typedef struct {
     char nama;
     int player;
+    int poin;
     int turn;
     int posisiR_lama;
     int posisiC_lama;

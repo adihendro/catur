@@ -54,6 +54,7 @@ int main(){
             turn++;
             move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
             // delay(1000);
+            printf("\n%d %d\n", poin_putih, poin_hitam);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
             turn++;

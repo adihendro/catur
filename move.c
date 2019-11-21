@@ -120,8 +120,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
     X.promotion = ispromoted;
 
+
+
     // lakukan fungsi swap
-    
     if (adaorang(board, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
         address_list A, A1;
         A1 = Search(lawan, Info(Q).posisiC, Info(Q).posisiR); //address sebelum bidak lawan yang termakan
@@ -129,8 +130,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         poin += Info(A).poin;
 
         //stack
-        X.nama = Info(A).nama;
+        X.nama = Info(A).nama; //bidak lawan yg termakan
         X.player = (InfoTail(*giliran) % 2) + 1; //lawan
+        X.poin = Info(A).poin;
         X.turn = turn;
         X.posisiR_lama = X.posisiR_baru = Info(Q).posisiR;
         X.posisiC_lama = X.posisiC_baru = Info(Q).posisiC;
@@ -148,6 +150,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     // update stack dengan posisi bidak terbaru
     X.nama = Info(R).nama;
     X.player = InfoTail(*giliran);
+    X.poin = Info(R).poin;
     X.turn = turn;
     X.posisiR_lama = Info(R).posisiR;
     X.posisiC_lama = Info(R).posisiC;
