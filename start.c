@@ -13,6 +13,7 @@ void delay(int milliseconds){
     while((now-then) < pause)
         now = clock();
 }
+
 void string2ByteArray(char* input, int* output)
 {
     // mengubah byte string ke array of integer
@@ -29,6 +30,9 @@ void stringToInt(char* ascii_str,int* Ret){
     string2ByteArray(ascii_str, arr);
     *Ret = arr[0];
 }
+
+
+
 void start() {
     system("cls");
 

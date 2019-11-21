@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mesin_kar.c"
+#include "mesin_kata.c"
 
 void swap_skor(int skor[10] , int index_baru) {
     int temp;
@@ -46,12 +46,17 @@ int main () {
 	while ((!EOP) && (i <= 10)) {
         j = 1;
         CC = GetCC();
-        while (CC != '|') {
-            nama[i][j] = CC;
-            j++;
-            ADV();
-            CC = GetCC();
+        ADVKATA();
+        for (j = 1 ; j <= 3 ; j++) {
+            nama[i][j] = CKata.TabKata[j];
         }
+        // while (CC != '|') {
+        //     nama[i][j] = CC;
+        //     j++;
+        //     // retval = fscanf(pita,"%c",&CC);
+        //     ADV();
+        //     CC = GetCC();
+        // }
         ADV();
         CC = GetCC();
         while (CC != '^') {
@@ -129,7 +134,21 @@ int main () {
         }
 
     }
-    
+
+    // ngeprint ke layar nama dan skornya
+    i = 0;
+    j = 1;
+    // while(skor[i] != 0) {
+    //     j = 1;
+    //     printf("%d ",skor[i]);
+    //     while (j <= 20) {
+    //         printf("%c",nama[i][j]);
+    //         j++;
+    //     }
+    //     printf("\n");
+    //     i++;
+    // }
+
     i = 0;
     j = 1;
     int printed;
