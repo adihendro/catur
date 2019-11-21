@@ -86,4 +86,19 @@ Fungsi yang digunakan:
 		address Search_reborn(List L , int kolom , int row); //pencarian berdasarkan kolom dan row
 		void DelP_reborn(List *L , int kolom , int row); // pencarian berdasarkan kolom dan row 
 		
+
++-+-+-+-+-+-+-+-+
+|R|N|B|Q|K|B|N|R|
++-+-+-+-+-+-+-+-+
+|P|P|P|P|P|P|P|P|
++-+-+-+-+-+-+-+-+
+| | | | | | | | |
++-+-+-+-+-+-+-+-+
+| | | | | | | | |
++-+-+-+-+-+-+-+-+
+| | | | | | | | |
++-+-+-+-+-+-+-+-+
+| | | | | | | | |
++-+-+-+-+-+-+-+-+
+
 	
