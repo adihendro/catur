@@ -171,12 +171,12 @@ void PrintPapan(papan *board[10][10]){
             if((gameboard[i][j] == 'P' ) || (gameboard[i][j] == 'K' ) || (gameboard[i][j] == 'Q' ) || //bidak putih
                (gameboard[i][j] == 'B' ) || (gameboard[i][j] == 'N' ) || (gameboard[i][j] == 'R' )){
                 printf("\033[1;32m"); //warna hijau
-                printf("%c ", gameboard[i][j]);
+                printf("%c ", gameboard[i][j]); //bidak putih memakai warna hijau
                 printf("\033[0m");
             } else if((gameboard[i][j] == 'p' ) || (gameboard[i][j] == 'k' ) || (gameboard[i][j] == 'q' ) || //bidak hitam
                (gameboard[i][j] == 'b' ) || (gameboard[i][j] == 'n' ) || (gameboard[i][j] == 'r' )){
                 printf("\033[1;31m"); //warna merah
-                printf("%c ", gameboard[i][j]);
+                printf("%c ", gameboard[i][j]); //bidak hitam memakai warna merah
                 printf("\033[0m");
             } else{
                 printf("%c ", gameboard[i][j]);

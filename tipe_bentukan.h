@@ -77,6 +77,7 @@ stack history, termakan;
 list list_ada_putih, list_ada_hitam;
 queue giliran;
 int poin_putih, poin_hitam;
+int turn; //berapa kali udh gerakan
 
 
 #endif

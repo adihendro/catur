@@ -21,6 +21,7 @@ void inisialisasi(){
     Add(&giliran, 1); //giliran pertama putih (1)
     poin_putih=0;
     poin_hitam=0;
+    turn=0;
 
     construct('P', 1, 1, 7, 1, &list_ada_putih); //pion putih
     construct('P', 1, 1, 7, 2, &list_ada_putih); //pion putih

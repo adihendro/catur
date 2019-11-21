@@ -10,7 +10,7 @@ boolean isthreaten(list lawan, int x, int y, papan *board[10][10]){ //mengefound
     P = First(lawan);
     while (P!=Nil_list && !found){
         CreateEmpty_posisi(&dftr_posisi);
-        ceksemuagerak(Info(P), board, dftr_posisi);
+        ceksemuagerak(Info(P), board, dftr_posisi); //menyimpan semua gerakan yang mungkin dari bidak lawan
         R = First(dftr_posisi);
         while (R!=Nil_list && !found){
             if((Info(R).posisiC==x)&&(Info(R).posisiR==y)){
