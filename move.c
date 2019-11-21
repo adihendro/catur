@@ -10,7 +10,7 @@ piece promotion(piece P, boolean *ispromoted);
 
 void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn) {
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
-    list kawan; //list piece apa yg ada di papan
+    list kawan; //list piece apa yg ada di papan 
     list lawan;
     int poin;
     infotype_stack X;
@@ -27,20 +27,17 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         lawan = *list_ada_putih;
         poin = *poin_hitam;
     }
-    
     // lihat bidak yang masih ada di papan dari list linier dan memasukkan ke list_bisa_gerak
     list list_bisa_gerak; //akan ditunjuk pake R
     CreateEmpty_list(&list_bisa_gerak);
     address_list P;
     P = First(kawan);
-
     while (P != Nil_list) {
         if (cekbisagerak(Info(P), board)) { //Info(P) == piece
             InsVLast(&list_bisa_gerak, Info(P)); //dari list kawan dimasukkin ke list_bisa_gerak
         }
         P = Next(P);
     }
-        
     // tampilkan bidak yang dapat bergerak
     InversList(&list_bisa_gerak);
     address_list R;
@@ -63,6 +60,16 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     printf("Pilih bidak yang ingin digerakkan: ");
     int input_nomor_bidak;
     scanf("%d",&input_nomor_bidak);
+    /*do{    
+        choice = (char*) malloc (sizeof(100));
+        printf("Your choice: ");
+        scanf("%s",choice);
+        stringToInt(choice,&input_nomor_bidak);
+        if(!(X==49 || X==50 || X==51))//49 adalah ascii untuk 1, 50 = 2, 51 = 3
+            printf("Wrong input nigga!\n\n");
+    } while(!(input_nomor_bidak==49 || input_nomor_bidak==50 || input_nomor_bidak==51));
+    */
+
     // cari list linier dengan indeks ke input_nomor_bidak
     R = First(list_bisa_gerak);
     i = 1;
