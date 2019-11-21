@@ -8,12 +8,11 @@
 
 piece promotion(piece P, boolean *ispromoted);
 
-void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran) {
+void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn) {
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
     list kawan; //list piece apa yg ada di papan
     list lawan;
     int poin;
-    static int turn = 0;
     infotype_stack X;
     boolean ispromoted;
 
@@ -73,9 +72,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     } // R sudah menunjukkan address bidak yang ingin diganti posisinya
     
     P = First(kawan);
-    while((Info(P).posisiC != Info(R).posisiC) || (Info(P).posisiR != Info(R).posisiR)){
+    while((Info(P).posisiC != Info(R).posisiC) || (Info(P).posisiR != Info(R).posisiR))
         P = Next(P);
-    } // P sudah menunjukkan address bidak dari list_ada
+    // P sudah menunjukkan address bidak dari list_ada
 
 
     // pertama-tama buat list posisi yang mungkin dijalani
@@ -156,8 +155,6 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     X.posisiC_baru = Info(Q).posisiC;
     Push(history, X);
 
-    turn++;
-
     printf("Bidak ");
     PrintNamaBidak(Info(R).nama);
     printf(" telah berpindah dari (");
@@ -186,6 +183,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
     
 }
+
 
 
 piece promotion(piece P, boolean *ispromoted)
