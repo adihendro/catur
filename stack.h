@@ -21,6 +21,7 @@ typedef struct {
     int posisiC_lama;
     int posisiR_baru;
     int posisiC_baru;
+    boolean promotion;
 } infotype_stack;
 
 typedef int address_stack;

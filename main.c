@@ -11,6 +11,7 @@
 #include "queue.c"
 #include "move.c"
 #include "special_move.c"
+#include "undo.c"
 
 
 int main(){
@@ -50,14 +51,19 @@ int main(){
 
 
         if(strcmp(command,"MOVE") == 0){
-            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran);
+            turn++;
+            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
             // delay(1000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
-        
+            turn++;
         }
         else if(strcmp(command,"UNDO") == 0){
-            
+            undo(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
+            if(turn==1)
+                turn--;
+            else if(turn>=2)
+                turn=turn-2;
         }
         else if(strcmp(command,"SAVE") == 0){
             
