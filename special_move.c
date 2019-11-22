@@ -82,6 +82,9 @@ void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam
     X.posisiC_lama = X.posisiC_baru = Info(P).posisiC;
     Push(termakan, X); //masukkan ke stack termakan
 
+    //list
+    // DelAfter(&lawan, &A, A1); // hapus bidak lawan dari list linier lawan 
+
     printf("%d\n",X.posisiC_baru);
     printf("%d\n",X.posisiR_baru);
 
@@ -91,6 +94,10 @@ void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam
     X.posisiC_lama = tempC;
     X.posisiR_baru = InfoTail(*giliran)==1 ? tempR-- : tempR++;
     Push(history, X); //masukkan ke stack history
+
+    // update nilai awal di list_ada menjadi nilai akhir
+    Info(P).posisiR = X.posisiR_baru;
+    Info(P).posisiC = X.posisiC_baru;
 }
 
 
