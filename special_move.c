@@ -123,7 +123,7 @@ void castling(piece Raja, piece Benteng, stack history, papan* board[10][10])
 {
     if (!(HasMoved(Raja, history))) //kalau raja belum pernah gerak
     {
-        if (((*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ') && ((*board[Raja.posisiR][Raja.posisiC+1]).nama == " ") && (!(HasMoved(Benteng, history))))
+        if (((*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ') && ((*board[Raja.posisiR][Raja.posisiC+1]).nama == ' ') && (!(HasMoved(Benteng, history))))
         {
             // (*board[Raja.posisiR][Raja.posisiC+2]).nama == 'R';
         }

@@ -4,7 +4,7 @@
 
 #include "start.c"
 #include "inisialisasi.c"
-#include "print_papan.c"
+#include "print_papan.c"s
 #include "listlinier.c"
 #include "listposisi.c"
 #include "stack.c"
