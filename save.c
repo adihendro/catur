@@ -47,13 +47,13 @@ int main ()
     fclose (fp);
 
     // simpan poin putih poin hitam dan giliran
-    // formatnya : 20^60^1;
+    // formatnya : 20|60|1;
     // 20 adalah poin putih, 60 poin hitam, 1 adalah giliran selanjutnya
     fp = fopen("poin.txt","w");
     fprintf(fp,"%d",poin_putih);
-    fprintf(fp,"^");
+    fprintf(fp,"|");
     fprintf(fp,"%d",poin_hitam);
-    fprintf(fp,"^");
+    fprintf(fp,"|");
     fprintf(fp,"%d",InfoTail(giliran));
     fprintf(fp,";");
     fclose(fp);
@@ -74,18 +74,22 @@ int main ()
     while(!IsEmpty_stack(reverse_history)) {
         Pop(&reverse_history,&temp);
         fprintf(fp,"%c",temp.nama);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.player);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.turn);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.posisiR_lama);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.posisiC_lama);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.posisiR_baru);
-        fprintf(fp,",");
-        fprintf(fp,"%d",temp.posisiR_baru);
+        fprintf(fp,"|");
+        fprintf(fp,"%d",temp.posisiC_baru);
+        fprintf(fp,"|");
+        fprintf(fp,"%d",temp.promotion);
+        fprintf(fp,"|");
+        fprintf(fp,"%d",temp.twosteps);
         fprintf(fp,".");
     }
     fprintf(fp,";");
@@ -105,18 +109,22 @@ int main ()
     while(!IsEmpty_stack(reverse_termakan)) {
         Pop(&reverse_termakan,&temp);
         fprintf(fp,"%c",temp.nama);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.player);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.turn);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.posisiR_lama);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.posisiC_lama);
-        fprintf(fp,",");
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.posisiR_baru);
-        fprintf(fp,",");
-        fprintf(fp,"%d",temp.posisiR_baru);
+        fprintf(fp,"|");
+        fprintf(fp,"%d",temp.posisiC_baru);
+        fprintf(fp,"|");
+        fprintf(fp,"%d",temp.promotion);
+        fprintf(fp,"|");
+        fprintf(fp,"%d",temp.twosteps);
         fprintf(fp,".");
     }
     fprintf(fp,";");

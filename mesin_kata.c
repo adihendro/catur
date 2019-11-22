@@ -50,6 +50,16 @@ void ADVKATA(){
 { F.S. : Jika CC = MARK, maka EndKata = true
          atau EndKata = false, CKata adalah kata terakhir yang sudah diakuisisi;
          CC karakter pertama sesudah karakter terakhir kata }*/
+
+void ADVKATASTACK(){
+    Ignore_Blank();
+    if (CC == ',') {
+        EndKata = true;
+    }
+    else {
+        SalinKata();
+    }
+}
 void SalinKata(){
     int x;
     x = 1;
