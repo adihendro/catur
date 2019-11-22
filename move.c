@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h> //buat fungsi absolut di twosteps (en passant)
 #include "tipe_bentukan.h"
 
 #include "print_semua.c"
@@ -15,6 +16,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     int poin;
     infotype_stack X;
     boolean ispromoted = false;
+    boolean istwosteps = false;
 
     CreateEmpty_list(&kawan);
     if (InfoTail(*giliran) == 1) { //putih
@@ -121,11 +123,15 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     } // Q sudah menunjukkan pilihan posisi bidak yang ingin dituju
 
 
-    //piece promotion
     if(Info(R).nama == 'P'){
+        //piece promotion?
         Info(P)=Info(R)=promotion(Info(P), &ispromoted);
+        //piece bisa en passant?
+        if(abs(Info(R).posisiR-Info(Q).posisiR) == 2) //pion jalan dua kotak
+            istwosteps=true;
     }
     X.promotion = ispromoted;
+    X.twosteps = istwosteps;
 
 
 
@@ -163,7 +169,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     X.posisiC_lama = Info(R).posisiC;
     X.posisiR_baru = Info(Q).posisiR;
     X.posisiC_baru = Info(Q).posisiC;
-    Push(history, X);
+    Push(history, X); //masukkan ke stack history
 
     printf("\nBidak ");
     PrintNamaBidak(Info(R).nama);
