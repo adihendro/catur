@@ -33,10 +33,12 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     list list_bisa_gerak; //akan ditunjuk pake R
     CreateEmpty_list(&list_bisa_gerak);
     address_list P;
+    int jml_bs_grk = 0;
     P = First(kawan);
     while (P != Nil_list) {
         if (cekbisagerak(Info(P), board)) { //Info(P) == piece
             InsVLast(&list_bisa_gerak, Info(P)); //dari list kawan dimasukkin ke list_bisa_gerak
+            jml_bs_grk ++;
         }
         P = Next(P);
     }
@@ -60,18 +62,20 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
     // user input nomor bidak yang ingin digerakkan
     printf("Pilih bidak yang ingin digerakkan: ");
+    int input1;
+    int input2;
+    //scanf("%d",&input_nomor_bidak);
+    int input1;
     int input_nomor_bidak;
-    scanf("%d",&input_nomor_bidak);
-    /*do{    
+    do{    //buat input yg baru diubah jadi ascii
         choice = (char*) malloc (sizeof(100));
         printf("Your choice: ");
         scanf("%s",choice);
-        stringToInt(choice,&input_nomor_bidak);
-        if(!(X==49 || X==50 || X==51))//49 adalah ascii untuk 1, 50 = 2, 51 = 3
-            printf("Wrong input nigga!\n\n");
-    } while(!(input_nomor_bidak==49 || input_nomor_bidak==50 || input_nomor_bidak==51));
-    */
-
+        stringToInt(choice, &input1);
+        input_nomor_bidak = atoi(choice);
+        if((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk))
+            printf("Wrong input! Choose from the corresponding numbers above!\n\n");
+    } while((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk));
     // cari list linier dengan indeks ke input_nomor_bidak
     R = First(list_bisa_gerak);
     i = 1;
