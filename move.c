@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h> //buat fungsi absolut di twosteps (en passant)
 #include "tipe_bentukan.h"
 
 #include "print_semua.c"
@@ -6,14 +7,16 @@
 #include "cek_semua_gerak.c"
 #include "cek_bisa_gerak.c"
 
-piece promotion(piece P);
+piece promotion(piece P, boolean *ispromoted);
 
-void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran) {
+void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn) {
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
-    list kawan; //list piece apa yg ada di papan
+    list kawan; //list piece apa yg ada di papan 
     list lawan;
     int poin;
-    static int turn = 0;
+    infotype_stack X;
+    boolean ispromoted = false;
+    boolean istwosteps = false;
 
     CreateEmpty_list(&kawan);
     if (InfoTail(*giliran) == 1) { //putih
@@ -26,20 +29,17 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         lawan = *list_ada_putih;
         poin = *poin_hitam;
     }
-    
     // lihat bidak yang masih ada di papan dari list linier dan memasukkan ke list_bisa_gerak
     list list_bisa_gerak; //akan ditunjuk pake R
     CreateEmpty_list(&list_bisa_gerak);
     address_list P;
     P = First(kawan);
-
     while (P != Nil_list) {
         if (cekbisagerak(Info(P), board)) { //Info(P) == piece
             InsVLast(&list_bisa_gerak, Info(P)); //dari list kawan dimasukkin ke list_bisa_gerak
         }
         P = Next(P);
     }
-        
     // tampilkan bidak yang dapat bergerak
     InversList(&list_bisa_gerak);
     address_list R;
@@ -62,6 +62,16 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     printf("Pilih bidak yang ingin digerakkan: ");
     int input_nomor_bidak;
     scanf("%d",&input_nomor_bidak);
+    /*do{    
+        choice = (char*) malloc (sizeof(100));
+        printf("Your choice: ");
+        scanf("%s",choice);
+        stringToInt(choice,&input_nomor_bidak);
+        if(!(X==49 || X==50 || X==51))//49 adalah ascii untuk 1, 50 = 2, 51 = 3
+            printf("Wrong input nigga!\n\n");
+    } while(!(input_nomor_bidak==49 || input_nomor_bidak==50 || input_nomor_bidak==51));
+    */
+
     // cari list linier dengan indeks ke input_nomor_bidak
     R = First(list_bisa_gerak);
     i = 1;
@@ -71,9 +81,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     } // R sudah menunjukkan address bidak yang ingin diganti posisinya
     
     P = First(kawan);
-    while((Info(P).posisiC != Info(R).posisiC) || (Info(P).posisiR != Info(R).posisiR)){
+    while((Info(P).posisiC != Info(R).posisiC) || (Info(P).posisiR != Info(R).posisiR))
         P = Next(P);
-    } // P sudah menunjukkan address bidak dari list_ada
+    // P sudah menunjukkan address bidak dari list_ada
 
 
     // pertama-tama buat list posisi yang mungkin dijalani
@@ -113,30 +123,32 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     } // Q sudah menunjukkan pilihan posisi bidak yang ingin dituju
 
 
-    //piece promotion
     if(Info(R).nama == 'P'){
-        Info(P)=Info(R)=promotion(Info(P));
+        //piece promotion?
+        Info(P)=Info(R)=promotion(Info(P), &ispromoted);
+        //piece bisa en passant?
+        if(abs(Info(R).posisiR-Info(Q).posisiR) == 2) //pion jalan dua kotak
+            istwosteps=true;
     }
+    X.promotion = ispromoted;
+    X.twosteps = istwosteps;
+
 
 
     // lakukan fungsi swap
-    infotype_stack X;
-    
     if (adaorang(board, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
-        printf("MUSUHH\n");
         address_list A, A1;
         A1 = Search(lawan, Info(Q).posisiC, Info(Q).posisiR); //address sebelum bidak lawan yang termakan
         A = Next(A1); //address bidak lawan yang termakan
         poin += Info(A).poin;
 
         //stack
-        X.nama = Info(A).nama;
+        X.nama = Info(A).nama; //bidak lawan yg termakan
         X.player = (InfoTail(*giliran) % 2) + 1; //lawan
+        X.poin = Info(A).poin;
         X.turn = turn;
-        X.posisiR_lama = Info(R).posisiR;
-        X.posisiC_lama = Info(R).posisiC;
-        X.posisiR_baru = Info(Q).posisiR;
-        X.posisiC_baru = Info(Q).posisiC;
+        X.posisiR_lama = X.posisiR_baru = Info(Q).posisiR;
+        X.posisiC_lama = X.posisiC_baru = Info(Q).posisiC;
         Push(termakan, X); //masukkan ke stack termakan
 
         //list
@@ -151,16 +163,15 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     // update stack dengan posisi bidak terbaru
     X.nama = Info(R).nama;
     X.player = InfoTail(*giliran);
+    X.poin = Info(R).poin;
     X.turn = turn;
     X.posisiR_lama = Info(R).posisiR;
     X.posisiC_lama = Info(R).posisiC;
     X.posisiR_baru = Info(Q).posisiR;
     X.posisiC_baru = Info(Q).posisiC;
-    Push(history, X);
+    Push(history, X); //masukkan ke stack history
 
-    turn++;
-
-    printf("Bidak ");
+    printf("\nBidak ");
     PrintNamaBidak(Info(R).nama);
     printf(" telah berpindah dari (");
     PrintKolom(Info(R).posisiC);
@@ -187,4 +198,47 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         Add(giliran, 1);
     }
     
+}
+
+
+
+
+piece promotion(piece P, boolean *ispromoted)
+{
+    int n;
+    *ispromoted = false;
+
+    if(((P.posisiR == 2) && (P.player == 1)) || ((P.posisiR == 7) && (P.player == 2)))
+    {
+        printf("\nPion telah mencapai ujung\n");
+        printf("Terjadi special move promosi\n");
+        
+        printf("   1. Queen (Q)\n");
+        printf("   2. Bishop (B)\n");
+        printf("   3. Knight (N)\n");
+        printf("   4. Rook (R)\n");
+
+        printf("Masukkan nomor perwira yang hendak dipilih: ");
+        
+        do{
+            scanf("%d", &n);
+        } while(n<1 || n>4);
+
+        if(n == 1){
+            P.nama = 'Q';
+            P.poin = 8;
+        } else if (n == 2){
+            P.nama = 'B';
+            P.poin = 4;
+        } else if(n == 3){
+            P.nama = 'N';
+            P.poin = 2;
+        } else if(n == 4){
+            P.nama = 'R';
+            P.poin = 4;
+        }
+
+        *ispromoted = true;
+    }
+    return P;
 }

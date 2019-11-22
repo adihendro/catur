@@ -21,6 +21,7 @@ void inisialisasi(){
     Add(&giliran, 1); //giliran pertama putih (1)
     poin_putih=0;
     poin_hitam=0;
+    turn=0;
 
     construct('P', 1, 1, 7, 1, &list_ada_putih); //pion putih
     construct('P', 1, 1, 7, 2, &list_ada_putih); //pion putih
@@ -58,7 +59,6 @@ void inisialisasi(){
     construct('R', 2, 4, 1, 8, &list_ada_hitam); //benteng hitam
     construct('N', 2, 2, 1, 2, &list_ada_hitam); //kuda hitam
     construct('N', 2, 2, 1, 7, &list_ada_hitam); //kuda hitam
-
 
 }
 
