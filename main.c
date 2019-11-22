@@ -4,7 +4,7 @@
 
 #include "start.c"
 #include "inisialisasi.c"
-#include "print_papan.c"
+#include "print_papan.c"s
 #include "listlinier.c"
 #include "listposisi.c"
 #include "stack.c"
@@ -57,6 +57,7 @@ int main(){
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
             turn++;
+            special_move(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
         }
         else if(strcmp(command,"UNDO") == 0){
             undo(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
@@ -69,6 +70,7 @@ int main(){
             
         }
 
+        printf("\n%d %d\n", poin_putih, poin_hitam);
         printf("\n\n");
     } while(1);
 

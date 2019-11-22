@@ -16,12 +16,14 @@ TOP adalah alamat elemen puncak*/
 typedef struct {
     char nama;
     int player;
+    int poin;
     int turn;
     int posisiR_lama;
     int posisiC_lama;
     int posisiR_baru;
     int posisiC_baru;
-    boolean promotion;
+    boolean promotion; //kalau pion bisa promosi
+    boolean twosteps; //kalau pion maju dua kotak (bisa en passant)
 } infotype_stack;
 
 typedef int address_stack;

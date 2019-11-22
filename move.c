@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h> //buat fungsi absolut di twosteps (en passant)
 #include "tipe_bentukan.h"
 
 #include "print_semua.c"
@@ -14,7 +15,8 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     list lawan;
     int poin;
     infotype_stack X;
-    boolean ispromoted;
+    boolean ispromoted = false;
+    boolean istwosteps = false;
 
     CreateEmpty_list(&kawan);
     if (InfoTail(*giliran) == 1) { //putih
@@ -125,14 +127,19 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     } // Q sudah menunjukkan pilihan posisi bidak yang ingin dituju
 
 
-    //piece promotion
     if(Info(R).nama == 'P'){
+        //piece promotion?
         Info(P)=Info(R)=promotion(Info(P), &ispromoted);
+        //piece bisa en passant?
+        if(abs(Info(R).posisiR-Info(Q).posisiR) == 2) //pion jalan dua kotak
+            istwosteps=true;
     }
     X.promotion = ispromoted;
+    X.twosteps = istwosteps;
+
+
 
     // lakukan fungsi swap
-    
     if (adaorang(board, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
         address_list A, A1;
         A1 = Search(lawan, Info(Q).posisiC, Info(Q).posisiR); //address sebelum bidak lawan yang termakan
@@ -140,8 +147,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         poin += Info(A).poin;
 
         //stack
-        X.nama = Info(A).nama;
+        X.nama = Info(A).nama; //bidak lawan yg termakan
         X.player = (InfoTail(*giliran) % 2) + 1; //lawan
+        X.poin = Info(A).poin;
         X.turn = turn;
         X.posisiR_lama = X.posisiR_baru = Info(Q).posisiR;
         X.posisiC_lama = X.posisiC_baru = Info(Q).posisiC;
@@ -159,14 +167,15 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     // update stack dengan posisi bidak terbaru
     X.nama = Info(R).nama;
     X.player = InfoTail(*giliran);
+    X.poin = Info(R).poin;
     X.turn = turn;
     X.posisiR_lama = Info(R).posisiR;
     X.posisiC_lama = Info(R).posisiC;
     X.posisiR_baru = Info(Q).posisiR;
     X.posisiC_baru = Info(Q).posisiC;
-    Push(history, X);
+    Push(history, X); //masukkan ke stack history
 
-    printf("Bidak ");
+    printf("\nBidak ");
     PrintNamaBidak(Info(R).nama);
     printf(" telah berpindah dari (");
     PrintKolom(Info(R).posisiC);
@@ -194,6 +203,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
     
 }
+
 
 
 
