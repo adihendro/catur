@@ -9,6 +9,7 @@
         "queue.h": "c",
         "stdio.h": "c",
         "fungsi.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "mesin_kar.h": "c"
     }
 }

@@ -5,6 +5,9 @@
 #include "cek_semua_gerak.c"
 #include "cek_bisa_gerak.c"
 
+#include "threaten.c"
+
+
 piece promotion(piece P, boolean *ispromoted);
 
 void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn) {
@@ -209,6 +212,10 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         Add(giliran, 1);
     }
     
+
+    if(skak(lawan, kawan, board)){
+        printf("\nEKUSUPUROSHIONN\n");
+    }
 }
 
 

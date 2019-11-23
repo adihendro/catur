@@ -1,6 +1,4 @@
-// #include "listlinier.h"
 #include "tipe_bentukan.h"
-#include <stdio.h>
 #include "mesin_kar.h"
 #include "mesin_kar.c"
 #include "mesin_kata.h"

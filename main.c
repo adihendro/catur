@@ -84,7 +84,6 @@ int main(){
             if(choice2=='Y'){
                 inisialisasi();
                 printf("Success!\n");
-                turn=0;
             } else
                 printf("Canceled.\n");
         }
