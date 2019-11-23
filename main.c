@@ -11,6 +11,7 @@
 #include "move.c"
 #include "special_move.c"
 #include "undo.c"
+#include "save.c"
 
 
 int main(){
@@ -42,10 +43,12 @@ int main(){
 
         do{
             go=false;
+            printf("   MOVE, SPECIAL_MOVE, UNDO, SAVE, RESET\n");
             printf("Masukkan command: ");
             scanf("%s",command);
             if((strcmp(command,"MOVE") == 0) || (strcmp(command,"SPECIAL_MOVE") == 0) ||
-            (strcmp(command,"UNDO") == 0) || (strcmp(command,"SAVE") == 0)){
+            (strcmp(command,"UNDO") == 0) || (strcmp(command,"SAVE") == 0) ||
+            (strcmp(command,"RESET") == 0)){
                 go=true;
             } else{
                 printf("Command salah!\n\n");
@@ -71,7 +74,19 @@ int main(){
                 turn=turn-2;
         }
         else if(strcmp(command,"SAVE") == 0){
-            
+            save();
+            printf("Save success!\n");
+        }
+        else if(strcmp(command,"RESET") == 0){
+            printf("Are you sure?\n");
+            printf("(Y)es, (N)o\n");
+            scanf("%s",&choice2);
+            if(choice2=='Y'){
+                inisialisasi();
+                printf("Success!\n");
+                turn=0;
+            } else
+                printf("Canceled.\n");
         }
 
         printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);

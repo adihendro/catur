@@ -59,7 +59,6 @@ void inisialisasi(){
     construct('R', 2, 4, 1, 8, &list_ada_hitam); //benteng hitam
     construct('N', 2, 2, 1, 2, &list_ada_hitam); //kuda hitam
     construct('N', 2, 2, 1, 7, &list_ada_hitam); //kuda hitam
-
 }
 
 

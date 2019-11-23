@@ -1,8 +1,6 @@
-
-#include <stdio.h>
 #include "tipe_bentukan.h"
  
-int main ()
+void save()
 {
     FILE * fp;
 
@@ -28,7 +26,6 @@ int main ()
 
     // list_ada_hitam
     fp = fopen ("list_ada_hitam.txt","w");
-    address_list P;
     P = First(list_ada_hitam);
     while (P != Nil_list) {
         fprintf(fp,"%c",Info(P).nama);
@@ -130,7 +127,5 @@ int main ()
     fprintf(fp,";");
     fclose(fp);
 
-    
-    return 0;
 }
 

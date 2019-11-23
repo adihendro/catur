@@ -76,6 +76,7 @@ boolean go;
 papan board[10][10];
 
 char* choice;
+char choice2;
 char command[100];
 
 stack history, termakan;
