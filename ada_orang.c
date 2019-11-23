@@ -1,6 +1,14 @@
-#include "boolean.h"
 #include "tipe_bentukan.h"
 
-boolean adaorang(papan *board[10][10], int y, int x){
-    return((*board[x][y]).nama != ' ');
+boolean adaorang(list lawan, int x, int y){
+    boolean found=false;
+    address_list P;
+    P = First(lawan);
+    while ((P != Nil_list) && !found) {
+        if ((Info(P).posisiC==x) && (Info(P).posisiR==y)) {
+            found=true;
+        }
+        P = Next(P);
+    }
+    return found;
 }

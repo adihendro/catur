@@ -67,17 +67,20 @@ void updateboard(papan *board[10][10], list list_ada_putih, list list_ada_hitam)
     for(i=0;i<=9;i=i+9){
         for(j=0;j<=9;j++){
             (*board[i][j]).nama = '*';
+            (*board[i][j]).player = 0;
         }
     }
     for(i=0;i<=9;i=i+9){
         for(j=1;j<=8;j++){
             (*board[j][i]).nama = '*';
+            (*board[i][j]).player = 0;
         }
     }
 
     for(i=1;i<=8;i++){
         for(j=1;j<=8;j++){
             (*board[i][j]).nama = ' ';
+            (*board[i][j]).player = 0;
         }
     }
 

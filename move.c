@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h> //buat fungsi absolut di twosteps (en passant)
+#include <stdlib.h> //buat fungsi absolut di twosteps (en passant) dan atoi di ascii checker
 #include "tipe_bentukan.h"
 
 #include "print_semua.c"
@@ -17,6 +17,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     infotype_stack X;
     boolean ispromoted = false;
     boolean istwosteps = false;
+    boolean enpassant = false;
 
     CreateEmpty_list(&kawan);
     if (InfoTail(*giliran) == 1) { //putih
@@ -61,21 +62,20 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
 
     // user input nomor bidak yang ingin digerakkan
-    printf("Pilih bidak yang ingin digerakkan: ");
     int input1;
     int input2;
-    //scanf("%d",&input_nomor_bidak);
-    int input1;
     int input_nomor_bidak;
+
     do{    //buat input yg baru diubah jadi ascii
         choice = (char*) malloc (sizeof(100));
-        printf("Your choice: ");
+        printf("Pilih bidak yang ingin digerakkan: ");
         scanf("%s",choice);
         stringToInt(choice, &input1);
         input_nomor_bidak = atoi(choice);
         if((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk))
             printf("Wrong input! Choose from the corresponding numbers above!\n\n");
     } while((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk));
+
     // cari list linier dengan indeks ke input_nomor_bidak
     R = First(list_bisa_gerak);
     i = 1;
@@ -127,7 +127,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     } // Q sudah menunjukkan pilihan posisi bidak yang ingin dituju
 
 
-    if(Info(R).nama == 'P'){
+    if(Info(R).nama == 'P'){  //Info(R).nama selalu huruf kapital
         //piece promotion?
         Info(P)=Info(R)=promotion(Info(P), &ispromoted);
         //piece bisa en passant?
@@ -136,11 +136,12 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
     X.promotion = ispromoted;
     X.twosteps = istwosteps;
+    X.enpassant = enpassant;
 
 
 
     // lakukan fungsi swap
-    if (adaorang(board, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
+    if (adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR)) { //cek apakah ada bidak lawan
         address_list A, A1;
         A1 = Search(lawan, Info(Q).posisiC, Info(Q).posisiR); //address sebelum bidak lawan yang termakan
         A = Next(A1); //address bidak lawan yang termakan
@@ -221,12 +222,19 @@ piece promotion(piece P, boolean *ispromoted)
         printf("   2. Bishop (B)\n");
         printf("   3. Knight (N)\n");
         printf("   4. Rook (R)\n");
-
-        printf("Masukkan nomor perwira yang hendak dipilih: ");
         
-        do{
-            scanf("%d", &n);
-        } while(n<1 || n>4);
+        
+        //printing
+        int X;
+        do{    
+            choice = (char*) malloc (sizeof(100));
+            printf("Masukkan nomor perwira yang hendak dipilih: ");
+            scanf("%s",choice);
+            stringToInt(choice,&X);
+            n = atoi(choice);
+            if(!(X==49 || X==50 || X==51 || X==52))//49 adalah ascii untuk 1, 50=2, 51=3, 52=4
+                printf("Wrong input! It's must be a number from 1-4!\n\n");
+        } while(!(X==49 || X==50 || X==51 || X==52));
 
         if(n == 1){
             P.nama = 'Q';

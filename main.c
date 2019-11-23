@@ -9,6 +9,7 @@
 #include "listposisi.c"
 #include "stack.c"
 #include "queue.c"
+#include "ascii_checker.c"
 #include "move.c"
 #include "special_move.c"
 #include "undo.c"
@@ -58,6 +59,7 @@ int main(){
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
             turn++;
             special_move(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
+            // delay(2000);
         }
         else if(strcmp(command,"UNDO") == 0){
             undo(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
@@ -70,7 +72,7 @@ int main(){
             
         }
 
-        printf("\n%d %d\n", poin_putih, poin_hitam);
+        printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
         printf("\n\n");
     } while(1);
 

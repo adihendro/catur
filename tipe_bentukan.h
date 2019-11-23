@@ -80,4 +80,7 @@ int poin_putih, poin_hitam;
 int turn; //berapa kali udh gerakan
 
 
+void string2ByteArray(char* input, int* output);
+void stringToInt(char* ascii_str,int* Ret);
+
 #endif

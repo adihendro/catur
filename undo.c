@@ -2,6 +2,7 @@
 #include "tipe_bentukan.h"
 
 void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, char c);
+char NamaBidakLawan(int d, char c);
 
 void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn){
     infotype_stack X;
@@ -37,9 +38,9 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
             P = First(*list_ada_putih);//putih dulu yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'p');
 
-            Pop(history, &X);
-            P = First(*list_ada_hitam);//baru hitam yang diundo
-            balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'h');
+            // Pop(history, &X);
+            // P = First(*list_ada_hitam);//baru hitam yang diundo
+            // balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'h');
         }
         
         printf("\nGerakan sampai giliran sebelumnya berhasil dibatalkan.\n");
@@ -60,19 +61,43 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
 
     //cek kalau ada di stack termakan
     Y = (*termakan).T[(*termakan).TOP];
-    if(X.turn == Y.turn){ //kalau barusan termakan
+
+    if(!X.enpassant){ //kalau ga en passant
+        printf("\n%d\n",X.turn);
+        printf("\n%d\n",Y.turn);
+        if(X.turn == Y.turn){ //kalau barusan termakan
+            Pop(termakan,&Y);
+            Z.nama = NamaBidakLawan(Y.player, Y.nama);
+            printf("\n%c\n",Y.nama);
+            printf("\n%d\n",Y.player);
+            Z.player = Y.player;
+            Z.poin = Y.poin;
+            Z.posisiC = Y.posisiC_baru;
+            Z.posisiR = Y.posisiR_baru;
+
+            if(c=='h'){ //kalau hitam yang diundo dan putih yang dimakan
+                InsVLast(list_ada_putih, Z);
+                *poin_hitam -= Z.poin;
+            } else{ //c=='p', kalau putih yang diundo dan hitam yang dimakan
+                InsVLast(list_ada_hitam, Z);
+                printf("\n%c\n",Z.nama);
+                *poin_putih -= Z.poin;
+            }
+        }
+
+    } else{ //abis en passant (makan pion lawan)
         Pop(termakan,&Y);
-        Z.nama = Y.nama;
+        Z.nama = NamaBidakLawan(Y.player, Y.nama);
         Z.player = Y.player;
         Z.poin = Y.poin;
         Z.posisiC = Y.posisiC_baru;
         Z.posisiR = Y.posisiR_baru;
 
         if(c=='h'){ //kalau hitam yang diundo dan putih yang dimakan
-            InsVFirst(list_ada_putih, Z);
+            InsVLast(list_ada_putih, Z);
             *poin_hitam -= Z.poin;
         } else{ //c=='p', kalau putih yang diundo dan hitam yang dimakan
-            InsVFirst(list_ada_hitam, Z);
+            InsVLast(list_ada_hitam, Z);
             *poin_putih -= Z.poin;
         }
     }
@@ -87,4 +112,27 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
             Info(P).poin = 1;
         }
     }
+}
+
+
+char NamaBidakLawan(int d, char c){
+    char c1;
+    if(d==1){
+        c1=c;
+    } else{ //d==2
+        if (c=='K'){
+            c1='k';
+        } else if(c=='Q'){
+            c1='q';
+        } else if(c=='B'){
+            c1='b';
+        } else if(c=='N'){
+            c1='n';
+        } else if(c=='R'){
+            c1='r';
+        } else if(c=='P'){
+            c1='p';
+        }
+    }
+    return c1;
 }
