@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "tipe_bentukan.h"
 
 void string2ByteArray(char* input, int* output)

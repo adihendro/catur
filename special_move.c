@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "tipe_bentukan.h"
-
 
 boolean cek_enpassant(stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P);
 void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P);

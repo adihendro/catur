@@ -1,5 +1,3 @@
-#include "listlinier.h"
-#include "listposisi.h"
 #include "tipe_bentukan.h"
 
 boolean isthreaten(list lawan, int x, int y, papan *board[10][10]){ //mengefound apakah suatu spot berbahaya untuk raja

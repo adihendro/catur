@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <string.h>
 #include "tipe_bentukan.h"
 
 #include "start.c"
@@ -33,9 +31,13 @@ int main(){
         updateboard(board2, list_ada_putih, list_ada_hitam);
         PrintPapan(board2);
         if (InfoTail(giliran) == 1){ //putih
+            printf("\033[1;32m"); //warna hijau
             printf("Giliran Putih\n");
+            printf("\033[0m"); 
         } else{ //InfoTail(giliran) == 2, hitam
+            printf("\033[1;31m"); //warna merah
             printf("Giliran Hitam\n");
+            printf("\033[0m"); 
         }
 
         do{

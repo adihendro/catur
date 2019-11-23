@@ -1,6 +1,11 @@
 #ifndef type_H
 #define type_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
 //tipe bentukan dasar
 typedef struct {
 			char nama;

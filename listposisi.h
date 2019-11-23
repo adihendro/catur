@@ -1,8 +1,6 @@
 #ifndef listposisi_H
 #define listposisi_H
 
-#include <stdio.h>
-#include "boolean.h"
 #include "tipe_bentukan.h"
 
 /* Definisi list_posisi : */

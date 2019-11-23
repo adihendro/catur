@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
 #include "tipe_bentukan.h"
 
 
@@ -19,6 +15,7 @@ void delay(int milliseconds){
 void start() {
     system("clear");
 
+    printf("\033[1;33m");
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
     printf("**                                                                            **\n");
@@ -40,13 +37,16 @@ void start() {
     printf("**                                                                            **\n");
     printf("********************************************************************************\n");
     printf("********************************************************************************\n");
+    printf("\033[0m");
 
+    printf("\033[1;36m");
     printf("\n");
     // delay(1000);
-    printf("                                  Choose Wisely\n\n");
+    printf("                                  Choose Wisely\n");
     // delay(1000);
     printf("                                      1/2/3\n\n");
     // delay(1000);
+    printf("\033[0m");
 
 
     

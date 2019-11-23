@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "tipe_bentukan.h"
 
 void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, char c);

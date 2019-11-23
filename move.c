@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h> //buat fungsi absolut di twosteps (en passant) dan atoi di ascii checker
 #include "tipe_bentukan.h"
 
 #include "print_semua.c"
@@ -48,7 +46,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     address_list R;
     R = First(list_bisa_gerak);
     int i = 1;  
+    printf("\033[1;33m");
     printf("Daftar bidak yang bisa bergerak:\n");
+    printf("\033[0m"); 
     while (R != Nil_list) {
         printf("   %d. ", i);
         i++;
@@ -68,7 +68,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
     do{    //buat input yg baru diubah jadi ascii
         choice = (char*) malloc (sizeof(100));
+        printf("\033[1;36m");
         printf("Pilih bidak yang ingin digerakkan: ");
+        printf("\033[0m"); 
         scanf("%s",choice);
         stringToInt(choice, &input1);
         input_nomor_bidak = atoi(choice);
@@ -101,9 +103,11 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     address_posisi Q;
     i = 1;
     Q = First(daftar_posisi);
+    printf("\033[1;33m");
     printf("Daftar posisi tujuan ");
     PrintNamaBidak(Info(R).nama);
     printf(" yang mungkin:\n");
+    printf("\033[0m");
     while(Q != Nil_list) {
         printf("   %d. (", i);
         i++;
@@ -115,7 +119,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
 
     // user memilih posisi tujuan bidak
+    printf("\033[1;36m");
     printf("Pilih posisi tujuan bidak: ");
+    printf("\033[0m");
     int input_pilihan_posisi;
     scanf("%d",&input_pilihan_posisi);
     // Q akan pergi ke bidak yang dimaksud
