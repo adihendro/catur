@@ -13,6 +13,7 @@ void CreateEmpty_posisi (list_posisi *L);
 
 address_posisi Alokasi_posisi (infotype_posisi X);
 
+void InsVFirst_posisi (list_posisi *L, infotype_posisi X);
 void InsVLast_posisi (list_posisi *L, infotype_posisi X);
 
 void InsertFirst_posisi (list_posisi *L, address_posisi P);
