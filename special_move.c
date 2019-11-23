@@ -43,7 +43,7 @@ boolean cek_enpassant(stack* history, list *list_ada_putih, list *list_ada_hitam
             *P = First(*list_ada_hitam);
 
         while((*P) != Nil_list){
-            if((Info(*P).nama == 'P') || (Info(*P).nama == 'p')){ //kalau pion
+            if(Info(*P).nama == 'P'){ //kalau pion
                 if(Info(*P).posisiR == (*history).T[(*history).TOP].posisiR_baru){ //kalau satu baris
                     if(abs(Info(*P).posisiC - (*history).T[(*history).TOP].posisiC_baru) == 1) //kalau sebelahan
                         found=true; //pion temen sebelahan dengan pion musuh tsb
@@ -81,7 +81,8 @@ void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam
         DelAfter(list_ada_putih, &A, A1); // hapus bidak lawan dari list linier lawan 
     }
 
-    X.nama = InfoTail(*giliran)==1 ? 'p' : 'P'; //bidak lawan yg termakan
+    //bidak lawan yg termakan
+    X.nama = Info(P).nama; 
     X.player = (InfoTail(*giliran) % 2) + 1; //lawan
     X.poin = 1;
     X.turn = turn;
@@ -90,7 +91,8 @@ void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam
     X.enpassant = true;
     Push(termakan, X); //masukkan ke stack termakan
 
-    X.nama = InfoTail(*giliran)==1 ? 'P' : 'p'; //bidak yg barusan makan en passant
+    //bidak yg barusan makan en passant
+    X.nama = Info(P).nama; 
     X.player = InfoTail(*giliran);
     X.posisiR_lama = tempR;
     X.posisiC_lama = tempC;

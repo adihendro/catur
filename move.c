@@ -218,10 +218,10 @@ piece promotion(piece P, boolean *ispromoted)
         printf("\nPion telah mencapai ujung\n");
         printf("Terjadi special move promosi\n");
         
-        printf("   1. Queen (Q)\n");
-        printf("   2. Bishop (B)\n");
-        printf("   3. Knight (N)\n");
-        printf("   4. Rook (R)\n");
+        printf("   1. Ratu\n");
+        printf("   2. Menteri\n");
+        printf("   3. Kuda\n");
+        printf("   4. Benteng\n");
         
         
         //printing
