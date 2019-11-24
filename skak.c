@@ -1,5 +1,4 @@
 #include "tipe_bentukan.h"
-
 #include "threaten.c"
 
 

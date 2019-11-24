@@ -55,7 +55,7 @@ void InsVFirst (list *L, infotype_list X)
     address_list P;
 
     P = Alokasi(X);
-    if(P!=Nil_list)
+    if(P != Nil_list)
     {
         InsertFirst(L,P);
     }

@@ -27,21 +27,6 @@ typedef struct {
 
 
 
-//head listlinier
-typedef piece infotype_list;
-
-typedef struct tElmtlist *address_list;
-typedef struct tElmtlist { 
-	piece info;
-	address_list next;
-} ElmtList;
-
-typedef struct {
-	address_list First;
-} list;
-
-
-
 //head listposisi
 typedef posisi infotype_posisi;
 
@@ -56,6 +41,20 @@ typedef struct {
 } list_posisi;
 
 
+//head listlinier
+typedef piece infotype_list;
+
+typedef struct tElmtlist *address_list;
+typedef struct tElmtlist { 
+	piece info;
+	list_posisi gerakan;
+	address_list next;
+} ElmtList;
+
+typedef struct {
+	address_list First;
+} list;
+
 
 #include "boolean.h"
 #include "listlinier.h"
@@ -65,6 +64,7 @@ typedef struct {
 
 #define Nil_list NULL
 #define Info(P) (P)->info
+#define Gerakan(P) (P)->gerakan
 #define Next(P) (P)->next
 #define First(L) (L).First
 #define Parent(L) (L).Parent
@@ -84,6 +84,12 @@ list list_ada_putih, list_ada_hitam;
 queue giliran;
 int poin_putih, poin_hitam;
 int turn; //berapa kali udh gerakan
+
+
+//untuk cek skak
+address_list K;
+address_list P1;
+int jml;
 
 
 void string2ByteArray(char* input, int* output);

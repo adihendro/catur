@@ -10,14 +10,14 @@ void cek(int a, int b, int x1, int x2, piece F, papan *board[10][10], list_posis
     if(kotak.nama==' '){ //kalau kotak kosong
         P.posisiR = F.posisiR + a*x1*x2;
         P.posisiC = F.posisiC + b*x1*x2;
-        InsVLast_posisi(L,P); //masukkin ke list posisi
+        InsVFirst_posisi(L,P); //masukkin ke list posisi
 
     } else{ //kotak = */temen/musuh
         br=true; //break loop
         if(kotak.nama!='*' && kotak.player!=F.player){ //kalau kotak = musuh
             P.posisiR = F.posisiR + a*x1*x2;
             P.posisiC = F.posisiC + b*x1*x2;
-            InsVLast_posisi(L,P);
+            InsVFirst_posisi(L,P);
         }
     }
 }
