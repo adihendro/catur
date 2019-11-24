@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "mesin_kata.c"
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
+// #include "mesin_kata.c"
 
 void swap_skor(int skor[10] , int index_baru) {
     int temp;
@@ -20,7 +20,7 @@ void swap_nama(char nama[10][3], int index_baru) {
     }
 }
 
-int main () {
+void tampilkan_leaderboards () {
     // inisialisasi data nama dan skor
     char nama[11][3]; //ada 10 nama, maks 20 karakter per nama
     int skor[11];
@@ -69,19 +69,19 @@ int main () {
         ADV();
     }   
     
-    // user memasukkan nama dan skornya : hanya untuk test nanti bakal diilangin
-    //user input nama mereka
-    char inputan_nama[20];
-    printf("nama : ");
-    scanf("%s", inputan_nama);
-    int z;
-    for (z = 0 ; z <= 2 ; z++) { // masukkan nama pemain yang menang ke dalam list pemain yang ada
-        nama[0][z+1] = inputan_nama[z];
-    }
-    //user input nilai
-    int nilai;
-    scanf("%d",&nilai);
-    skor[0] = nilai; // nilai yang menang dimasukkan ke index 0
+    // // user memasukkan nama dan skornya : hanya untuk test nanti bakal diilangin
+    // //user input nama mereka
+    // char inputan_nama[20];
+    // printf("nama : ");
+    // scanf("%s", inputan_nama);
+    // int z;
+    // for (z = 0 ; z <= 2 ; z++) { // masukkan nama pemain yang menang ke dalam list pemain yang ada
+    //     nama[0][z+1] = inputan_nama[z];
+    // }
+    // //user input nilai
+    // int nilai;
+    // scanf("%d",&nilai);
+    // skor[0] = nilai; // nilai yang menang dimasukkan ke index 0
 
     // fungsi mengurutkan leaderboards berdasarkan skor dan nama
     int urut = 0; // ini sebenernya boolean cuma belum include booleanh
@@ -136,32 +136,30 @@ int main () {
     }
 
     // ngeprint ke layar nama dan skornya
-    i = 0;
-    j = 1;
-    // while(skor[i] != 0) {
-    //     j = 1;
-    //     printf("%d ",skor[i]);
-    //     while (j <= 20) {
-    //         printf("%c",nama[i][j]);
-    //         j++;
-    //     }
-    //     printf("\n");
-    //     i++;
-    // }
-
+    printf("\033[0;31m");
+    printf("###########################################################################\n");
+    printf("\033[0m");
+    printf("###########################################################################\n");
+    printf("\n\n\n");
     i = 0;
     j = 1;
     int printed;
     printed = 0;
     while ((skor[i] != 0) && (printed < 10)) {
+        printf("                            ");
         for (j = 1 ; j <= 3 ; j++) {
             printf("%c",nama[i][j]);
         }
-        printf(" - ");
+        printf("    -   ");
         printf("%d\n",skor[i]);
         i++;
         printed++;
     }
+    printf("\n\n\n");
+    printf("\033[0;31m");
+    printf("###########################################################################\n");
+    printf("\033[0m");
+    printf("###########################################################################\n");
 
     // write ke leaderboards.txt
     pita = fopen(str,"w");
@@ -177,6 +175,7 @@ int main () {
         i++;
     }
     fprintf(pita,";");
-	return 0;
-    return 0;
+    fclose(pita);
+	// return 0;
+    
 }
