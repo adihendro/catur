@@ -8,7 +8,7 @@
 #include "stack.c"
 #include "queue.c"
 #include "ascii_checker.c"
-// #include "move.c"
+#include "move.c"
 #include "special_move.c"
 #include "undo.c"
 #include "save.c"
@@ -19,28 +19,30 @@
 int main(){
 
     //GAME START 
-    int *pilihan_user;
-    start(pilihan_user);
+    int pilihan_user;
+    start(&pilihan_user);
     // printf("%d\n",*pilihan_user);
     char nama_putih[3];
     char nama_hitam[3];
-    while (*pilihan_user == 51) {
+
+    while (pilihan_user == 51) {
         tampilkan_leaderboards();
-        // printf("\n\n                        Press ENTER to continue\n");
-        printf("Apakah kamu mau kembali sekarang ? (Y/n)\n");
-        char * pilihannya;
-        pilihannya = malloc (sizeof(char));
+        printf("Apakah kamu mau kembali sekarang? (Y/N)\n");
+        char *pilihannya;
+        pilihannya = (char*) malloc (sizeof(char));
         scanf("%c", pilihannya);
         scanf("%c", pilihannya); // jangan dihapus ntar error
-        if (*pilihannya != 'y' && (*pilihannya != 'Y')) {
-            while (*pilihannya != 'y' && (*pilihannya != 'Y')) {
-                printf("Baiklah, silahkan melihat leaderboards dulu.\n\nJika sudah siap kembali tekan Y");
+        if ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
+            while ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
+                printf("\nBaiklah, silakan melihat leaderboards dulu.\nJika sudah siap kembali tekan Y. ");
                 scanf("%c", pilihannya);
+                scanf("%c", pilihannya); // jangan dihapus ntar error
             }
         } 
-        start(pilihan_user); // lanjut tadi        
+        start(&pilihan_user); // lanjut tadi        
     }
-    if (*pilihan_user == 50) {
+
+    if (pilihan_user == 50) {
         CreateEmpty_stack(&history);
         CreateEmpty_stack(&termakan);
         CreateEmpty_list(&list_ada_putih);
@@ -52,7 +54,8 @@ int main(){
         turn=0;
         load (&list_ada_putih , &list_ada_hitam , &poin_putih , &poin_hitam , &giliran , &history , &termakan);
     }
-    else if (*pilihan_user == 49){
+
+    else if (pilihan_user == 49){
         inisialisasi();
         Add(&giliran, 1);
         printf("Sebelum main, boleh tau namamu dulu ?\n");
@@ -71,6 +74,7 @@ int main(){
             board2[i][j] = &board[i][j];
         }
     }
+
 
 
     do{
@@ -103,7 +107,7 @@ int main(){
 
         if(strcmp(command,"MOVE") == 0){
             turn++;
-            // move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
+            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
             // delay(1000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
@@ -128,6 +132,7 @@ int main(){
             scanf("%s",&choice2);
             if(choice2=='Y'){
                 inisialisasi();
+                Add(&giliran, 1);
                 printf("Success!\n");
             } else
                 printf("Canceled.\n");

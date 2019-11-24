@@ -10,7 +10,7 @@ void swap_skor(int skor[10] , int index_baru) {
     skor[index_baru + 1] = temp;
 }
 
-void swap_nama(char nama[10][3], int index_baru) {
+void swap_nama(char nama[10][4], int index_baru) {
     char temp;
     int q;
     for (q = 1 ; q <= 3 ; q++) {
