@@ -62,8 +62,6 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
     // user input nomor bidak yang ingin digerakkan
     printf("Pilih bidak yang ingin digerakkan: ");
-    int input1;
-    int input2;
     //scanf("%d",&input_nomor_bidak);
     int input1;
     int input_nomor_bidak;
