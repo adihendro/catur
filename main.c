@@ -43,7 +43,7 @@ int main(){
 
         do{
             go=false;
-            printf("   MOVE, SPECIAL_MOVE, UNDO, SAVE, RESET\n");
+            printf("MOVE, SPECIAL_MOVE, UNDO, SAVE, RESET\n");
             printf("Masukkan command: ");
             scanf("%s",command);
             if((strcmp(command,"MOVE") == 0) || (strcmp(command,"SPECIAL_MOVE") == 0) ||
