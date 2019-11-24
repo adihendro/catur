@@ -106,20 +106,18 @@ void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam
 }
 
 
-/*
-boolean HasMoved(piece P, stack history)
-{
+
+boolean HasMoved(piece P, stack history) //ngecek apakah raja ada di stack history ato ngga
+{ //note for some reason pas gw cek indeks 1 ama 2 ga kedeteksi. semoga kompi gw doang.
     infotype_stack X;
     int counter = 1;
     boolean Moved = false;
-
-    while ((!Moved) && (counter <= (history.T[(history).TOP].turn))){   
-        X = (history).T[(history).TOP];
-        history.TOP--;
-    
+    int jml = history.TOP;
+    while ((!Moved) && (counter <= jml)){   
+        X = (history).T[counter];
+        counter++;
         if (X.nama == P.nama)
             Moved = true;
-        counter++;
     }
     return Moved;
 }
@@ -133,4 +131,4 @@ void castling(piece Raja, piece Benteng, stack history, papan* board[10][10])
             // (*board[Raja.posisiR][Raja.posisiC+2]).nama == 'R';
         }
     }
-}*/
+}
