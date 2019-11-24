@@ -8,7 +8,7 @@
 #include "stack.c"
 #include "queue.c"
 #include "ascii_checker.c"
-// #include "move.c"
+#include "move.c"
 #include "special_move.c"
 #include "undo.c"
 #include "save.c"
