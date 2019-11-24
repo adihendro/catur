@@ -12,7 +12,7 @@ void delay(int milliseconds){
 }
 
 
-void start() {
+void start(int *pilihan_user) {
     system("clear");
 
     printf("\033[1;33m");
@@ -60,6 +60,6 @@ void start() {
         if(!(X==49 || X==50 || X==51))//49 adalah ascii untuk 1, 50 = 2, 51 = 3
             printf("Wrong input! It's must be a number from 1-3!\n\n");
     } while(!(X==49 || X==50 || X==51));
-
+    *pilihan_user = X;
     system("clear");
 }

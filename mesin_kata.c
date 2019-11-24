@@ -53,7 +53,7 @@ void ADVKATA(){
 
 void ADVKATASTACK(){
     Ignore_Blank();
-    if (CC == ',') {
+    if (CC == '|') {
         EndKata = true;
     }
     else {
@@ -70,6 +70,7 @@ void SalinKata(){
     }
     CKata.Length = x-1;
 }
+
 /*{ Mengakuisisi kata, menyimpan dalam CKata }
 { I.S. : CC adalah karakter pertama dari kata }
 { F.S. : CKata berisi kata yang sudah diakuisisi, jika karakternya melebihi
