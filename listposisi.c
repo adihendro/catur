@@ -26,6 +26,21 @@ address_posisi Alokasi_posisi (infotype_posisi X)
     }
 }
 
+
+void InsVFirst_posisi (list_posisi *L, infotype_posisi X)
+/* I.S. L mungkin kosong */
+/* F.S. Melakukan alokasi sebuah elemen dan */
+/* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
+{
+    address_posisi P;
+
+    P = Alokasi_posisi(X);
+    if(P!=Nil_list)
+    {
+        InsertFirst_posisi(L,P);
+    }
+}
+
 void InsVLast_posisi (list_posisi *L, infotype_posisi X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
