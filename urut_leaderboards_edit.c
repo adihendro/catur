@@ -1,6 +1,4 @@
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
+#include "tipe_bentukan.h"
 // #include "mesin_kata.c"
 
 void swap_skor(int skor[10] , int index_baru) {
@@ -22,7 +20,7 @@ void swap_nama(char nama[10][3], int index_baru) {
 
 void tampilkan_leaderboards () {
     // inisialisasi data nama dan skor
-    char nama[11][4]; //ada 10 nama, maks 20 karakter per nama
+    char nama[11][3]; //ada 10 nama, maks 20 karakter per nama
     int skor[11];
     int i;
     int j;
@@ -103,18 +101,18 @@ void tampilkan_leaderboards () {
         else { //saat skornya sama
             urut_nama = 0;
             q = 1;
-            if (nama[index_baru][1] < nama[index_baru + 1][1]) {
+            if (nama[index_baru][0] < nama[index_baru + 1][0]) {
                 urut = 1;
             }
-            else if (nama[index_baru][1] == nama[index_baru + 1][1]) {
-                if (nama[index_baru][2] < nama[index_baru + 1][2]) {
+            else if (nama[index_baru][0] == nama[index_baru + 1][0]) {
+                if (nama[index_baru][1] < nama[index_baru + 1][1]) {
                     urut = 1;
                 }
-                else if (nama[index_baru][2] == nama[index_baru + 1][2]) {
-                    if (nama[index_baru][3] < nama[index_baru + 1][3]) {
+                else if (nama[index_baru][1] == nama[index_baru + 1][1]) {
+                    if (nama[index_baru][2] < nama[index_baru + 1][2]) {
                         urut = 1;
                     }
-                    else if (nama[index_baru][3] == nama[index_baru + 1][3]) {
+                    else if (nama[index_baru][2] == nama[index_baru + 1][2]) {
                         urut = 1;
                     }
                     else { // saat nama[index_baru][3] > nama[index_baru][3]
@@ -140,38 +138,26 @@ void tampilkan_leaderboards () {
     printf("###########################################################################\n");
     printf("\033[0m");
     printf("###########################################################################\n");
-    printf("\n\n");
-    printf("\033[01;33m");
-    printf("                 __          __         _              __              \n");
-    printf("            |   |__  /\\  |\\ |__  |) |) / \\  /\\  |) |\\ |__              \n");
-    printf("            |__ |__ /--\\ |/ |__  |\\ |) \\_/ /--\\ |\\ |/  __|             \n");
-    printf("\n");
-    printf("\033[0m");
-    if (skor[0] == 0) {
-        printf("Saat ini belum ada yang berhasil memenangkan game, Bermainlah !\n");
-    }
-    else {
-        i = 0;
-        j = 1;
-        int printed;
-        printed = 0;
-        while ((skor[i] != 0) && (printed < 10)) {
-            printf("                            ");
-            for (j = 1 ; j <= 3 ; j++) {
-                printf("%c",nama[i][j]);
-            }
-            printf("    -   ");
-            printf("%d\n",skor[i]);
-            i++;
-            printed++;
+    printf("\n\n\n");
+    i = 0;
+    j = 1;
+    int printed;
+    printed = 0;
+    while ((skor[i] != 0) && (printed < 10)) {
+        printf("                            ");
+        for (j = 1 ; j <= 3 ; j++) {
+            printf("%c",nama[i][j]);
         }
+        printf("    -   ");
+        printf("%d\n",skor[i]);
+        i++;
+        printed++;
     }
     printf("\n\n\n");
     printf("\033[0;31m");
     printf("###########################################################################\n");
     printf("\033[0m");
     printf("###########################################################################\n");
-    printf("%d\n",skor[0]);
 
     // write ke leaderboards.txt
     pita = fopen(str,"w");
