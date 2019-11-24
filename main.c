@@ -34,7 +34,8 @@ int main(){
         scanf("%c", pilihannya); // jangan dihapus ntar error
         if (*pilihannya != 'y' && (*pilihannya != 'Y')) {
             while (*pilihannya != 'y' && (*pilihannya != 'Y')) {
-                printf("Baiklah, silahkan melihat leaderboards dulu.\n\nJika sudah siap kembali tekan Y");
+                printf("Baiklah, silahkan melihat leaderboards dulu.\n\nJika sudah siap kembali tekan Y\n");
+                scanf("%c", pilihannya);
                 scanf("%c", pilihannya);
             }
         } 
