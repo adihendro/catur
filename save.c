@@ -1,43 +1,43 @@
 #include "tipe_bentukan.h"
- 
+    
 void save()
 {
     FILE * fp;
 
     // simpan list_ada_putih
-    fp = fopen ("list_ada_putih.txt","w"); 
+    fp = fopen ("save_file//list_ada_putih.txt","w"); 
     address_list P;
     P = First(list_ada_putih);
     while (P != Nil_list) {
         fprintf(fp,"%c",Info(P).nama);
-        fprintf(fp,"^");
+        fprintf(fp,"|");
         fprintf(fp,"%d",Info(P).player);
-        fprintf(fp,"^");
+        fprintf(fp,"|");
         fprintf(fp,"%d",Info(P).poin);
-        fprintf(fp,"^");
+        fprintf(fp,"|");
         fprintf(fp,"%d",Info(P).posisiR);
-        fprintf(fp,"^");
+        fprintf(fp,"|");
         fprintf(fp,"%d",Info(P).posisiC);
-        fprintf(fp,".");
+        fprintf(fp,"|");
         P = Next(P);
     }
     fprintf(fp,";"); // tanda berakhir
     fclose (fp);
 
     // list_ada_hitam
-    fp = fopen ("list_ada_hitam.txt","w");
+    fp = fopen ("save_file//list_ada_hitam.txt","w");
     P = First(list_ada_hitam);
     while (P != Nil_list) {
         fprintf(fp,"%c",Info(P).nama);
-        fprintf(fp,"^");
+        fprintf(fp,"|");
         fprintf(fp,"%d",Info(P).player);
-        fprintf(fp,"^");
+        fprintf(fp,"|");
         fprintf(fp,"%d",Info(P).poin);
-        fprintf(fp,"^");
+        fprintf(fp,"|");
         fprintf(fp,"%d",Info(P).posisiR);
-        fprintf(fp,"^");
+        fprintf(fp,"|");
         fprintf(fp,"%d",Info(P).posisiC);
-        fprintf(fp,".");
+        fprintf(fp,"|");
         P = Next(P);
     }
     fprintf(fp,";"); // tanda berakhir
@@ -46,7 +46,7 @@ void save()
     // simpan poin putih poin hitam dan giliran
     // formatnya : 20|60|1;
     // 20 adalah poin putih, 60 poin hitam, 1 adalah giliran selanjutnya
-    fp = fopen("poin.txt","w");
+    fp = fopen("save_file//poin.txt","w");
     fprintf(fp,"%d",poin_putih);
     fprintf(fp,"|");
     fprintf(fp,"%d",poin_hitam);
@@ -57,7 +57,7 @@ void save()
 
     // save stack history
     // formatnya nama,player,turn,posisiR_lama,posisiC_lama,posisiR_baru,posisiC_baru
-    fp = fopen("history.txt","w");
+    fp = fopen("save_file//history.txt","w");
     stack history_copy;
     history_copy = history;
     stack reverse_history;
@@ -87,13 +87,13 @@ void save()
         fprintf(fp,"%d",temp.promotion);
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.twosteps);
-        fprintf(fp,".");
+        fprintf(fp,"|");
     }
     fprintf(fp,";");
     fclose(fp);
 
     // save stack termakan
-    fp = fopen("termakan.txt","w");
+    fp = fopen("save_file//termakan.txt","w");
     stack termakan_copy;
     termakan_copy = termakan;
     stack reverse_termakan;
@@ -122,7 +122,7 @@ void save()
         fprintf(fp,"%d",temp.promotion);
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.twosteps);
-        fprintf(fp,".");
+        fprintf(fp,"|");
     }
     fprintf(fp,";");
     fclose(fp);
