@@ -50,6 +50,16 @@ void ADVKATA(){
 { F.S. : Jika CC = MARK, maka EndKata = true
          atau EndKata = false, CKata adalah kata terakhir yang sudah diakuisisi;
          CC karakter pertama sesudah karakter terakhir kata }*/
+
+void ADVKATASTACK(){
+    Ignore_Blank();
+    if (CC == '|') {
+        EndKata = true;
+    }
+    else {
+        SalinKata();
+    }
+}
 void SalinKata(){
     int x;
     x = 1;
@@ -60,6 +70,7 @@ void SalinKata(){
     }
     CKata.Length = x-1;
 }
+
 /*{ Mengakuisisi kata, menyimpan dalam CKata }
 { I.S. : CC adalah karakter pertama dari kata }
 { F.S. : CKata berisi kata yang sudah diakuisisi, jika karakternya melebihi

@@ -1,6 +1,11 @@
 #ifndef type_H
 #define type_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
 //tipe bentukan dasar
 typedef struct {
 			char nama;
@@ -71,6 +76,7 @@ boolean go;
 papan board[10][10];
 
 char* choice;
+char choice2;
 char command[100];
 
 stack history, termakan;
@@ -79,5 +85,8 @@ queue giliran;
 int poin_putih, poin_hitam;
 int turn; //berapa kali udh gerakan
 
+
+void string2ByteArray(char* input, int* output);
+void stringToInt(char* ascii_str,int* Ret);
 
 #endif

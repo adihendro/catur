@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include "tipe_bentukan.h"
-#include "boolean.h"
 
 //posisiR dan posisiC terdefinisi
 int cekbisagerak(piece F, papan *board_temp[10][10]){ //cek bisa atau tidak {1:bisa ; 0:tidak} kalo bisa kita masukin ke list linier list_bisa_gerak

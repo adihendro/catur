@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "tipe_bentukan.h"
-
 
 boolean cek_enpassant(stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P);
 void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P);
@@ -43,7 +40,7 @@ boolean cek_enpassant(stack* history, list *list_ada_putih, list *list_ada_hitam
             *P = First(*list_ada_hitam);
 
         while((*P) != Nil_list){
-            if((Info(*P).nama == 'P') || (Info(*P).nama == 'p')){ //kalau pion
+            if(Info(*P).nama == 'P'){ //kalau pion
                 if(Info(*P).posisiR == (*history).T[(*history).TOP].posisiR_baru){ //kalau satu baris
                     if(abs(Info(*P).posisiC - (*history).T[(*history).TOP].posisiC_baru) == 1) //kalau sebelahan
                         found=true; //pion temen sebelahan dengan pion musuh tsb
@@ -58,39 +55,54 @@ boolean cek_enpassant(stack* history, list *list_ada_putih, list *list_ada_hitam
 
 void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P){
     infotype_stack X;
+    address_list A, A1;
     int tempR = Info(P).posisiR;
     int tempC = Info(P).posisiC;
 
-    printf("%d\n",tempR);
-    printf("%d\n",tempC);
+    Info(P).posisiC = (*history).T[(*history).TOP].posisiC_baru;
 
     if (InfoTail(*giliran) == 1){ //giliran putih
         Info(P).posisiR--;
         *poin_putih = *poin_putih + 1;
+
+        A1 = Search(*list_ada_hitam, Info(P).posisiC, tempR); //address sebelum bidak lawan yang termakan
+        A = Next(A1); //address bidak lawan yang termakan
+        DelAfter(list_ada_hitam, &A, A1); // hapus bidak lawan dari list linier lawan 
+
     } else{ //giliran == 2, hitam
         Info(P).posisiR++;
         *poin_hitam = *poin_hitam + 1;
+        
+        A1 = Search(*list_ada_putih, Info(P).posisiC, tempR); //address sebelum bidak lawan yang termakan
+        A = Next(A1); //address bidak lawan yang termakan
+        DelAfter(list_ada_putih, &A, A1); // hapus bidak lawan dari list linier lawan 
     }
 
-    Info(P).posisiC = (*history).T[(*history).TOP].posisiC_baru;
-
-    X.nama = InfoTail(*giliran)==1 ? 'p' : 'P'; //bidak lawan yg termakan
+    //bidak lawan yg termakan
+    X.nama = Info(P).nama; 
     X.player = (InfoTail(*giliran) % 2) + 1; //lawan
     X.poin = 1;
     X.turn = turn;
-    X.posisiR_lama = X.posisiR_baru = InfoTail(*giliran)==1 ? Info(P).posisiR++ : Info(P).posisiR--;
+    X.posisiR_lama = X.posisiR_baru = InfoTail(*giliran)==1 ? ++Info(P).posisiR : --Info(P).posisiR;
     X.posisiC_lama = X.posisiC_baru = Info(P).posisiC;
+    X.enpassant = true;
     Push(termakan, X); //masukkan ke stack termakan
 
-    printf("%d\n",X.posisiC_baru);
-    printf("%d\n",X.posisiR_baru);
-
-    X.nama = InfoTail(*giliran)==1 ? 'P' : 'p'; //bidak yg barusan makan en passant
+    //bidak yg barusan makan en passant
+    X.nama = Info(P).nama; 
     X.player = InfoTail(*giliran);
     X.posisiR_lama = tempR;
     X.posisiC_lama = tempC;
-    X.posisiR_baru = InfoTail(*giliran)==1 ? tempR-- : tempR++;
+    X.posisiR_baru = InfoTail(*giliran)==1 ? --tempR : ++tempR;
     Push(history, X); //masukkan ke stack history
+
+    // update nilai awal di list_ada menjadi nilai akhir
+    Info(P).posisiR = X.posisiR_baru;
+
+    if (InfoTail(*giliran) == 1) //giliran berubah
+        Add(giliran, 2);
+    else
+        Add(giliran, 1);
 }
 
 

@@ -18,7 +18,7 @@ void inisialisasi(){
     CreateEmpty_list(&list_ada_putih);
     CreateEmpty_list(&list_ada_hitam);
     CreateEmpty_queue(&giliran, 2);
-    Add(&giliran, 1); //giliran pertama putih (1)
+    // Add(&giliran, 1); //giliran pertama putih (1)
     poin_putih=0;
     poin_hitam=0;
     turn=0;
@@ -59,7 +59,6 @@ void inisialisasi(){
     construct('R', 2, 4, 1, 8, &list_ada_hitam); //benteng hitam
     construct('N', 2, 2, 1, 2, &list_ada_hitam); //kuda hitam
     construct('N', 2, 2, 1, 7, &list_ada_hitam); //kuda hitam
-
 }
 
 
@@ -67,17 +66,20 @@ void updateboard(papan *board[10][10], list list_ada_putih, list list_ada_hitam)
     for(i=0;i<=9;i=i+9){
         for(j=0;j<=9;j++){
             (*board[i][j]).nama = '*';
+            (*board[i][j]).player = 0;
         }
     }
     for(i=0;i<=9;i=i+9){
         for(j=1;j<=8;j++){
             (*board[j][i]).nama = '*';
+            (*board[i][j]).player = 0;
         }
     }
 
     for(i=1;i<=8;i++){
         for(j=1;j<=8;j++){
             (*board[i][j]).nama = ' ';
+            (*board[i][j]).player = 0;
         }
     }
 

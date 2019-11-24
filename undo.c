@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "tipe_bentukan.h"
 
 void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, char c);
@@ -60,7 +59,8 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
 
     //cek kalau ada di stack termakan
     Y = (*termakan).T[(*termakan).TOP];
-    if(X.turn == Y.turn){ //kalau barusan termakan
+
+    if(X.enpassant){ //kalau abis en passant (makan pion lawan)
         Pop(termakan,&Y);
         Z.nama = Y.nama;
         Z.player = Y.player;
@@ -69,22 +69,34 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
         Z.posisiR = Y.posisiR_baru;
 
         if(c=='h'){ //kalau hitam yang diundo dan putih yang dimakan
-            InsVFirst(list_ada_putih, Z);
+            InsVLast(list_ada_putih, Z);
             *poin_hitam -= Z.poin;
         } else{ //c=='p', kalau putih yang diundo dan hitam yang dimakan
-            InsVFirst(list_ada_hitam, Z);
+            InsVLast(list_ada_hitam, Z);
+            *poin_putih -= Z.poin;
+        }
+        
+    } else if(X.turn == Y.turn){ //kalau barusan termakan
+        Pop(termakan,&Y);
+        Z.nama = Y.nama;
+        Z.player = Y.player;
+        Z.poin = Y.poin;
+        Z.posisiC = Y.posisiC_baru;
+        Z.posisiR = Y.posisiR_baru;
+
+        if(c=='h'){ //kalau hitam yang diundo dan putih yang dimakan
+            InsVLast(list_ada_putih, Z);
+            *poin_hitam -= Z.poin;
+        } else{ //c=='p', kalau putih yang diundo dan hitam yang dimakan
+            InsVLast(list_ada_hitam, Z);
             *poin_putih -= Z.poin;
         }
     }
 
+
     //cek kalau abis promotion
     if(X.promotion){
-        if(c=='h'){ //kalau hitam promosi yang diundo
-            Info(P).nama='p'; //pion hitam
-            Info(P).poin = 1;
-        } else{ //c=='p', kalau putih promosi yang diundo
-            Info(P).nama='P'; //pion putih
-            Info(P).poin = 1;
-        }
+        Info(P).nama = 'P';
+        Info(P).poin = 1;
     }
 }

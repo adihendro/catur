@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include "tipe_bentukan.h"
-#include "boolean.h"
 
 #define kotak (*board[F.posisiR + a*x1*x2][F.posisiC + b*x1*x2])
 int a,b,temp;

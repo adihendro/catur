@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
 #include "tipe_bentukan.h"
 
 void string2ByteArray(char* input, int* output)
@@ -40,21 +36,21 @@ void stringToInt(char* ascii_str,int* Ret){
 //     return 0;
 // } 
 
-int main(){
-    int jml_bs_grk = 9;
-    int input1;
-    int input_nomor_bidak;
-    do{    //buat input yg baru diubah jadi ascii
-        choice = (char*) malloc (sizeof(100));
-        printf("Your choice: ");
-        scanf("%s",choice);
-        stringToInt(choice, &input1);
-        input_nomor_bidak = atoi(choice);
-        if((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk))
-            printf("Wrong input! Choose from the corresponding numbers above!\n\n");
-    } while((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk));
-    return 0;
-} 
+// int main(){
+//     int jml_bs_grk = 9;
+//     int input1;
+//     int input_nomor_bidak;
+//     do{    //buat input yg baru diubah jadi ascii
+//         choice = (char*) malloc (sizeof(100));
+//         printf("Your choice: ");
+//         scanf("%s",choice);
+//         stringToInt(choice, &input1);
+//         input_nomor_bidak = atoi(choice);
+//         if((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk))
+//             printf("Wrong input! Choose from the corresponding numbers above!\n\n");
+//     } while((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk));
+//     return 0;
+// } 
 
 // int main(){
 //     int X;
