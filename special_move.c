@@ -20,11 +20,11 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
         printf("   2. En Passant\n");
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
         do{    
-        choice = (char*) malloc (sizeof(100));
-        scanf("%s",choice);
-        stringToInt(choice,&X);
-        if(!(X==49 || X==50))
-            printf("Wrong input!\n");
+            choice = (char*) malloc (sizeof(100));
+            scanf("%s",choice);
+            stringToInt(choice,&X);
+            if(!(X==49 || X==50))
+                printf("Wrong input!\n");
         } while(!(X==49 || X==50));
         if(X==49){
         //kalau 1
@@ -34,16 +34,17 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
             enpassant(board, history, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam, giliran, turn, P);
             printf("En Passant berhasil dilakukan\n");
         }
+
     } else if(cek_enpassant(board, history, list_ada_putih, list_ada_hitam, giliran, &P)){
         printf("\nDaftar gerakan khusus yang bisa dilakukan:\n");
         printf("   1. En Passant\n");
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
         do{    
-        choice = (char*) malloc (sizeof(100));
-        scanf("%s",choice);
-        stringToInt(choice,&X);
-        if(!(X==49))
-            printf("Wrong input!\n");
+            choice = (char*) malloc (sizeof(100));
+            scanf("%s",choice);
+            stringToInt(choice,&X);
+            if(!(X==49))
+                printf("Wrong input!\n");
         } while(!(X==49));
         if(X==49){
             enpassant(board, history, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam, giliran, turn, P);
@@ -54,11 +55,11 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
         printf("   1. Castling\n");
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
         do{    
-        choice = (char*) malloc (sizeof(100));
-        scanf("%s",choice);
-        stringToInt(choice,&X);
-        if(!(X==49))
-            printf("Wrong input!\n");
+            choice = (char*) malloc (sizeof(100));
+            scanf("%s",choice);
+            stringToInt(choice,&X);
+            if(!(X==49))
+                printf("Wrong input!\n");
         } while(!(X==49));
         if(X==49){
             castling(history, list_ada_putih, list_ada_hitam, giliran, P, P2, turn);
@@ -186,12 +187,13 @@ boolean cek_castling(stack* history, list *list_ada_putih, list *list_ada_hitam,
         *P = First(*list_ada_hitam);
         *P2 = First(*list_ada_hitam);}
     while(((*P) != Nil_list)&&!can){
-        if((Info(*P).nama == 'K')&&(!(HasMoved(Info(*P),*history)))){
+        if((Info(*P).nama == 'K') && (!(HasMoved(Info(*P),*history)))){
             while((*P2) != Nil_list){
                 if((Info(*P2).nama == 'R')&&(!(HasMoved(Info(*P),*history)))){
                     if((((Info(*P2)).posisiC==(Info(*P).posisiC+3)) && !isthreaten(lawan, Info(*P).posisiC, Info(*P).posisiR, board, &P1, &jml) && 
                     !isthreaten(lawan, Info(*P).posisiC+1, Info(*P).posisiR, board, &P1, &jml) && !isthreaten(lawan, Info(*P).posisiC+2, Info(*P).posisiR, board, &P1, &jml) 
-                    && (*board[Info(*P).posisiR][Info(*P).posisiC+1]).nama==' ' && (*board[Info(*P).posisiR][Info(*P).posisiC+2]).nama==' ' ) || //atau castling kiri
+                    && (*board[Info(*P).posisiR][Info(*P).posisiC+1]).nama==' ' && (*board[Info(*P).posisiR][Info(*P).posisiC+2]).nama==' ' ) || 
+                    //atau castling kiri
                     (((Info(*P2)).posisiC==(Info(*P).posisiC-4)) && !isthreaten(lawan, Info(*P).posisiC, Info(*P).posisiR, board, &P1, &jml) && 
                     !isthreaten(lawan, Info(*P).posisiC-1, Info(*P).posisiR, board, &P1, &jml) && !isthreaten(lawan, Info(*P).posisiC-2, Info(*P).posisiR, board, &P1, &jml) 
                     && !isthreaten(lawan, Info(*P).posisiC-3, Info(*P).posisiR, board, &P1, &jml) && (*board[Info(*P).posisiR][Info(*P).posisiC-1]).nama==' ' 
@@ -209,16 +211,6 @@ boolean cek_castling(stack* history, list *list_ada_putih, list *list_ada_hitam,
     return can;
 }
 
-// void castling(piece Raja, piece Benteng, stack history, papan* board[10][10])
-// {
-//     if (!(HasMoved(Raja, history))) //kalau raja belum pernah gerak
-//     {
-//         if (((*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ') && ((*board[Raja.posisiR][Raja.posisiC+1]).nama == ' ') && (!(HasMoved(Benteng, history))))
-//         {
-//             // (*board[Raja.posisiR][Raja.posisiC+2]).nama == 'R';
-//         }
-//     }
-// }
 
 void castling(stack *history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list P, address_list P2, int turn){
     infotype_stack X;
