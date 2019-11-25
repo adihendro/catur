@@ -18,7 +18,6 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
     START(str);
     while (!IsEOP()) {
         CC = GetCC();
-        printf("%c",CC);
         if (CC != '|') {
             i++;
             if ((i % 5) == 1) {
@@ -49,13 +48,6 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
         }
         ADV();
     }
-    printf("\n");
-    printf("%c\n",temp_list.nama);
-    printf("%d\n",temp_list.player);
-    printf("%d\n",temp_list.poin);
-    printf("%d\n",temp_list.posisiR);
-    printf("%d\n",temp_list.posisiC);
-    printf("\n");
     
     
 
@@ -65,7 +57,6 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
     START(str);
     while (!IsEOP()) {
         CC = GetCC();
-        printf("%c",CC);
         if (CC != '|') {
             i++;
             if ((i % 5) == 1) {
@@ -96,13 +87,6 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
         }
         ADV();
     }
-    printf("\n");
-    printf("%c\n",temp_list.nama);
-    printf("%d\n",temp_list.player);
-    printf("%d\n",temp_list.poin);
-    printf("%d\n",temp_list.posisiR);
-    printf("%d\n",temp_list.posisiC);
-    printf("\n");
     
     // load poin_putih , poin_hitam , giliran
     // int poin_putih = 0;
@@ -280,9 +264,8 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
         ADV();
     }
 
-
     // load namaplayer
-    strcpy(str,"save_file//nama_player.txt");
+    strcpy(str,"save_file//namaplayer.txt");
     START(str);
     while (!IsEOP()) {
         CC = GetCC();
