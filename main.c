@@ -112,7 +112,7 @@ int main(){
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
             turn++;
-            special_move(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
+            special_move(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn, board);
             // delay(2000);
         }
         else if(strcmp(command,"UNDO") == 0){
