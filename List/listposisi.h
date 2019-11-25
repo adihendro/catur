@@ -28,7 +28,7 @@ void DelVLast_posisi (list_posisi *L, infotype_posisi *X);
 void DelFirst_posisi (list_posisi *L, address_posisi *P);
 void DelLast_posisi (list_posisi *L, address_posisi *P);
 void DelAfter_posisi (list_posisi *L, address_posisi *Pdel, address_posisi Prec);
-int NbElmt_posisi (list_posisi L);
 
+int NbElmt_posisi (list_posisi L);
 
 #endif

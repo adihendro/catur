@@ -62,8 +62,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     }
 
     // user input nomor bidak yang ingin digerakkan
-    int input1;
-    int input2;
+    int input1, input2;
     int input_nomor_bidak;
 
     do{    //buat input yg baru diubah jadi ascii
@@ -130,11 +129,20 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     
 
     // user memilih posisi tujuan bidak
-    printf("\033[1;33m");
-    printf("Pilih posisi tujuan bidak: ");
-    printf("\033[0m");
     int input_pilihan_posisi;
-    scanf("%d",&input_pilihan_posisi);
+
+    do{    //buat input yg baru diubah jadi ascii
+        choice = (char*) malloc (sizeof(100));
+        printf("\033[1;33m");
+        printf("Pilih posisi tujuan bidak: ");
+        printf("\033[0m"); 
+        scanf("%s",choice);
+        stringToInt(choice, &input1);
+        input_pilihan_posisi = atoi(choice);
+        if((!(49<=input1 && input1<=57)) || (input_pilihan_posisi>=i))
+            printf("Wrong input! Choose from the corresponding numbers above!\n\n");
+    } while((!(49<=input1 && input1<=57)) || (input_pilihan_posisi>=i));
+
 
     // Q akan pergi ke bidak yang dimaksud
     Q = First(Gerakan(R));
