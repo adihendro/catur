@@ -59,6 +59,12 @@ int main(){
         nama_hitam[0] = hitam_1;
         nama_hitam[1] = hitam_2;
         nama_hitam[2] = hitam_3;
+        for (i = 0 ; i <= 2 ; i++) {
+            printf("%c", nama_putih[i]);
+        }
+        for (i = 0 ; i <= 2 ; i++) {
+            printf("%c", nama_hitam[i]);
+        }
     }
 
     else if (pilihan_user == 49){ //1. New Game
