@@ -52,7 +52,7 @@ int main(){
         poin_putih=0;
         poin_hitam=0;
         turn=0;
-        
+
         load(&list_ada_putih, &list_ada_hitam, &poin_putih, &poin_hitam, &giliran, &history, &termakan, &putih_1, &putih_2, &putih_3, &hitam_1, &hitam_2, &hitam_3);
         int v;
         nama_putih[0] = putih_1;
@@ -220,7 +220,6 @@ int main(){
             } else
                 printf("Canceled.\n");
         }
-
 
         printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
         printf("\n\n");
