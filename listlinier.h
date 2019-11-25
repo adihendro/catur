@@ -77,6 +77,8 @@ void InsertAfter (list *L, address_list P, address_list Prec);
 void InsertLast (list *L, address_list P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
+void InsertAkhir (list *L, address_list P, address_list Prec);
+
 
 /*** PENGHAPUSAN SEBUAH ELEMEN ***/
 void DelFirst (list *L, address_list *P);
@@ -100,6 +102,7 @@ void DelAfter (list *L, address_list *Pdel, address_list Prec);
 /* I.S. list tidak kosong. Prec adalah anggota list  */
 /* F.S. Menghapus Next(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */
+void DelAkhir (list *L, address_list Prec);
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
 void PrintInfo (list L);

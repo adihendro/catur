@@ -2,11 +2,6 @@
 
 //posisiR dan posisiC terdefinisi
 int cekbisagerak(piece F, papan *board[10][10]){ //cek bisa atau tidak {1:bisa ; 0:tidak} kalo bisa kita masukin ke list linier list_bisa_gerak
-    // for(int i=0;i<=10;i++){
-    //     for(int j=0;j<=10;j++){
-    //         (*board[i][j] = *board_temp[i][j]; //salahnya di sini
-    //     }
-    // }
     if(F.nama=='P'){
         if(F.player==1){ //putih
             if((*board[F.posisiR-1][F.posisiC]).nama == ' '){

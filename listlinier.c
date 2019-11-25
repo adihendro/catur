@@ -141,6 +141,13 @@ void InsertLast (list *L, address_list P)
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
+void InsertAkhir (list *L, address_list P, address_list Prec)
+{
+    Next(Prec) = P;
+    Next(P) = Nil_list;
+}
+
+
 /*** PENGHAPUSAN SEBUAH ELEMEN ***/
 void DelFirst (list *L, address_list *P)
 {
@@ -177,9 +184,14 @@ void DelLast (list *L, address_list *P)
 /* jika ada */
 void DelAfter (list *L, address_list *Pdel, address_list Prec)
 {
-   *Pdel = Next(Prec);
+    *Pdel = Next(Prec);
     Next(Prec) = Next(Next(Prec));
     Next(*Pdel) = Nil_list; 
+}
+
+void DelAkhir (list *L, address_list Prec)
+{
+    Next(Prec) = Nil_list;
 }
 /* I.S. list tidak kosong. Prec adalah anggota list  */
 /* F.S. Menghapus Next(Prec): */

@@ -5,8 +5,7 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
 void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn){
     infotype_stack X;
     address_list P;
-    printf("history top %d\n",(*history).TOP);
-    printf("giliran siapa sekarang %d\n",InfoTail(*giliran));
+    
     if(turn==0){ //belum ada gerakan
         printf("\nBelum ada gerakan.\n");
         printf("Undo gagal.\n");
@@ -101,7 +100,6 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
 
     //cek kalau abis castling
     if(Info(P).nama == 'K'){
-        printf("fdfd\n");
         if(abs(X.posisiC_baru-X.posisiC_lama) == 2){ //kalau raja gerak 2 kolom
             if(Info(X.P).posisiC == 4) //kalau castling panjang
                 Info(X.P).posisiC = 1;

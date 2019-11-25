@@ -67,9 +67,9 @@ int main(){
         inisialisasi();
         Add(&giliran, 1);
 
-        for (g = 0 ; g <= 3 ; g++) {
-            nama_putih[g] = ' ';
-            nama_hitam[g] = ' ';
+        for (i=0; i<=3; i++) {
+            nama_putih[i] = ' ';
+            nama_hitam[i] = ' ';
         }
 
         printf("\033[1;35m");
@@ -107,8 +107,8 @@ int main(){
     }
 
     papan *board2[10][10];
-    for(int i=0;i<=10;i++){
-        for(int j=0;j<=10;j++){
+    for(i=0;i<=10;i++){
+        for(j=0;j<=10;j++){
             board2[i][j] = &board[i][j];
         }
     }
@@ -167,7 +167,7 @@ int main(){
             break;
         } else if(iskak){ //skak biasa
             printf("\033[1;31m"); //warna merah
-            printf("\nSKAK\n");
+            printf("\nSKAK\n\n");
             printf("\033[0m"); 
         }
         

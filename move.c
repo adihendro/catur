@@ -15,7 +15,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     infotype_stack X;
 
     // list_posisi daftar_posisi;
-    address_list P, R, A, A1, A2;
+    address_list P, R, A, A1, A2, Last;
     address_posisi Q, PrecQ;
 
     boolean ispromoted = false;
@@ -34,6 +34,12 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         poin = *poin_hitam;
     }
 
+
+    //cari elemen terakhir
+    Last = First(lawan);
+    while (Last != Nil_list) {
+        Last = Next(Last);
+    }
 
 
     // tampilkan bidak yang dapat bergerak
@@ -102,15 +108,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         PrintBaris(Info(Q).posisiR);
         printf(")");
 
-        if(adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR, &A1, &A2)){
-            A = Next(A1); //address bidak lawan yang termakan
-            
-            //cek kalau bidak tsb elemen terakhir di list
-            if((Info(A1).nama==Info(A2).nama) && (Info(A1).player==Info(A2).player) &&
-               (Info(A1).posisiR==Info(A2).posisiR) && (Info(A1).posisiC==Info(A2).posisiC)){
-                A = A1;
-            }
-
+        if(adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR, &A1, &A2, &A)){
             printf(" X ");
 
             if (InfoTail(*giliran) == 1) { //putih
@@ -159,54 +157,16 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     
 
 
-        // list_posisi list_jalur_ancaman, list_gerak_raja;
-        // posisi posP1;
-        // if(jml==1){ //kalau yg nyekak cmn 1 bidak musuh
-            
-        //     if(Info(P1).nama != 'N'){ //kalau musuh bukan kuda
-        //         posP1.posisiC=Info(P1).posisiC;
-        //         posP1.posisiR=Info(P1).posisiR;
-                
-        //         if(posP1.posisiR == Info(K).posisiR){ //di baris yg sama
-        //             i = posP1.posisiC<Info(K).posisiC ? 1 : -1;
-        //             while(posP1.posisiC != Info(K).posisiC){
-        //                 InsVFirst_posisi(&list_jalur_ancaman, posP1);
-        //                 posP1.posisiC=posP1.posisiC + i;
-        //             }
-        //         } else if(posP1.posisiC == Info(K).posisiC){ //di kolom yg sama
-        //             i = posP1.posisiR<Info(K).posisiR ? 1 : -1;
-        //             while(posP1.posisiR != Info(K).posisiR){
-        //                 InsVFirst_posisi(&list_jalur_ancaman, posP1);
-        //                 posP1.posisiR=posP1.posisiR + i;
-        //             }
-        //         } else{ //kalo serong
-        //             i = posP1.posisiC<Info(K).posisiC ? 1 : -1;
-        //             j = posP1.posisiR<Info(K).posisiR ? 1 : -1;
-        //             while((posP1.posisiC != Info(K).posisiC) && (posP1.posisiR != Info(K).posisiR)){
-        //                 InsVFirst_posisi(&list_jalur_ancaman, posP1);
-        //                 posP1.posisiC=posP1.posisiC + i;
-        //                 posP1.posisiR=posP1.posisiR + j;
-        //             }
-        //         }
-
-        //     } else{ //kalau musuh kuda
-        //         posP1.posisiC=Info(P1).posisiC;
-        //         posP1.posisiR=Info(P1).posisiR;
-        //         InsVFirst_posisi(&list_jalur_ancaman, posP1); //posisi kuda penyekak
-        //     }
-
-        //     Q=First(list_jalur_ancaman);
-        //     while (Q != Nil_list) {
-        //         printf("%d %d\n", Info(Q).posisiR, Info(Q).posisiC);
-        //         Q = Next(Q);
-        //     }
-        // }
-
-
-
     // lakukan fungsi swap
-    if (adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR, &A1, &A2)) { //cek apakah ada bidak lawan
-        A = Next(A1); //address bidak lawan yang termakan
+    if (adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR, &A1, &A2, &A)) { //cek apakah ada bidak lawan
+
+        if(A == First(lawan)) //kalau elemen pertama list
+            DelFirst(&lawan, &A);
+        else if(A == Last) //kalau elemen terakhir
+            DelAkhir(&lawan, A1);
+        else
+            DelAfter(&lawan, &A, A1); // hapus bidak lawan dari list linier lawan 
+
         poin += Info(A).poin;
 
         //stack
@@ -217,9 +177,6 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         X.posisiR_lama = X.posisiR_baru = Info(Q).posisiR;
         X.posisiC_lama = X.posisiC_baru = Info(Q).posisiC;
         Push(termakan, X); //masukkan ke stack termakan
-
-        //list
-        DelAfter(&lawan, &A, A1); // hapus bidak lawan dari list linier lawan 
     }
 
 

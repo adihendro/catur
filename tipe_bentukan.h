@@ -104,10 +104,7 @@ boolean endgame; //untuk STALEMATE dan CHECKMATE
 // untuk menyimpan nama si putih dan hitam
 char nama_putih[4];
 char nama_hitam[4];
-int g;
 char putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3;
-// char nama_putih[4];
-// char nama_hitam[4];
 
 // nama_putih = (char *) malloc (sizeof(4 * char));
 // nama_hitam = (char *) malloc (sizeof(4 * char));
