@@ -25,7 +25,6 @@ typedef struct {
     boolean promotion; //kalau pion bisa promosi
     boolean twosteps; //kalau pion maju dua kotak (bisa en passant)
     boolean enpassant; //kalau pion udh en passant
-    address_list P; //alamat benteng kalau castling
 } infotype_stack;
 
 typedef int address_stack;

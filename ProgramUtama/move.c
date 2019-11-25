@@ -4,13 +4,13 @@
 #include "ada_orang.c"
 #include "..//ADTLain//cek_semua_gerak.c"
 #include "..//ADTLain//cek_bisa_gerak.c"
-#include "..//ADTLain//jadi_skak.c"
+#include "jadi_skak.c"
 #include "gerak_aman.c"
 
 
 piece promotion(piece P, boolean *ispromoted);
 
-void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, list list_bisa_gerak, int jml_bs_grk){
+void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, list list_bisa_gerak){
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
     infotype_stack X;
 
@@ -73,9 +73,9 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         scanf("%s",choice);
         stringToInt(choice, &input1);
         input_nomor_bidak = atoi(choice);
-        if((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk))
+        if((!(49<=input1 && input1<=57)) || (input_nomor_bidak>=i))
             printf("Wrong input! Choose from the corresponding numbers above!\n\n");
-    } while((!(49<=input1 && input1<=57)) || (input_nomor_bidak>jml_bs_grk));
+    } while((!(49<=input1 && input1<=57)) || (input_nomor_bidak>=i));
 
     // cari list linier dengan indeks ke input_nomor_bidak
     R = First(list_bisa_gerak);

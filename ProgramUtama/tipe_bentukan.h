@@ -92,14 +92,12 @@ int turn; //berapa kali udh gerakan
 //untuk cek skak
 address_list K;
 address_list P1;
-int jml;
 boolean iskak;
 
 //asosiasi list dari list_ada_putih dan list_ada_hitam
 list kawan, lawan; //list piece apa yg ada di papan 
 list list_bisa_gerak;
 int poin;
-int jml_bs_grk;
 
 boolean endgame; //untuk STALEMATE dan CHECKMATE
 int status; //untuk STALEMATE dan CHECKMATE
