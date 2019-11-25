@@ -21,7 +21,6 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
         do{    
         choice = (char*) malloc (sizeof(100));
-        printf("Your choice: ");
         scanf("%s",choice);
         stringToInt(choice,&X);
         if(!(X==49 || X==50))
@@ -41,7 +40,6 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
         do{    
         choice = (char*) malloc (sizeof(100));
-        printf("Your choice: ");
         scanf("%s",choice);
         stringToInt(choice,&X);
         if(!(X==49))
@@ -57,7 +55,6 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
         do{    
         choice = (char*) malloc (sizeof(100));
-        printf("Your choice: ");
         scanf("%s",choice);
         stringToInt(choice,&X);
         if(!(X==49))
@@ -231,7 +228,7 @@ void castling(stack *history, list *list_ada_putih, list *list_ada_hitam, queue 
         Info(P).posisiC = 7;
     } else if (Info(P2).posisiC==1){
         Info(P2).posisiC = 4;
-        Info(P).posisiC = 2;
+        Info(P).posisiC = 3;
     } 
     X.nama = Info(P).nama;
     X.player = InfoTail(*giliran);
