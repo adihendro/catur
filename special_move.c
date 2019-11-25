@@ -1,4 +1,5 @@
 #include "tipe_bentukan.h"
+#include "castling.c"
 
 boolean cek_enpassant(papan *board[10][10], stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P);
 void enpassant(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P);
@@ -66,6 +67,28 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
             printf("Castling berhasil dilakukan\n");}
     }
 
+    if(cek_castling_pendek(*history, *list_ada_putih, *list_ada_hitam, giliran)) // masih salah, ga kompatibel yg gw gapake pointer - palkon
+    {
+        printf("2. Castling Pendek");
+    }
+
+    if(cek_castling_panjang(*history, *list_ada_putih, *list_ada_hitam, giliran))
+    {
+        printf("3. Castling Panjang");
+    }
+
+    int input;
+    scanf("%d", &input);
+
+    if(input == 2)
+    {
+        castling_pendek(history, list_ada_putih, list_ada_hitam, giliran);
+    }
+
+    else if(input == 3)
+    {
+        castling_panjang(history, list_ada_putih, list_ada_hitam, giliran);
+    }
 }
 
 boolean cek_enpassant(papan *board[10][10], stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P){

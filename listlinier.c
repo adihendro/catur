@@ -10,7 +10,7 @@ boolean IsEmpty_list (list L){
 /* Mengirim true jika list kosong */
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty_list (list *L){
+void CreateEmpty_list (list *L){                           
     First(*L) = Nil_list;
 }
 
