@@ -229,7 +229,7 @@ int main(){
                 printf("Canceled.\n");
         }
 
-        printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
+        // printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
         printf("\n\n");
     } while(turn <= 100);
 
@@ -245,28 +245,33 @@ int main(){
         }
     };
     if(poin_putih > poin_hitam){
+        printf("\033[1;33m");
         printf("\n                         SELAMAT ");
         for (i=0; i<=2; i++) {
             printf("%c", nama_putih[i]);
         }
         printf(" MENANG\n\n");
+        printf("\033[0m");
         nama[0][1] = putih_1;
         nama[0][2] = putih_2;
         nama[0][3] = putih_3;
         skor[0] = poin_putih;
         tampilkan_leaderboards();
     } else if(poin_putih < poin_hitam){
+        printf("\033[1;33m");
         printf("\n                         SELAMAT ");
         for (i=0; i<=2; i++) {
             printf("%c", nama_hitam[i]);
         }
         printf(" MENANG\n\n");
+        printf("\033[0m");
         nama[0][1] = hitam_1;
         nama[0][2] = hitam_2;
         nama[0][3] = hitam_3;
         skor[0] = poin_hitam;
         tampilkan_leaderboards();
     } else{ //poin sama
+        printf("\033[1;33m");
         printf("\n                      ");
         for (i=0; i<=2; i++) {
             printf("%c", nama_putih[i]);
@@ -276,6 +281,7 @@ int main(){
             printf("%c", nama_hitam[i]);
         }
         printf(" SERI\n\n");
+        printf("\033[0m");
     }
 
     return 0;
