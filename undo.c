@@ -5,7 +5,8 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
 void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn){
     infotype_stack X;
     address_list P;
-    printf("%d",(*history).TOP);
+    printf("history top %d\n",(*history).TOP);
+    printf("giliran siapa sekarang %d\n",InfoTail(*giliran));
     if(turn==0){ //belum ada gerakan
         printf("\nBelum ada gerakan.\n");
         printf("Undo gagal.\n");
@@ -24,18 +25,16 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
 
 
     } else{ //game udh jalan biasa
-        Pop(history, &X);
+        Pop(history, &X);                
         if (InfoTail(*giliran) == 1) { //giliran putih
             P = First(*list_ada_hitam);//hitam dulu yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam, giliran, 'h');
-
             Pop(history, &X);
             P = First(*list_ada_putih);//baru putih yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'p');
         } else{ //giliran hitam
             P = First(*list_ada_putih);//putih dulu yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'p');
-
             Pop(history, &X);
             P = First(*list_ada_hitam);//baru hitam yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'h');
@@ -50,13 +49,11 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
 void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, char c){
     infotype_stack Y;
     infotype_list Z;
-    
-    while((Info(P).posisiC != X.posisiC_baru) || (Info(P).posisiR != X.posisiR_baru))
-        P = Next(P);
+    while((Info(P).posisiC != X.posisiC_baru) || (Info(P).posisiR != X.posisiR_baru)) {
+        P = Next(P); }
     //P sudah menunjuk kepada bidak yg ingin diundo
     Info(P).posisiC = X.posisiC_lama;
     Info(P).posisiR = X.posisiR_lama;
-
     //cek kalau ada di stack termakan
     Y = (*termakan).T[(*termakan).TOP];
 
