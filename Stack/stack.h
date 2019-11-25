@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "..//ProgramUtama//boolean.h"
 
+
 /* MODUL STACK
 Deklarasi stack yang diimplementasi dengan tabel kontigu alokasi statik dan ukuran sama
 TOP adalah alamat elemen puncak*/
