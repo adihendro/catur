@@ -1,9 +1,9 @@
 #include "tipe_bentukan.h"
 
-boolean cek_enpassant(stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P);
-void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P);
+boolean cek_enpassant(papan *board[10][10], stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P);
+void enpassant(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P);
 
-void special_move(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn){
+void special_move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn){
     address_list P;
     /*
     if(!cek_enpassant() && !cek_castling()){ //ga bisa dua-duanya
@@ -22,29 +22,39 @@ void special_move(stack *history, stack *termakan, int *poin_putih, int *poin_hi
             printf("En Passant berhasil dilakukan\n");
     
     }*/ 
-    if(cek_enpassant(history, list_ada_putih, list_ada_hitam, giliran, &P)){
-        enpassant(history, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam, giliran, turn, P);
+    if(cek_enpassant(board, history, list_ada_putih, list_ada_hitam, giliran, &P)){
+        enpassant(board, history, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam, giliran, turn, P);
         printf("En Passant berhasil dilakukan\n");
     } else{
         printf("\nTidak ada gerakan khusus yang bisa dilakukan.\n");
     }
 }
 
-boolean cek_enpassant(stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P){
+boolean cek_enpassant(papan *board[10][10], stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P){
     boolean found=false;
+    int tempR;
     if ((*history).T[(*history).TOP].twosteps){ //pion musuh baru jalan 2 kotak
         //dicek di sebelah pion musuh tsb ada pion temen atau tidak
-        if (InfoTail(*giliran) == 1) //giliran putih
+        if (InfoTail(*giliran) == 1){ //giliran putih
             *P = First(*list_ada_putih);
-        else //giliran == 2, hitam
+            kawan = *list_ada_putih;
+            lawan = *list_ada_hitam;
+            tempR = 3;
+        } else{ //giliran == 2, hitam
             *P = First(*list_ada_hitam);
+            kawan = *list_ada_hitam;
+            lawan = *list_ada_putih;
+            tempR = 6;
+        }
 
         while((*P) != Nil_list){
             if(Info(*P).nama == 'P'){ //kalau pion
                 if(Info(*P).posisiR == (*history).T[(*history).TOP].posisiR_baru){ //kalau satu baris
                     if(abs(Info(*P).posisiC - (*history).T[(*history).TOP].posisiC_baru) == 1) //kalau sebelahan
-                        found=true; //pion temen sebelahan dengan pion musuh tsb
-                        break;
+                        if(!jadi_skak(lawan, kawan, board, Info(*P), tempR, Info(*P).posisiC)){ //kalau setelah pindah ga skak
+                            found=true; //pion temen sebelahan dengan pion musuh tsb
+                            break;
+                        }
                 }
             }
             *P = Next(*P);
@@ -53,7 +63,7 @@ boolean cek_enpassant(stack* history, list *list_ada_putih, list *list_ada_hitam
     return found;
 }
 
-void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P){
+void enpassant(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P){
     infotype_stack X;
     address_list A, A1;
     int tempR = Info(P).posisiR;

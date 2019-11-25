@@ -3,7 +3,7 @@
 #include "threaten.c"
 
 void gerakaman(list kawan, list lawan, papan *board[10][10], list *list_bisa_gerak, int *jml_bs_grk, boolean *endgame){
-    address_list P, R;
+    address_list P, R, R1;
     address_posisi Q, PrecQ;
 
     // lihat bidak yang masih ada di papan dari list linier dan memasukkan ke list_bisa_gerak
@@ -37,16 +37,14 @@ void gerakaman(list kawan, list lawan, papan *board[10][10], list *list_bisa_ger
             }
 
             if(IsEmpty_posisi(Gerakan(R))){ //kalo bidak tsb ga bisa gerak karena bikin skak
-                DelFirst(list_bisa_gerak, &R); //maka didelete
-                *jml_bs_grk = *jml_bs_grk - 1;
+                DelFirst(list_bisa_gerak, &R1); //maka didelete
+                (*jml_bs_grk)--;
             }
 
-            *jml_bs_grk = *jml_bs_grk + 1;
+            (*jml_bs_grk)++;
         }
         P = Next(P);
     }
-
-    
 
     if(IsEmpty_list(*list_bisa_gerak)){ //kalo ga ada bidak yg bisa gerak
         //berarti STALEMATE atau CHECKMATE
