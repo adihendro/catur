@@ -169,9 +169,10 @@ void DelLast_posisi (list_posisi *L, address_posisi *P)
 /* jika ada */
 void DelAfter_posisi (list_posisi *L, address_posisi *Pdel, address_posisi Prec)
 {
-   *Pdel = Next(Next(Prec));
-    Next(Next(Prec)) = Nil_list; 
-    Next(Prec) = *Pdel;
+    *Pdel = Next(Prec);
+    Next(Prec) = Next(Next(Prec));
+    Next(*Pdel) = Nil_list; 
+    *Pdel = Prec;
 }
 /* I.S. list_posisi tidak kosong. Prec adalah anggota list_posisi  */
 /* F.S. Menghapus Next(Prec): */

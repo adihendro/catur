@@ -26,6 +26,7 @@ int main(){
     char nama_hitam[3];
 
     while (pilihan_user == 51) { //3. Leaderboard
+        system("clear");
         tampilkan_leaderboards();
         printf("Apakah kamu mau kembali sekarang? (Y/N)\n");
         char *pilihannya;
@@ -34,7 +35,7 @@ int main(){
         scanf("%c", pilihannya); // jangan dihapus ntar error
         if ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
             while ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
-                printf("\nBaiklah, silakan melihat leaderboards dulu.\nJika sudah siap kembali tekan Y. ");
+                printf("\nBaiklah, silakan melihat leaderboards dulu.\nJika sudah siap kembali tekan Y.\n");
                 scanf("%c", pilihannya);
                 scanf("%c", pilihannya); // jangan dihapus ntar error
             }
@@ -43,6 +44,7 @@ int main(){
     }
 
     if (pilihan_user == 50) { //2. Load Game
+        system("clear");
         CreateEmpty_stack(&history);
         CreateEmpty_stack(&termakan);
         CreateEmpty_list(&list_ada_putih);
@@ -58,13 +60,29 @@ int main(){
     else if (pilihan_user == 49){ //1. New Game
         inisialisasi();
         Add(&giliran, 1);
-        printf("Sebelum main, boleh tahu namamu dulu?\n");
+        printf("\033[1;35m");
+        printf("\nSebelum main, boleh tahu namamu dulu?\n");
+        printf("\033[0m"); 
+
+        printf("\033[1;32m"); //warna hijau
         printf("Nama Putih: ");
+        printf("\033[0m"); 
+
         scanf("%s", nama_putih);
+        printf("\033[1;35m");
         printf("Oke, kalau nama temanmu siapa?\n");
+        printf("\033[0m"); 
+
+        printf("\033[1;31m"); //warna merah
         printf("Nama Hitam: ");
+        printf("\033[0m"); 
+
         scanf("%s",nama_hitam);
-        printf("Baiklah, SELAMAT BERMAIN!!\n\n\n");
+        printf("\033[1;33m");
+        printf("\nBaiklah, SELAMAT BERMAIN!!\n\n\n");
+        printf("\033[0m"); 
+
+        system("clear");
         // delay(2000);
     }
 
@@ -76,7 +94,7 @@ int main(){
     }
 
 
-
+    //LOOP GAME
     do{
         updateboard(board2, list_ada_putih, list_ada_hitam);
         PrintPapan(board2);
@@ -101,18 +119,20 @@ int main(){
         }
 
 
-
         //kondisi STALEMATE atau CHECKMATE
         gerakaman(kawan, lawan, board2, &list_bisa_gerak, &jml_bs_grk, &endgame);
-        printf("endgame: %d\n", endgame);
+        // printf("endgame: %d\n", endgame);
         iskak = isskak(lawan, kawan, board2, &K, &P1, &jml);
-        if(iskak && endgame) //lagi skak dan ga ada yg bisa gerak
+        if(iskak && endgame){ //lagi skak dan ga ada yg bisa gerak
             printf("CHECKMATE\n");
-        else if(endgame) //tidak lagi skak dan ga ada yg bisa gerak
+            break;
+        } else if(endgame){ //tidak lagi skak dan ga ada yg bisa gerak
             printf("STALEMATE\n");
+            break;
+        }
         
 
-
+            
         do{
             go=false;
             printf("MOVE, SPECIAL_MOVE, UNDO, SAVE, RESET\n");

@@ -61,5 +61,5 @@ void start(int *pilihan_user) {
             printf("Wrong input! It's must be a number from 1-3!\n\n");
     } while(!(X==49 || X==50 || X==51));
     *pilihan_user = X;
-    system("clear");
+    
 }
