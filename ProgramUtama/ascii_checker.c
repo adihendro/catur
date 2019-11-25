@@ -76,11 +76,3 @@ void stringToInt(char* ascii_str,int* Ret){
 //     printf("%d\n",Y);
 //     return 0;
 // }
-
-
-
-// int main(){
-//     int a = '0';
-//     printf("%d", a);
-//     return 0;
-// }
