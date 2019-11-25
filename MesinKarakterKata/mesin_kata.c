@@ -4,7 +4,10 @@
 /* State Mesin Kata */
 boolean EndKata;
 Kata CKata;
-
+#define red printf("\033[1;31m");
+#define blue printf("\033[1;34m");
+#define normal printf("\033[1;0m");
+#define yellow printf("\033[1;33m");
 //{ ***** Primitif-Primitif Mesin Kata ***** }
 void Ignore_Blank(){
     while ((CC == BLANK) && (CC != MARK2)) {
