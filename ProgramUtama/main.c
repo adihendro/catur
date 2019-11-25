@@ -215,7 +215,7 @@ int main(){
                 turn=turn-2;
         }
         else if(strcmp(command,"SAVE") == 0){
-            save(list_ada_putih , list_ada_hitam , poin_putih , poin_hitam , giliran , history , termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3, turn);
+            save(list_ada_putih, list_ada_hitam, poin_putih, poin_hitam, giliran, history, termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3, turn);
             printf("Save success!\n");
         }
         else if(strcmp(command,"RESET") == 0){
