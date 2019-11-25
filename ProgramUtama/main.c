@@ -199,7 +199,7 @@ int main(){
 
         if(strcmp(command,"MOVE") == 0){
             turn++;
-            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn, list_bisa_gerak, jml_bs_grk, iskak);
+            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn, list_bisa_gerak, jml_bs_grk);
             // delay(1000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){

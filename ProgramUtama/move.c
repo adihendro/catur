@@ -10,7 +10,7 @@
 
 piece promotion(piece P, boolean *ispromoted);
 
-void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, list list_bisa_gerak, int jml_bs_grk, boolean iskak){
+void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, list list_bisa_gerak, int jml_bs_grk){
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
     infotype_stack X;
 
