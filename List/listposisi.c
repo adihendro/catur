@@ -13,6 +13,7 @@ void CreateEmpty_posisi (list_posisi *L){
     First(*L) = Nil_list;
 }
 
+/****************** Manajemen Memori ******************/
 address_posisi Alokasi_posisi (infotype_posisi X){
     address_posisi P;
     P = (address_posisi) malloc (sizeof(ElmtList_posisi));
@@ -25,6 +26,10 @@ address_posisi Alokasi_posisi (infotype_posisi X){
         return Nil_list;
     }
 }
+/* Mengirimkan address_list hasil alokasi sebuah elemen */
+/* Jika alokasi berhasil, maka address_list tidak nil, dan misalnya */
+/* menghasilkan P, maka Info(P)=X, Next(P)=Nil_list */
+/* Jika alokasi gagal, mengirimkan Nil_list */
 
 void Dealokasi_posisi (address_posisi *P)
 /* I.S. P terdefinisi */
@@ -98,7 +103,6 @@ void InsertLast_posisi (list_posisi *L, address_posisi P)
 }
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
-
 
 
 
