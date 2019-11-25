@@ -5,22 +5,10 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
 void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn){
     infotype_stack X;
     address_list P;
-    stack history_kopi;
-    history_kopi = *history;
-    infotype_stack ajg;
-    while (!IsEmpty_stack(history_kopi)) {
-        printf("bisa\n");
-        Pop(&history_kopi,&ajg);
-        printf("nama : %c\n", ajg.nama);
-        printf("player : %d\n", ajg.player);
-        printf("poin : %d\n",ajg.poin);
-        printf("%d",(*history).TOP);
-        // pritnf("%d")
-    }
+    printf("%d",(*history).TOP);
     if(turn==0){ //belum ada gerakan
         printf("\nBelum ada gerakan.\n");
         printf("Undo gagal.\n");
-        printf("bisa\n");
 
     } else if(turn==1){ //baru putih yang gerak
         Pop(history, &X);
@@ -33,7 +21,7 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
         Add(giliran, 1);
 
         printf("\nGerakan sebelumnya berhasil dibatalkan.\n");
-        printf("bisa\n");
+
 
     } else{ //game udh jalan biasa
         Pop(history, &X);
@@ -44,7 +32,6 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
             Pop(history, &X);
             P = First(*list_ada_putih);//baru putih yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'p');
-            printf("bisa\n");
         } else{ //giliran hitam
             P = First(*list_ada_putih);//putih dulu yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'p');
@@ -52,7 +39,6 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
             Pop(history, &X);
             P = First(*list_ada_hitam);//baru hitam yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'h');
-            printf("bisa\n");
         }
         
         printf("\nGerakan sampai giliran sebelumnya berhasil dibatalkan.\n");
