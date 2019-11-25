@@ -49,20 +49,8 @@ boolean HasMoved(piece P, stack history)
     return Moved;
 }
 
-/*
-void castling(piece Raja, piece Benteng, stack history, papan* board[10][10])
-{
-    if (!(HasMoved(Raja, history))) //kalau raja belum pernah gerak
-    {
-        if (((*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ') && ((*board[Raja.posisiR][Raja.posisiC+1]).nama == ' ') && (!(HasMoved(Benteng, history))))
-        {
-           (*board[Raja.posisiR][Raja.posisiC+2]).nama == 'R';
-        }
-    }
-}
-*/
 
-boolean cek_castling_pendek(stack history, list list_ada_putih, list list_ada_hitam, queue *giliran)
+boolean cek_castling_pendek(papan *board[10][10], stack history, list list_ada_putih, list list_ada_hitam, queue *giliran)
 {
     address_list *P;
     boolean raja_gerak = true;
@@ -113,7 +101,7 @@ boolean cek_castling_pendek(stack history, list list_ada_putih, list list_ada_hi
     return (!raja_gerak && !benteng_kanan_gerak && !isthreatened_kanan);
 }
 
-boolean cek_castling_panjang(stack history, list list_ada_putih, list list_ada_hitam, queue *giliran)
+boolean cek_castling_panjang(papan *board[10][10], stack history, list list_ada_putih, list list_ada_hitam, queue *giliran)
 {
     address_list *P;
     boolean raja_gerak = true;
@@ -224,9 +212,4 @@ void castling_panjang(stack* history, list* list_ada_putih, list* list_ada_hitam
 
     char str[] = "Castling pendek berhasil dilakukan";
     printf("%s",str);
-}
-int main()
-{
-
-    return 0;
 }
