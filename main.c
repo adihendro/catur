@@ -30,8 +30,8 @@ int main(){
         pilihannya = (char*) malloc (sizeof(char));
         scanf("%c", pilihannya);
         scanf("%c", pilihannya); // jangan dihapus ntar error
-        if ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
-            while ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
+        if ((*pilihannya != 'Y') && (*pilihannya != 'y')) {
+            while ((*pilihannya != 'Y') && (*pilihannya != 'y')) {
                 printf("\nBaiklah, silakan melihat leaderboards dulu.\nJika sudah siap kembali tekan Y.\n");
                 scanf("%c", pilihannya);
                 scanf("%c", pilihannya); // jangan dihapus ntar error
@@ -52,6 +52,7 @@ int main(){
         poin_putih=0;
         poin_hitam=0;
         turn=0;
+        
         load(&list_ada_putih, &list_ada_hitam, &poin_putih, &poin_hitam, &giliran, &history, &termakan, &putih_1, &putih_2, &putih_3, &hitam_1, &hitam_2, &hitam_3);
         int v;
         nama_putih[0] = putih_1;
@@ -212,7 +213,7 @@ int main(){
         else if(strcmp(command,"RESET") == 0){
             printf("Are you sure? (Y/N)\n");
             scanf("%s",&choice2);
-            if(choice2=='Y'){
+            if((choice2=='Y') || (choice2=='y')){
                 inisialisasi();
                 Add(&giliran, 1);
                 printf("Success!\n");
