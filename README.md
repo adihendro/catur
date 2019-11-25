@@ -101,4 +101,26 @@ Fungsi yang digunakan:
 | | | | | | | | |
 +-+-+-+-+-+-+-+-+
 
-	
+typedef struct { infotype_queue * T;   
+                 address HEAD; 
+                 address TAIL; 
+                 int maxEl;    
+               } queue;
+
+typedef struct {
+    char nama;
+    int player;
+    int poin;
+    int turn;
+    int posisiR_lama;
+    int posisiC_lama;
+    int posisiR_baru;
+    int posisiC_baru;
+    boolean promotion; //kalau pion bisa promosi
+    boolean twosteps; //kalau pion maju dua kotak (bisa en passant)
+} infotype_stack;
+
+typedef struct {
+    infotype_stack T[MaxEl_stack+1];
+    address_stack TOP;
+} stack;
