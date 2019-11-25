@@ -234,16 +234,16 @@ int main(){
     } while(turn <= 100);
 
 
+
     printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
     // inisialisasi data nama dan skor
-    int i;
-    int j;
     for (i = 0 ; i <= 11 ; i++) { // inisialisasi semua skor dengan 0 dan string dengan spasi
         skor[i] = 0;
         for (j = 1 ; j <= 3 ; j++) {
             nama[i][j] = ' ';
         }
-    };
+    }
+
     if(poin_putih > poin_hitam){
         printf("\033[1;33m");
         printf("\n                         SELAMAT ");
