@@ -1,7 +1,7 @@
 #include "tipe_bentukan.h"
 #include "mesin_kata.c"
 
-void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *poin_hitam , queue *giliran , stack *history , stack *termakan, char *putih_1, char *putih_2, char *putih_3, char *hitam_1, char *hitam_2, char *hitam_3) {
+void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *poin_hitam , queue *giliran , stack *history , stack *termakan, char *putih_1, char *putih_2, char *putih_3, char *hitam_1, char *hitam_2, char *hitam_3, int *turn) {
     
     // load list_ada_putih
     char str[50]; // formatnya N|1|2|8|7|;
@@ -88,7 +88,7 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
         ADV();
     }
     
-    // load poin_putih , poin_hitam , giliran
+    // load poin_putih , poin_hitam , giliran , turn
     // int poin_putih = 0;
     // int poin_hitam = 0;
     int giliran_siapa;
@@ -118,6 +118,15 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
     else {
         Add(giliran, 2);
     }
+    ADV();
+    ADV();
+    ADVKATA(); // window di |
+    temp_input = 0;
+    for (l = 1 ; l <= CKata.Length ; l++) {
+        to_int = CKata.TabKata[l] - '0';
+        temp_input = 10*temp_input + to_int;
+    }
+    *turn = temp_input;
     ADV();
     
 

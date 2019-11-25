@@ -50,7 +50,7 @@ int main(){
         poin_putih=0;
         poin_hitam=0;
         turn=0;
-        load (&list_ada_putih, &list_ada_hitam, &poin_putih, &poin_hitam, &giliran, &history, &termakan, &putih_1, &putih_2, &putih_3, &hitam_1, &hitam_2, &hitam_3);
+        load (&list_ada_putih, &list_ada_hitam, &poin_putih, &poin_hitam, &giliran, &history, &termakan, &putih_1, &putih_2, &putih_3, &hitam_1, &hitam_2, &hitam_3, &turn);
         int v;
         nama_putih[0] = putih_1;
         nama_putih[1] = putih_2;
@@ -168,7 +168,7 @@ int main(){
                 turn=turn-2;
         }
         else if(strcmp(command,"SAVE") == 0){
-            save(list_ada_putih , list_ada_hitam , poin_putih , poin_hitam , giliran , history , termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3);
+            save(list_ada_putih , list_ada_hitam , poin_putih , poin_hitam , giliran , history , termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3, turn);
             printf("Save success!\n");
         }
         else if(strcmp(command,"RESET") == 0){
