@@ -100,6 +100,7 @@ int poin;
 int jml_bs_grk;
 
 boolean endgame; //untuk STALEMATE dan CHECKMATE
+int status; //untuk STALEMATE dan CHECKMATE
 
 // untuk menyimpan nama si putih dan hitam
 char nama_putih[4];

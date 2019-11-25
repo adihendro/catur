@@ -113,6 +113,7 @@ int main(){
         }
     }
 
+    status = 0;
 
     //LOOP GAME
     do{
@@ -153,17 +154,22 @@ int main(){
 
         //kondisi STALEMATE atau CHECKMATE
         gerakaman(kawan, lawan, board2, &list_bisa_gerak, &jml_bs_grk, &endgame);
-        // printf("endgame: %d\n", endgame);
         iskak = isskak(lawan, kawan, board2, &K, &P1, &jml);
         if(iskak && endgame){ //lagi skak dan ga ada yg bisa gerak
-            // printf("\033[1;31m"); //warna merah
+            printf("\033[1;31m"); //warna merah
             printf("\nCHECKMATE\n");
-            // printf("\033[0m"); 
+            printf("\033[0m"); 
+            if (InfoTail(giliran) == 1) //putih
+                poin_hitam += 20; //hitam yg nyekakmat
+            else //InfoTail(giliran) == 2, hitam
+                poin_putih += 20; //putih yg nyekakmat
+            status = 1;
             break;
         } else if(endgame){ //tidak lagi skak dan ga ada yg bisa gerak
-            // printf("\033[1;33m"); //warna kuning
+            printf("\033[1;33m"); //warna kuning
             printf("\nSTALEMATE\n");
-            // printf("\033[0m"); 
+            printf("\033[0m"); 
+            status = 2;
             break;
         } else if(iskak){ //skak biasa
             printf("\033[1;31m"); //warna merah
@@ -171,6 +177,8 @@ int main(){
             printf("\033[0m"); 
         }
         
+        if(turn == 100)
+            break;
 
             
         do{
@@ -223,7 +231,34 @@ int main(){
 
         printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
         printf("\n\n");
-    } while(1);
+    } while(turn <= 100);
+
+
+    printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
+
+    if(poin_putih > poin_hitam){
+        printf("\n                              SELAMAT ");
+        for (i=0; i<=2; i++) {
+            printf("%c", nama_putih[i]);
+        }
+        printf(" MENANG\n\n");
+    } else if(poin_putih < poin_hitam){
+        printf("\n                              SELAMAT ");
+        for (i=0; i<=2; i++) {
+            printf("%c", nama_hitam[i]);
+        }
+        printf(" MENANG\n\n");
+    } else{ //poin sama
+        printf("\n");
+        for (i=0; i<=2; i++) {
+            printf("%c", nama_putih[i]);
+        }
+        printf(" dan ");
+        for (i=0; i<=2; i++) {
+            printf("%c", nama_hitam[i]);
+        }
+        printf(" SERI\n\n");
+    }
 
     return 0;
 }
