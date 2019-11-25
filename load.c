@@ -132,8 +132,8 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
 
     // load stack history
     i = 0;
-    stack reverse_history;
-    CreateEmpty_stack(&reverse_history);
+    int b;
+    b = 0;
     infotype_stack temp_infostack;
     strcpy(str,"save_file//history.txt");
     START(str);
@@ -187,27 +187,21 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
                 temp_infostack.promotion = to_int;
             }
             else if ((i % 11) == 10) {
-                to_int = CC = '0';
+                to_int = CC - '0';
                 temp_infostack.twosteps = to_int;
             }
             else { // saat habis dibagi 11
                 to_int = CC - '0';
                 temp_infostack.enpassant = to_int;
-                Push(&reverse_history,temp_infostack);
+                Push(history,temp_infostack);
             }
         }
         ADV();
-    }
-    while (!IsEmpty_stack(reverse_history)) {
-        Pop(&reverse_history,&temp_infostack);
-        Push(history,temp_infostack);
     }
 
 
     // load stack termakan
     i = 0;
-    stack reverse_termakan;
-    CreateEmpty_stack(&reverse_termakan);
     // infotype_stack temp_infostack;
     strcpy(str,"save_file//termakan.txt");
     START(str);
@@ -267,7 +261,7 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
             else { // saat habis dibagi 11
                 to_int = CC - '0';
                 temp_infostack.enpassant = to_int;
-                Push(&reverse_termakan,temp_infostack);
+                Push(termakan,temp_infostack);
             }
         }
         ADV();
