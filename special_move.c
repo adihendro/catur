@@ -9,6 +9,7 @@ void castling(stack *history, list *list_ada_putih, list *list_ada_hitam, queue 
 void special_move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn){
     address_list P;
     address_list P2;
+    int X;
     
     if(!cek_enpassant(board, history, list_ada_putih, list_ada_hitam, giliran, &P) && !cek_castling(history, list_ada_putih, list_ada_hitam, giliran, &P, &P2, board)){ //ga bisa dua-duanya
         printf("\nTidak ada gerakan khusus yang bisa dilakukan.\n");
@@ -18,20 +19,53 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
         printf("   1. Castling\n");
         printf("   2. En Passant\n");
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
+        do{    
+        choice = (char*) malloc (sizeof(100));
+        printf("Your choice: ");
+        scanf("%s",choice);
+        stringToInt(choice,&X);
+        if(!(X==49 || X==50))
+            printf("Wrong input!\n");
+        } while(!(X==49 || X==50));
+        if(X==49){
         //kalau 1
             castling(history, list_ada_putih, list_ada_hitam, giliran, P, P2, turn);
-            printf("Castling berhasil dilakukan\n");
-        //kalau 2
+            printf("Castling berhasil dilakukan\n");}
+        else {//kalau 2
             enpassant(board, history, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam, giliran, turn, P);
             printf("En Passant berhasil dilakukan\n");
-    
+        }
     } else if(cek_enpassant(board, history, list_ada_putih, list_ada_hitam, giliran, &P)){
-        enpassant(board, history, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam, giliran, turn, P);
-        printf("En Passant berhasil dilakukan\n");
+        printf("\nDaftar gerakan khusus yang bisa dilakukan:\n");
+        printf("   1. En Passant\n");
+        printf("Pilih gerakan khusus yang ingin dilakukan: ");
+        do{    
+        choice = (char*) malloc (sizeof(100));
+        printf("Your choice: ");
+        scanf("%s",choice);
+        stringToInt(choice,&X);
+        if(!(X==49))
+            printf("Wrong input!\n");
+        } while(!(X==49));
+        if(X==49){
+            enpassant(board, history, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam, giliran, turn, P);
+            printf("En Passant berhasil dilakukan\n");}
 
     } else if(cek_castling(history, list_ada_putih, list_ada_hitam, giliran, &P, &P2, board)){
-        castling(history, list_ada_putih, list_ada_hitam, giliran, P, P2, turn);
-        printf("Castling berhasil dilakukan\n");
+        printf("\nDaftar gerakan khusus yang bisa dilakukan:\n");
+        printf("   1. Castling\n");
+        printf("Pilih gerakan khusus yang ingin dilakukan: ");
+        do{    
+        choice = (char*) malloc (sizeof(100));
+        printf("Your choice: ");
+        scanf("%s",choice);
+        stringToInt(choice,&X);
+        if(!(X==49))
+            printf("Wrong input!\n");
+        } while(!(X==49));
+        if(X==49){
+            castling(history, list_ada_putih, list_ada_hitam, giliran, P, P2, turn);
+            printf("Castling berhasil dilakukan\n");}
     }
 
 }
