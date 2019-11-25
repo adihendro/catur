@@ -4,8 +4,9 @@ boolean isskak(list lawan, list kawan, papan *board[10][10], address_list *K, ad
 
 //kalau bidak ini pindah apakah bakal jadi skak?
 boolean jadi_skak(list lawan, list kawan, papan *board[10][10], piece F, int posisiR, int posisiC){
-    address_list P, P1;
+    address_list P, P1, K1;
     boolean jadi;
+    int tempR, tempC;
     papan board3[10][10];
     papan *board4[10][10];
      
@@ -30,16 +31,31 @@ boolean jadi_skak(list lawan, list kawan, papan *board[10][10], piece F, int pos
         }
     }
 
+    if(F.nama == 'K'){ //kalau bidaknya king
+        K1 = First(kawan);
+        while ((K1!=Nil_list) && (Info(K1).nama!='K'))
+            K1 = Next(K1);
+            //K1 udah menunjuk ke alamat King
+        tempC = Info(K1).posisiC;
+        tempR = Info(K1).posisiR;
+        Info(K1).posisiC = posisiC;
+        Info(K1).posisiR = posisiR;
+    }
 
     if(adaorang(lawan, posisiC, posisiR, &P1)){ //kalau di kotak itu ada musuh
-        // printf("ada %c %d %d\n", F.nama, posisiR, posisiC);
         P = Next(P1);
         DelAfter(&lawan, &P, P1); // hapus bidak lawan dari list linier lawan 
+
         jadi = isskak(lawan, kawan, board4, &K, &P1, &jml);
         InsertAfter(&lawan, P, P1);
 
     } else{
         jadi = isskak(lawan, kawan, board4, &K, &P1, &jml);
+    }
+
+    if(F.nama == 'K'){ //kalau bidaknya king
+        Info(K1).posisiC = tempC;
+        Info(K1).posisiR = tempR;
     }
 
     return jadi;

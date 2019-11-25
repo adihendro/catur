@@ -30,9 +30,9 @@ boolean isthreaten(list lawan, int x, int y, papan *board[10][10], address_list 
 
 boolean isskak(list lawan, list kawan, papan *board[10][10], address_list *K, address_list *P1, int *jml){
     *K = First(kawan);
-    while ((*K!=Nil_list) && (Info(*K).nama!='K')){
+    while ((*K!=Nil_list) && (Info(*K).nama!='K'))
         *K = Next(*K);
-    }
+        
     return (isthreaten(lawan, Info(*K).posisiC, Info(*K).posisiR, board, P1, jml));
 }
 

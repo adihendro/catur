@@ -5,7 +5,7 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
 void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn){
     infotype_stack X;
     address_list P;
-
+    printf("%d",(*history).TOP);
     if(turn==0){ //belum ada gerakan
         printf("\nBelum ada gerakan.\n");
         printf("Undo gagal.\n");
@@ -22,8 +22,9 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
 
         printf("\nGerakan sebelumnya berhasil dibatalkan.\n");
 
+
     } else{ //game udh jalan biasa
-            Pop(history, &X);
+        Pop(history, &X);
         if (InfoTail(*giliran) == 1) { //giliran putih
             P = First(*list_ada_hitam);//hitam dulu yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam, giliran, 'h');
@@ -31,7 +32,6 @@ void undo(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, lis
             Pop(history, &X);
             P = First(*list_ada_putih);//baru putih yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'p');
-
         } else{ //giliran hitam
             P = First(*list_ada_putih);//putih dulu yang diundo
             balik(P, X, termakan, poin_putih, poin_hitam, list_ada_putih, list_ada_hitam,giliran, 'p');

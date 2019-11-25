@@ -43,7 +43,7 @@ void inisialisasi(){
     construct('N', 1, 2, 8, 2, &list_ada_putih); //kuda putih
     construct('N', 1, 2, 8, 7, &list_ada_putih); //kuda putih
 
-    // construct('R', 1, 2, 5, 5, &list_ada_putih); 
+    // construct('Q', 1, 2, 5, 5, &list_ada_putih); 
 
 
     construct('P', 2, 1, 2, 1, &list_ada_hitam); //pion hitam

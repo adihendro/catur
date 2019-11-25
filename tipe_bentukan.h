@@ -56,6 +56,7 @@ typedef struct {
 } list;
 
 
+
 #include "boolean.h"
 #include "listlinier.h"
 #include "listposisi.h"
@@ -72,7 +73,7 @@ typedef struct {
 
 int i,j,k;
 
-boolean go;
+boolean go; //dipake di main.c masukkan command
 papan board[10][10];
 
 char* choice;
@@ -90,7 +91,26 @@ int turn; //berapa kali udh gerakan
 address_list K;
 address_list P1;
 int jml;
+boolean iskak;
 
+//asosiasi list dari list_ada_putih dan list_ada_hitam
+list kawan, lawan; //list piece apa yg ada di papan 
+list list_bisa_gerak;
+int poin;
+int jml_bs_grk;
+
+boolean endgame; //untuk STALEMATE dan CHECKMATE
+
+// untuk menyimpan nama si putih dan hitam
+char nama_putih[4];
+char nama_hitam[4];
+int g;
+char putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3;
+// char nama_putih[4];
+// char nama_hitam[4];
+
+// nama_putih = (char *) malloc (sizeof(4 * char));
+// nama_hitam = (char *) malloc (sizeof(4 * char));
 
 void string2ByteArray(char* input, int* output);
 void stringToInt(char* ascii_str,int* Ret);
