@@ -185,7 +185,7 @@ int main(){
             go=false;
             blue;printf("   //++++++++++++++++++++++++++++++++++++++++++++\\\\ \n");
             printf("  //--------");yellow;printf(" MOVE -- SPECIAL_MOVE -- UNDO");blue;printf(" --------\\\\\n");
-            printf(" //---------------");yellow;printf("SAVE -------- RESET");blue;printf("--------------\\\\\n");
+            printf(" //--------------");yellow;printf("SAVE --------- RESET");blue;printf("--------------\\\\\n");
             printf("//++++++++++++++++++++++++++++++++++++++++++++++++++\\\\\n");normal;
             printf("Masukkan command: ");
             scanf("%s",command);
