@@ -30,15 +30,16 @@ void pawn(piece F, papan *board[10][10], list_posisi *L){
         cek(a,0,1,1,F,board, L); //kalau depannya temen atau musuh ga perlu dicek
 
     for(i=-1;i<=1;i=i+2){ //cek serong
-        if((*board[F.posisiR + a][F.posisiC + i]).player==b){ //kalau kotak = musuh
+        if((*board[F.posisiR + a][F.posisiC + i]).player==b) //kalau kotak = musuh
             cek(a,i,1,1,F,board, L);
-        }
     }
     
     if(F.player==1 && F.posisiR==7){ //buat di awal bisa maju 2 langkah
-        cek(-2,0,1,1,F,board, L);
+        if((*board[5][F.posisiC]).nama==' ') //kalau 2 kotak depan kosong maka dicek
+            cek(-2,0,1,1,F,board, L);
     } else if(F.player==2 && F.posisiR==2){
-        cek(2,0,1,1,F,board, L);
+        if((*board[4][F.posisiC]).nama==' ') //kalau 2 kotak depan kosong maka dicek
+            cek(2,0,1,1,F,board, L);
     }
 }
 

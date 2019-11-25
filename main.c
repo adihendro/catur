@@ -8,7 +8,7 @@
 #include "stack.c"
 #include "queue.c"
 #include "ascii_checker.c"
-// #include "move.c"
+#include "move.c"
 #include "special_move.c"
 #include "undo.c"
 #include "save.c"
@@ -19,29 +19,28 @@
 int main(){
 
     //GAME START 
-    int *pilihan_user;
-    start(pilihan_user);
+    int pilihan_user;
+    start(&pilihan_user);
     // printf("%d\n",*pilihan_user);
-    char nama_putih[3];
-    char nama_hitam[3];
-    while (*pilihan_user == 51) {
+
+    while (pilihan_user == 51) { //3. Leaderboard
         tampilkan_leaderboards();
-        // printf("\n\n                        Press ENTER to continue\n");
-        printf("Apakah kamu mau kembali sekarang ? (Y/n)\n");
-        char * pilihannya;
-        pilihannya = malloc (sizeof(char));
+        printf("Apakah kamu mau kembali sekarang? (Y/N)\n");
+        char *pilihannya;
+        pilihannya = (char*) malloc (sizeof(char));
         scanf("%c", pilihannya);
         scanf("%c", pilihannya); // jangan dihapus ntar error
-        if (*pilihannya != 'y' && (*pilihannya != 'Y')) {
-            while (*pilihannya != 'y' && (*pilihannya != 'Y')) {
-                printf("Baiklah, silahkan melihat leaderboards dulu.\n\nJika sudah siap kembali tekan Y\n");
+        if ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
+            while ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
+                printf("\nBaiklah, silakan melihat leaderboards dulu.\nJika sudah siap kembali tekan Y. ");
                 scanf("%c", pilihannya);
-                scanf("%c", pilihannya);
+                scanf("%c", pilihannya); // jangan dihapus ntar error
             }
         } 
-        start(pilihan_user); // lanjut tadi        
+        start(&pilihan_user); // lanjut tadi        
     }
-    if (*pilihan_user == 50) {
+
+    if (pilihan_user == 50) { //2. Load Game
         CreateEmpty_stack(&history);
         CreateEmpty_stack(&termakan);
         CreateEmpty_list(&list_ada_putih);
@@ -51,18 +50,36 @@ int main(){
         poin_putih=0;
         poin_hitam=0;
         turn=0;
-        load (&list_ada_putih , &list_ada_hitam , &poin_putih , &poin_hitam , &giliran , &history , &termakan);
+        load (&list_ada_putih, &list_ada_hitam, &poin_putih, &poin_hitam, &giliran, &history, &termakan, &putih_1, &putih_2, &putih_3, &hitam_1, &hitam_2, &hitam_3);
+        int v;
+        nama_putih[0] = putih_1;
+        nama_putih[1] = putih_2;
+        nama_putih[2] = putih_3;
+        nama_hitam[0] = hitam_1;
+        nama_hitam[1] = hitam_2;
+        nama_hitam[2] = hitam_3;
     }
-    else if (*pilihan_user == 49){
+
+    else if (pilihan_user == 49){ //1. New Game
         inisialisasi();
         Add(&giliran, 1);
-        printf("Sebelum main, boleh tau namamu dulu ?\n");
-        printf("Nama Putih : ");
+        for (g = 0 ; g <= 3 ; g++) {
+            nama_putih[g] = ' ';
+            nama_hitam[g] = ' ';
+        }
+        printf("Sebelum main, boleh tahu namamu dulu?\n");
+        printf("Nama Putih: ");
         scanf("%s", nama_putih);
-        printf("Oke, kalau nama temanmu siapa ?\n");
-        printf("Nama Hitam : ");
-        scanf("%s",nama_hitam);
-        printf("Baiklah, SELAMAT BERMAIN !!\n");
+        printf("Oke, kalau nama temanmu siapa?\n");
+        printf("Nama Hitam: ");
+        scanf("%s", nama_hitam);
+        printf("Baiklah, SELAMAT BERMAIN!!\n\n\n");
+        putih_1 = nama_putih[0];
+        putih_2 = nama_putih[1];
+        putih_3 = nama_putih[2];
+        hitam_1 = nama_hitam[0];
+        hitam_2 = nama_hitam[1];
+        hitam_3 = nama_hitam[2];
         // delay(2000);
     }
 
@@ -74,18 +91,42 @@ int main(){
     }
 
 
+
     do{
         updateboard(board2, list_ada_putih, list_ada_hitam);
         PrintPapan(board2);
+
         if (InfoTail(giliran) == 1){ //putih
             printf("\033[1;32m"); //warna hijau
             printf("Giliran Putih\n");
             printf("\033[0m"); 
+
+            kawan = list_ada_putih; //piece yg masih ada di papan
+            lawan = list_ada_hitam;
+            poin = poin_putih;
+
         } else{ //InfoTail(giliran) == 2, hitam
             printf("\033[1;31m"); //warna merah
             printf("Giliran Hitam\n");
             printf("\033[0m"); 
+
+            kawan = list_ada_hitam;
+            lawan = list_ada_putih;
+            poin = poin_hitam;
         }
+
+
+
+        //kondisi STALEMATE atau CHECKMATE
+        gerakaman(kawan, lawan, board2, &list_bisa_gerak, &jml_bs_grk, &endgame);
+        printf("endgame: %d\n", endgame);
+        iskak = isskak(lawan, kawan, board2, &K, &P1, &jml);
+        if(iskak && endgame) //lagi skak dan ga ada yg bisa gerak
+            printf("CHECKMATE\n");
+        else if(endgame) //tidak lagi skak dan ga ada yg bisa gerak
+            printf("STALEMATE\n");
+        
+
 
         do{
             go=false;
@@ -102,9 +143,10 @@ int main(){
         } while(!go);
 
 
+
         if(strcmp(command,"MOVE") == 0){
             turn++;
-            // move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
+            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn, list_bisa_gerak, jml_bs_grk, iskak);
             // delay(1000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
@@ -120,7 +162,7 @@ int main(){
                 turn=turn-2;
         }
         else if(strcmp(command,"SAVE") == 0){
-            save();
+            save(list_ada_putih , list_ada_hitam , poin_putih , poin_hitam , giliran , history , termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3);
             printf("Save success!\n");
         }
         else if(strcmp(command,"RESET") == 0){
@@ -129,13 +171,16 @@ int main(){
             scanf("%s",&choice2);
             if(choice2=='Y'){
                 inisialisasi();
+                Add(&giliran, 1);
                 printf("Success!\n");
             } else
                 printf("Canceled.\n");
         }
 
+
         printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
         printf("\n\n");
+        
     } while(1);
 
     return 0;

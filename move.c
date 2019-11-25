@@ -5,28 +5,26 @@
 #include "cek_semua_gerak.c"
 #include "cek_bisa_gerak.c"
 #include "jadi_skak.c"
-#include "threaten.c"
+#include "gerak_aman.c"
 
 
 piece promotion(piece P, boolean *ispromoted);
 
-void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn) {
+void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, list list_bisa_gerak, int jml_bs_grk, boolean iskak){
     // cek giliran hitam atau putih untuk menentukan list linier yang akan diakses, cek dari queue
-    list kawan, lawan; //list piece apa yg ada di papan 
-    int poin;
     infotype_stack X;
 
-    list list_bisa_gerak; //akan ditunjuk pake R
-    list_posisi daftar_posisi;
+    // list_posisi daftar_posisi;
     address_list P, R, A, A1;
     address_posisi Q, PrecQ;
+
 
     boolean ispromoted = false;
     boolean istwosteps = false;
     boolean enpassant = false;
-    
 
-    // CreateEmpty_list(&kawan);
+
+    
     if (InfoTail(*giliran) == 1) { //putih
         kawan = *list_ada_putih; //piece yg masih ada di papan
         lawan = *list_ada_hitam;
@@ -41,50 +39,10 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
 
     //cek dulu lagi skak atau ga
-    if(!isskak(lawan, kawan, board, &K, &P1, &jml)){ //tidak lagi skak
+    if(!iskak){ //tidak lagi skak
         printf("tidak skakkk\n");
 
-        // lihat bidak yang masih ada di papan dari list linier dan memasukkan ke list_bisa_gerak
-        P = First(kawan);
-        CreateEmpty_list(&list_bisa_gerak);
-        int jml_bs_grk = 0;
-
-        while (P != Nil_list) {
-            if (cekbisagerak(Info(P), board)) { //Info(P) == piece
-                InsVFirst(&list_bisa_gerak, Info(P)); //dari list kawan dimasukkin ke list_bisa_gerak
-
-                R = First(list_bisa_gerak); //list_linier yg bisa gerak dari kawan
-                
-                CreateEmpty_posisi(&Gerakan(R));
-                ceksemuagerak(Info(R), board, &Gerakan(R));
-
-                Q = First(Gerakan(R)); //list_posisi gerakan yang bisa dilakukan piece kawan
-                PrecQ = Q;
-
-                // printf("piece %c %d %d  %d %d\n", Info(R).nama, Info(R).posisiR, Info(R).posisiC, Info(Q).posisiR, Info(Q).posisiC);
-
-                while (Q != Nil_list){ //cek semua gerakan bidak tersebut, bikin skak atau tidak
-                    if(jadi_skak(lawan, kawan, board, Info(R), Info(Q).posisiR, Info(Q).posisiC)){
-
-                        if(Q == First(Gerakan(R))){ //jika elemen gerakan pertama
-                            DelFirst_posisi(&Gerakan(R),&Q);
-                        } else{ //bukan elemen gerakan pertama
-                            DelAfter_posisi(&Gerakan(R),&Q,PrecQ);
-                        }
-                    }
-                    PrecQ = Q;
-                    Q = Next(Q);
-                }
-
-                if(IsEmpty_posisi(Gerakan(R))){ //kalo bidak tsb ga bisa gerak karena bikin skak
-                    DelFirst(&list_bisa_gerak, &R); //maka didelete
-                    jml_bs_grk--;
-                }
-
-                jml_bs_grk++;
-            }
-            P = Next(P);
-        }
+        // gerakaman(kawan, lawan, board, &list_bisa_gerak, &jml_bs_grk, &endgame);
 
         // tampilkan bidak yang dapat bergerak
         i = 1;  
@@ -150,9 +108,29 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
             PrintKolom(Info(Q).posisiC);
             printf(",");
             PrintBaris(Info(Q).posisiR);
-            printf(")\n");
+            printf(")");
+
+            if(adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR, &A1)){
+                A = Next(A1); //address bidak lawan yang termakan
+                printf(" X ");
+
+                if (InfoTail(*giliran) == 1) { //putih
+                    printf("\033[1;31m"); //warna merah
+                    PrintNamaBidak(Info(A).nama);
+                    printf("\033[0m"); 
+                } else{ //giliran == 2, hitam
+                    printf("\033[1;32m"); //warna hijau
+                    PrintNamaBidak(Info(A).nama);
+                    printf("\033[0m"); 
+                }
+
+                printf(" musuh\n");
+            } else
+                printf("\n");
+
             Q = Next(Q);
         }
+        
 
         // user memilih posisi tujuan bidak
         printf("\033[1;33m");

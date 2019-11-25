@@ -10,7 +10,7 @@ void swap_skor(int skor[10] , int index_baru) {
     skor[index_baru + 1] = temp;
 }
 
-void swap_nama(char nama[10][3], int index_baru) {
+void swap_nama(char nama[10][4], int index_baru) {
     char temp;
     int q;
     for (q = 1 ; q <= 3 ; q++) {
@@ -140,38 +140,26 @@ void tampilkan_leaderboards () {
     printf("###########################################################################\n");
     printf("\033[0m");
     printf("###########################################################################\n");
-    printf("\n\n");
-    printf("\033[01;33m");
-    printf("                 __          __         _              __              \n");
-    printf("            |   |__  /\\  |\\ |__  |) |) / \\  /\\  |) |\\ |__              \n");
-    printf("            |__ |__ /--\\ |/ |__  |\\ |) \\_/ /--\\ |\\ |/  __|             \n");
-    printf("\n");
-    printf("\033[0m");
-    if (skor[0] == 0) {
-        printf("Saat ini belum ada yang berhasil memenangkan game, Bermainlah !\n");
-    }
-    else {
-        i = 0;
-        j = 1;
-        int printed;
-        printed = 0;
-        while ((skor[i] != 0) && (printed < 10)) {
-            printf("                            ");
-            for (j = 1 ; j <= 3 ; j++) {
-                printf("%c",nama[i][j]);
-            }
-            printf("    -   ");
-            printf("%d\n",skor[i]);
-            i++;
-            printed++;
+    printf("\n\n\n");
+    i = 0;
+    j = 1;
+    int printed;
+    printed = 0;
+    while ((skor[i] != 0) && (printed < 10)) {
+        printf("                            ");
+        for (j = 1 ; j <= 3 ; j++) {
+            printf("%c",nama[i][j]);
         }
+        printf("    -   ");
+        printf("%d\n",skor[i]);
+        i++;
+        printed++;
     }
     printf("\n\n\n");
     printf("\033[0;31m");
     printf("###########################################################################\n");
     printf("\033[0m");
     printf("###########################################################################\n");
-    printf("%d\n",skor[0]);
 
     // write ke leaderboards.txt
     pita = fopen(str,"w");

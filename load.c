@@ -1,7 +1,7 @@
 #include "tipe_bentukan.h"
 #include "mesin_kata.c"
 
-void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *poin_hitam , queue *giliran , stack *history , stack *termakan) {
+void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *poin_hitam , queue *giliran , stack *history , stack *termakan, char *putih_1, char *putih_2, char *putih_3, char *hitam_1, char *hitam_2, char *hitam_3) {
     
     // load list_ada_putih
     char str[50]; // formatnya N|1|2|8|7|;
@@ -135,13 +135,200 @@ void load (list *list_ada_putih , list *list_ada_hitam , int *poin_putih , int *
         Add(giliran, 2);
     }
     ADV();
-    printf("%d",*poin_putih);
-    printf("%d",*poin_hitam);
-    printf("%d",giliran_siapa);
     
-    
-    
+
+    // load stack history
+    i = 0;
+    stack reverse_history;
+    CreateEmpty_stack(&reverse_history);
+    infotype_stack temp_infostack;
+    strcpy(str,"save_file//history.txt");
+    START(str);
+    while (!IsEOP()) {
+        CC = GetCC();
+        if (CC != '|') {
+            i++;
+            if ((i % 11) == 1) {
+                temp_infostack.nama = CC;
+            }
+            else if ((i % 11) == 2) {
+                to_int = CC - '0';
+                temp_infostack.player = to_int;
+            }
+            else if ((i % 11) == 3) {
+                ADVKATA();
+                temp_input = 0;
+                for (l = 1 ; l <= CKata.Length ; l++) {
+                    to_int = CKata.TabKata[l] - '0';
+                    temp_input = 10*temp_input + to_int;
+                }
+                temp_infostack.poin = temp_input;
+            }
+            else if ((i % 11) == 4) {
+                ADVKATA();
+                temp_input = 0;
+                for (l = 1 ; l <= CKata.Length ; l++) {
+                    to_int = CKata.TabKata[l] - '0';
+                    temp_input = 10*temp_input + to_int;
+                }
+                temp_infostack.turn = temp_input;
+            }
+            else if ((i % 11) == 5) {
+                to_int = CC - '0';
+                temp_infostack.posisiR_lama = to_int;
+            }
+            else if ((i % 11) == 6) {
+                to_int = CC - '0';
+                temp_infostack.posisiC_lama = to_int;
+            }
+            else if ((i % 11) == 7) {
+                to_int = CC - '0';
+                temp_infostack.posisiR_baru = to_int;
+            }
+            else if ((i % 11) == 8) {
+                to_int = CC - '0';
+                temp_infostack.posisiC_baru = to_int;
+            }
+            else if ((i % 11) == 9) {
+                to_int = CC - '0';
+                temp_infostack.promotion = to_int;
+            }
+            else if ((i % 11) == 10) {
+                to_int = CC = '0';
+                temp_infostack.twosteps = to_int;
+            }
+            else { // saat habis dibagi 11
+                to_int = CC - '0';
+                temp_infostack.enpassant = to_int;
+                Push(&reverse_history,temp_infostack);
+            }
+        }
+        ADV();
     }
+    while (!IsEmpty_stack(reverse_history)) {
+        Pop(&reverse_history,&temp_infostack);
+        Push(history,temp_infostack);
+    }
+
+
+    // load stack termakan
+    i = 0;
+    stack reverse_termakan;
+    CreateEmpty_stack(&reverse_termakan);
+    // infotype_stack temp_infostack;
+    strcpy(str,"save_file//termakan.txt");
+    START(str);
+    while (!IsEOP()) {
+        CC = GetCC();
+        if (CC != '|') {
+            i++;
+            if ((i % 11) == 1) {
+                temp_infostack.nama = CC;
+            }
+            else if ((i % 11) == 2) {
+                to_int = CC - '0';
+                temp_infostack.player = to_int;
+            }
+            else if ((i % 11) == 3) {
+                ADVKATA();
+                temp_input = 0;
+                for (l = 1 ; l <= CKata.Length ; l++) {
+                    to_int = CKata.TabKata[l] - '0';
+                    temp_input = 10*temp_input + to_int;
+                }
+                temp_infostack.poin = temp_input;
+            }
+            else if ((i % 11) == 4) {
+                ADVKATA();
+                temp_input = 0;
+                for (l = 1 ; l <= CKata.Length ; l++) {
+                    to_int = CKata.TabKata[l] - '0';
+                    temp_input = 10*temp_input + to_int;
+                }
+                temp_infostack.turn = temp_input;
+            }
+            else if ((i % 11) == 5) {
+                to_int = CC - '0';
+                temp_infostack.posisiR_lama = to_int;
+            }
+            else if ((i % 11) == 6) {
+                to_int = CC - '0';
+                temp_infostack.posisiC_lama = to_int;
+            }
+            else if ((i % 11) == 7) {
+                to_int = CC - '0';
+                temp_infostack.posisiR_baru = to_int;
+            }
+            else if ((i % 11) == 8) {
+                to_int = CC - '0';
+                temp_infostack.posisiC_baru = to_int;
+            }
+            else if ((i % 11) == 9) {
+                to_int = CC - '0';
+                temp_infostack.promotion = to_int;
+            }
+            else if ((i % 11) == 10) {
+                to_int = CC = '0';
+                temp_infostack.twosteps = to_int;
+            }
+            else { // saat habis dibagi 11
+                to_int = CC - '0';
+                temp_infostack.enpassant = to_int;
+                Push(&reverse_termakan,temp_infostack);
+            }
+        }
+        ADV();
+    }
+
+
+    // load namaplayer
+    strcpy(str,"save_file//nama_player.txt");
+    START(str);
+    while (!IsEOP()) {
+        CC = GetCC();
+        *putih_1 = CC;
+        ADV();
+        CC = GetCC();
+        *putih_2 = CC;
+        ADV();
+        CC = GetCC();
+        *putih_3 = CC;
+        ADV();
+        ADV();
+        CC = GetCC();
+        *hitam_1 = CC;
+        ADV();CC = GetCC();
+        *hitam_2 = CC;
+        ADV();CC = GetCC();
+        *hitam_3 = CC;
+        ADV();
+        ADV();
+    }
+}
+    // // load nama_putih , nama_hitam , poin_putih , poin_hitam
+    // i = 0;
+    // strcpy(str,"save_file//namaplayer.txt");
+    // START(str);
+    // while (!IsEOP()) { // format KEV|ADI|;
+    //     CC = GetCC();
+    //     if (CC != '|') {
+    //         i++;
+    //         if ((i % 2) == 1) {
+    //             ADVKATA();
+    //             for (l = 1 ; l <= CKata.Length ; l++) {
+    //                 *nama_putih[l-1] = CKata.TabKata[l];
+    //             }
+    //         }
+    //         else { //player hitam
+    //             ADVKATA();
+    //             for (l = 1 ; l <= CKata.Length ; l++) {
+    //                 *nama_hitam[l-1] = CKata.TabKata[l];
+    //         }
+    //     }
+    //     ADV();
+    // }
+    
+
     // fclose(pita);
 
 
