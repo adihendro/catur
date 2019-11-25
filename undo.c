@@ -60,7 +60,8 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
     //cek kalau ada di stack termakan
     Y = (*termakan).T[(*termakan).TOP];
 
-    if(X.enpassant){ //kalau abis en passant (makan pion lawan)
+    //cek kalau abis en passant (makan pion lawan)
+    if(X.enpassant){ 
         Pop(termakan,&Y);
         Z.nama = Y.nama;
         Z.player = Y.player;
@@ -98,5 +99,17 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
     if(X.promotion){
         Info(P).nama = 'P';
         Info(P).poin = 1;
+    }
+
+
+    //cek kalau abis castling
+    if(Info(P).nama == 'K'){
+        printf("fdfd\n");
+        if(abs(X.posisiC_baru-X.posisiC_lama) == 2){ //kalau raja gerak 2 kolom
+            if(Info(X.P).posisiC == 4) //kalau castling panjang
+                Info(X.P).posisiC = 1;
+            else if(Info(X.P).posisiC == 6)
+                Info(X.P).posisiC = 8;
+        }
     }
 }

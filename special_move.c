@@ -181,15 +181,15 @@ boolean cek_castling(stack* history, list *list_ada_putih, list *list_ada_hitam,
         lawan = *list_ada_putih;
     }
     if (InfoTail(*giliran) == 1){ //giliran putih
-        *P = First(*list_ada_putih);
-        *P2 = First(*list_ada_putih);}
+        *P = First(*list_ada_putih); //raja
+        *P2 = First(*list_ada_putih);} //benteng
     else{ //giliran == 2, hitam
-        *P = First(*list_ada_hitam);
-        *P2 = First(*list_ada_hitam);}
+        *P = First(*list_ada_hitam); //raja
+        *P2 = First(*list_ada_hitam);} //benteng
     while(((*P) != Nil_list)&&!can){
         if((Info(*P).nama == 'K') && (!(HasMoved(Info(*P),*history)))){
             while((*P2) != Nil_list){
-                if((Info(*P2).nama == 'R')&&(!(HasMoved(Info(*P),*history)))){
+                if((Info(*P2).nama == 'R') && (!(HasMoved(Info(*P),*history)))){
                     if((((Info(*P2)).posisiC==(Info(*P).posisiC+3)) && !isthreaten(lawan, Info(*P).posisiC, Info(*P).posisiR, board, &P1, &jml) && 
                     !isthreaten(lawan, Info(*P).posisiC+1, Info(*P).posisiR, board, &P1, &jml) && !isthreaten(lawan, Info(*P).posisiC+2, Info(*P).posisiR, board, &P1, &jml) 
                     && (*board[Info(*P).posisiR][Info(*P).posisiC+1]).nama==' ' && (*board[Info(*P).posisiR][Info(*P).posisiC+2]).nama==' ' ) || 
@@ -233,6 +233,7 @@ void castling(stack *history, list *list_ada_putih, list *list_ada_hitam, queue 
     X.promotion = false;
     X.twosteps = false;
     X.enpassant = false;
+    X.P = P2; //alamat benteng yg castling
     Push(history,X);
     if (InfoTail(*giliran) == 1) //giliran berubah
         Add(giliran, 2);
