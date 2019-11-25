@@ -5,6 +5,7 @@ void enpassant(papan *board[10][10], stack *history, stack *termakan, int *poin_
 
 void special_move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn){
     address_list P;
+    address_list P2;
     /*
     if(!cek_enpassant() && !cek_castling()){ //ga bisa dua-duanya
         printf("\nTidak ada gerakan khusus yang bisa dilakukan.\n");
@@ -115,7 +116,33 @@ void enpassant(papan *board[10][10], stack *history, stack *termakan, int *poin_
         Add(giliran, 1);
 }
 
-
+void castling(stack *history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list P, address_list P2, int turn){
+    infotype_stack X;
+    int temp_posC;
+    if(Info(P2).posisiC==8){
+        Info(P2).posisiC = 6;
+        Info(P).posisiC = 7;
+    } else if (Info(P2).posisiC==1){
+        Info(P2).posisiC = 4;
+        Info(P).posisiC = 2;
+    } 
+    X.nama = Info(P).nama;
+    X.player = InfoTail(*giliran);
+    X.poin = Info(P).poin;
+    X.posisiR_lama = Info(P).posisiR;
+    X.posisiC_lama = 5;
+    X.posisiR_baru = Info(P).posisiR;
+    X.posisiC_baru = Info(P).posisiC;
+    X.turn = turn;
+    X.promotion = false;
+    X.twosteps = false;
+    X.enpassant = false;
+    Push(history,X);
+    if (InfoTail(*giliran) == 1) //giliran berubah
+        Add(giliran, 2);
+    else
+        Add(giliran, 1);
+}
 
 boolean HasMoved(piece P, stack history) //ngecek apakah raja ada di stack history ato ngga
 { //note for some reason pas gw cek indeks 1 ama 2 ga kedeteksi. semoga kompi gw doang.
@@ -132,13 +159,54 @@ boolean HasMoved(piece P, stack history) //ngecek apakah raja ada di stack histo
     return Moved;
 }
 
-void castling(piece Raja, piece Benteng, stack history, papan* board[10][10])
-{
-    if (!(HasMoved(Raja, history))) //kalau raja belum pernah gerak
-    {
-        if (((*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ') && ((*board[Raja.posisiR][Raja.posisiC+1]).nama == ' ') && (!(HasMoved(Benteng, history))))
-        {
-            // (*board[Raja.posisiR][Raja.posisiC+2]).nama == 'R';
-        }
+boolean cek_castling(stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P, address_list *P2, papan *board[10][10]){
+    boolean can = false;
+    list kawan, lawan;
+    if (InfoTail(*giliran) == 1) { //putih
+        kawan = *list_ada_putih; //piece yg masih ada di papan
+        lawan = *list_ada_hitam;
     }
+    else { //giliran == 2, hitam
+        kawan = *list_ada_hitam;
+        lawan = *list_ada_putih;
+    }
+    if (InfoTail(*giliran) == 1){ //giliran putih
+        *P = First(*list_ada_putih);
+        *P2 = First(*list_ada_putih);}
+    else{ //giliran == 2, hitam
+        *P = First(*list_ada_hitam);
+        *P2 = First(*list_ada_hitam);}
+    while(((*P) != Nil_list)&&!can){
+        if((Info(*P).nama == 'K')&&(!(HasMoved(Info(*P),*history)))){
+            while((*P2) != Nil_list){
+                if((Info(*P2).nama == 'R')&&(!(HasMoved(Info(*P),*history)))){
+                    if((((Info(*P2)).posisiC==(Info(*P).posisiC+3)) && !isthreaten(lawan, Info(*P).posisiC, Info(*P).posisiR, board, &P1, &jml) && 
+                    !isthreaten(lawan, Info(*P).posisiC+1, Info(*P).posisiR, board, &P1, &jml) && !isthreaten(lawan, Info(*P).posisiC+2, Info(*P).posisiR, board, &P1, &jml) 
+                    && (*board[Info(*P).posisiR][Info(*P).posisiC+1]).nama==' ' && (*board[Info(*P).posisiR][Info(*P).posisiC+2]).nama==' ' ) || //atau castling kiri
+                    (((Info(*P2)).posisiC==(Info(*P).posisiC-4)) && !isthreaten(lawan, Info(*P).posisiC, Info(*P).posisiR, board, &P1, &jml) && 
+                    !isthreaten(lawan, Info(*P).posisiC-1, Info(*P).posisiR, board, &P1, &jml) && !isthreaten(lawan, Info(*P).posisiC-2, Info(*P).posisiR, board, &P1, &jml) 
+                    && !isthreaten(lawan, Info(*P).posisiC-3, Info(*P).posisiR, board, &P1, &jml) && (*board[Info(*P).posisiR][Info(*P).posisiC-1]).nama==' ' 
+                    && (*board[Info(*P).posisiR][Info(*P).posisiC-2]).nama==' '  && (*board[Info(*P).posisiR][Info(*P).posisiC-2]).nama==' ' )){
+                        can = true;
+                        break;
+                    }
+                }
+                *P2 = Next(*P2);
+            }
+        }
+        if(!can)        
+            *P = Next(*P);
+    }
+    return can;
 }
+
+// void castling(piece Raja, piece Benteng, stack history, papan* board[10][10])
+// {
+//     if (!(HasMoved(Raja, history))) //kalau raja belum pernah gerak
+//     {
+//         if (((*board[Raja.posisiR][Raja.posisiC+2]).nama == ' ') && ((*board[Raja.posisiR][Raja.posisiC+1]).nama == ' ') && (!(HasMoved(Benteng, history))))
+//         {
+//             // (*board[Raja.posisiR][Raja.posisiC+2]).nama == 'R';
+//         }
+//     }
+// }
