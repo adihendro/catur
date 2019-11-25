@@ -45,6 +45,5 @@ void gerakaman(list kawan, list lawan, papan *board[10][10], list *list_bisa_ger
     } else{
         *endgame = false;
     }
-
 }
 

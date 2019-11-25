@@ -42,6 +42,7 @@ int main(){
 
     if (pilihan_user == 50) { //2. Load Game
         system("clear");
+        //inisialisasi
         CreateEmpty_stack(&history);
         CreateEmpty_stack(&termakan);
         CreateEmpty_list(&list_ada_putih);
@@ -102,8 +103,8 @@ int main(){
         hitam_2 = nama_hitam[1];
         hitam_3 = nama_hitam[2];
 
+        delay(1000);
         system("clear");
-        // delay(2000);
     }
 
     papan *board2[10][10];
@@ -117,6 +118,7 @@ int main(){
 
     //LOOP GAME
     do{
+        //melakukan update pada papan
         updateboard(board2, list_ada_putih, list_ada_hitam);
         PrintPapan(board2);
 
@@ -164,12 +166,14 @@ int main(){
             else //InfoTail(giliran) == 2, hitam
                 poin_putih += 20; //putih yg nyekakmat
             status = 1;
+            delay(1000);
             break;
         } else if(endgame){ //tidak lagi skak dan ga ada yg bisa gerak
             printf("\033[1;33m"); //warna kuning
             printf("\nSTALEMATE\n");
             printf("\033[0m"); 
             status = 2;
+            delay(1000);
             break;
         } else if(iskak){ //skak biasa
             printf("\033[1;31m"); //warna merah
@@ -177,21 +181,21 @@ int main(){
             printf("\033[0m"); 
         }
         
-        if(turn == 100)
+        if(turn == 100) //kalau udh 100 gerakan
             break;
 
             
-        do{
+        do{ //main menu
             go=false;
-            blue;printf("   //++++++++++++++++++++++++++++++++++++++++++++\\\\ \n");
-            printf("  //--------");yellow;printf(" MOVE -- SPECIAL_MOVE -- UNDO");blue;printf(" --------\\\\\n");
-            printf(" //--------------");yellow;printf("SAVE --------- RESET");blue;printf("--------------\\\\\n");
-            printf("//++++++++++++++++++++++++++++++++++++++++++++++++++\\\\\n");normal;
+            blue;printf("            //++++++++++++++++++++++++++++++++++++++++++++\\\\ \n");
+            printf("           //--------");yellow;printf(" MOVE -- SPECIAL_MOVE -- UNDO");blue;printf(" --------\\\\\n");
+            printf("          //--------------");yellow;printf("SAVE --------- RESET");blue;printf("--------------\\\\\n");
+            printf("         //++++++++++++++++++++++++++++++++++++++++++++++++++\\\\\n");normal;
             printf("Masukkan command: ");
             scanf("%s",command);
             if((strcmp(command,"MOVE") == 0) || (strcmp(command,"SPECIAL_MOVE") == 0) ||
-            (strcmp(command,"UNDO") == 0) || (strcmp(command,"SAVE") == 0) ||
-            (strcmp(command,"RESET") == 0)){
+               (strcmp(command,"UNDO") == 0) || (strcmp(command,"SAVE") == 0) ||
+               (strcmp(command,"RESET") == 0)){
                 go=true;
             } else{
                 printf("Command salah!\n\n");
@@ -203,12 +207,12 @@ int main(){
         if(strcmp(command,"MOVE") == 0){
             turn++;
             move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn, list_bisa_gerak);
-            // delay(1000);
+            delay(1000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
             turn++;
             special_move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
-            // delay(2000);
+            delay(1500);
         }
         else if(strcmp(command,"UNDO") == 0){
             undo(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
@@ -216,10 +220,12 @@ int main(){
                 turn--;
             else if(turn>=2)
                 turn=turn-2;
+            delay(1000);
         }
         else if(strcmp(command,"SAVE") == 0){
             save(list_ada_putih, list_ada_hitam, poin_putih, poin_hitam, giliran, history, termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3, turn);
             printf("Save success!\n");
+            delay(1000);
         }
         else if(strcmp(command,"RESET") == 0){
             printf("Are you sure? (Y/N)\n");
@@ -230,9 +236,9 @@ int main(){
                 printf("Success!\n");
             } else
                 printf("Canceled.\n");
+            delay(1500);
         }
 
-        // printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
         printf("\n\n");
     } while(turn <= 100);
 
