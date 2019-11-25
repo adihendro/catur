@@ -1,6 +1,6 @@
 #include "tipe_bentukan.h"
     
-void save()
+void save(list list_ada_putih , list list_ada_hitam , int poin_putih , int poin_hitam , queue giliran , stack history , stack termakan, char putih_1, char putih_2, char putih_3, char hitam_1, char hitam_2, char hitam_3, int turn)
 {
     FILE * fp;
 
@@ -43,7 +43,7 @@ void save()
     fprintf(fp,";"); // tanda berakhir
     fclose (fp);
 
-    // simpan poin putih poin hitam dan giliran
+    // simpan poin putih poin hitam dan giliran dan turn
     // formatnya : 20|60|1;
     // 20 adalah poin putih, 60 poin hitam, 1 adalah giliran selanjutnya
     fp = fopen("save_file//poin.txt","w");
@@ -52,6 +52,9 @@ void save()
     fprintf(fp,"%d",poin_hitam);
     fprintf(fp,"|");
     fprintf(fp,"%d",InfoTail(giliran));
+    fprintf(fp,"|");
+    fprintf(fp,"%d", turn);
+    fprintf(fp, "|");
     fprintf(fp,";");
     fclose(fp);
 
@@ -74,6 +77,8 @@ void save()
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.player);
         fprintf(fp,"|");
+        fprintf(fp,"%d",temp.poin);
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.turn);
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.posisiR_lama);
@@ -87,6 +92,8 @@ void save()
         fprintf(fp,"%d",temp.promotion);
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.twosteps);
+        fprintf(fp,"|");
+        fprintf(fp,"%d",temp.enpassant);
         fprintf(fp,"|");
     }
     fprintf(fp,";");
@@ -109,6 +116,8 @@ void save()
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.player);
         fprintf(fp,"|");
+        fprintf(fp,"%d",temp.poin);
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.turn);
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.posisiR_lama);
@@ -123,9 +132,24 @@ void save()
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.twosteps);
         fprintf(fp,"|");
+        fprintf(fp,"%d",temp.enpassant);
+        fprintf(fp,"|");
     }
     fprintf(fp,";");
     fclose(fp);
 
+
+    // save kedua nama pemain
+    fp = fopen("save_file//namaplayer.txt","w");
+    fprintf(fp, "%c", putih_1);
+    fprintf(fp, "%c", putih_2);
+    fprintf(fp, "%c", putih_3);
+    fprintf(fp , "|");
+    fprintf(fp, "%c", hitam_1);
+    fprintf(fp, "%c", hitam_2);
+    fprintf(fp, "%c", hitam_3);
+    fprintf(fp , "|");
+    fprintf(fp , ";");
+    fclose(fp);
 }
 

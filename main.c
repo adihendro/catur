@@ -21,20 +21,18 @@ int main(){
     //GAME START 
     int pilihan_user;
     start(&pilihan_user);
-    // printf("%d\n",*pilihan_user);
-    char nama_putih[3];
-    char nama_hitam[3];
 
-    while (pilihan_user == 51) {
+    while (pilihan_user == 51) { //3. Leaderboard
+        system("clear");
         tampilkan_leaderboards();
         printf("Apakah kamu mau kembali sekarang? (Y/N)\n");
         char *pilihannya;
         pilihannya = (char*) malloc (sizeof(char));
         scanf("%c", pilihannya);
         scanf("%c", pilihannya); // jangan dihapus ntar error
-        if ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
-            while ((*pilihannya != 'y') && (*pilihannya != 'Y')) {
-                printf("\nBaiklah, silakan melihat leaderboards dulu.\nJika sudah siap kembali tekan Y. ");
+        if ((*pilihannya != 'Y') && (*pilihannya != 'y')) {
+            while ((*pilihannya != 'Y') && (*pilihannya != 'y')) {
+                printf("\nBaiklah, silakan melihat leaderboards dulu.\nJika sudah siap kembali tekan Y.\n");
                 scanf("%c", pilihannya);
                 scanf("%c", pilihannya); // jangan dihapus ntar error
             }
@@ -42,29 +40,69 @@ int main(){
         start(&pilihan_user); // lanjut tadi        
     }
 
-    if (pilihan_user == 50) {
+    if (pilihan_user == 50) { //2. Load Game
+        system("clear");
         CreateEmpty_stack(&history);
         CreateEmpty_stack(&termakan);
         CreateEmpty_list(&list_ada_putih);
         CreateEmpty_list(&list_ada_hitam);
         CreateEmpty_queue(&giliran, 2);
         // Add(&giliran, 1); //giliran pertama putih (1)
+        
         poin_putih=0;
         poin_hitam=0;
         turn=0;
-        load (&list_ada_putih , &list_ada_hitam , &poin_putih , &poin_hitam , &giliran , &history , &termakan);
+
+        load(&list_ada_putih, &list_ada_hitam, &poin_putih, &poin_hitam, &giliran, &history, &termakan, &putih_1, &putih_2, &putih_3, &hitam_1, &hitam_2, &hitam_3, &turn);
+        int v;
+        nama_putih[0] = putih_1;
+        nama_putih[1] = putih_2;
+        nama_putih[2] = putih_3;
+        nama_hitam[0] = hitam_1;
+        nama_hitam[1] = hitam_2;
+        nama_hitam[2] = hitam_3;
     }
 
-    else if (pilihan_user == 49){
+    else if (pilihan_user == 49){ //1. New Game
         inisialisasi();
         Add(&giliran, 1);
-        printf("Sebelum main, boleh tau namamu dulu ?\n");
-        printf("Nama Putih : ");
+
+        for (g = 0 ; g <= 3 ; g++) {
+            nama_putih[g] = ' ';
+            nama_hitam[g] = ' ';
+        }
+
+        printf("\033[1;35m");
+        printf("\nSebelum main, boleh tahu namamu dulu?\n");
+        printf("\033[0m"); 
+
+        printf("\033[1;32m"); //warna hijau
+        printf("Nama Putih: ");
+        printf("\033[0m"); 
+
         scanf("%s", nama_putih);
-        printf("Oke, kalau nama temanmu siapa ?\n");
-        printf("Nama Hitam : ");
+        printf("\033[1;35m");
+        printf("Oke, kalau nama temanmu siapa?\n");
+        printf("\033[0m"); 
+
+        printf("\033[1;31m"); //warna merah
+        printf("Nama Hitam: ");
+        printf("\033[0m"); 
+
         scanf("%s",nama_hitam);
-        printf("Baiklah, SELAMAT BERMAIN !!\n");
+
+        printf("\033[1;33m");
+        printf("\nBaiklah, SELAMAT BERMAIN!!\n\n\n");
+        printf("\033[0m");
+
+        putih_1 = nama_putih[0];
+        putih_2 = nama_putih[1];
+        putih_3 = nama_putih[2];
+        hitam_1 = nama_hitam[0];
+        hitam_2 = nama_hitam[1];
+        hitam_3 = nama_hitam[2];
+
+        system("clear");
         // delay(2000);
     }
 
@@ -76,20 +114,65 @@ int main(){
     }
 
 
-
+    //LOOP GAME
     do{
         updateboard(board2, list_ada_putih, list_ada_hitam);
         PrintPapan(board2);
+
         if (InfoTail(giliran) == 1){ //putih
             printf("\033[1;32m"); //warna hijau
-            printf("Giliran Putih\n");
+            printf("Giliran Putih");
             printf("\033[0m"); 
+
+            printf(" [");
+            for (i=0; i<=2; i++) {
+                printf("%c", nama_putih[i]);
+            }
+            printf("]\n");
+
+            kawan = list_ada_putih; //piece yg masih ada di papan
+            lawan = list_ada_hitam;
+            poin = poin_putih;
+
         } else{ //InfoTail(giliran) == 2, hitam
             printf("\033[1;31m"); //warna merah
-            printf("Giliran Hitam\n");
+            printf("Giliran Hitam");
             printf("\033[0m"); 
+
+            printf(" [");
+            for (i=0; i<=2; i++) {
+                printf("%c", nama_hitam[i]);
+            }
+            printf("]\n");
+
+            kawan = list_ada_hitam;
+            lawan = list_ada_putih;
+            poin = poin_hitam;
         }
 
+
+        //kondisi STALEMATE atau CHECKMATE
+        gerakaman(kawan, lawan, board2, &list_bisa_gerak, &jml_bs_grk, &endgame);
+        // printf("endgame: %d\n", endgame);
+        iskak = isskak(lawan, kawan, board2, &K, &P1, &jml);
+        if(iskak && endgame){ //lagi skak dan ga ada yg bisa gerak
+            // printf("\033[1;31m"); //warna merah
+            printf("\nCHECKMATE\n");
+            // printf("\033[0m"); 
+            break;
+        } else if(endgame){ //tidak lagi skak dan ga ada yg bisa gerak
+            // printf("\033[1;33m"); //warna kuning
+            printf("\nSTALEMATE\n");
+            // printf("\033[0m"); 
+            break;
+        } else if(iskak){ //skak biasa
+            printf("\033[1;31m"); //warna merah
+            printf("\nSKAK\n");
+            printf("\033[0m"); 
+        }
+        
+
+            
         do{
             go=false;
             printf("MOVE, SPECIAL_MOVE, UNDO, SAVE, RESET\n");
@@ -105,14 +188,15 @@ int main(){
         } while(!go);
 
 
+
         if(strcmp(command,"MOVE") == 0){
             turn++;
-            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
+            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn, list_bisa_gerak, jml_bs_grk, iskak);
             // delay(1000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
             turn++;
-            special_move(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
+            special_move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
             // delay(2000);
         }
         else if(strcmp(command,"UNDO") == 0){
@@ -123,14 +207,13 @@ int main(){
                 turn=turn-2;
         }
         else if(strcmp(command,"SAVE") == 0){
-            save();
+            save(list_ada_putih , list_ada_hitam , poin_putih , poin_hitam , giliran , history , termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3, turn);
             printf("Save success!\n");
         }
         else if(strcmp(command,"RESET") == 0){
-            printf("Are you sure?\n");
-            printf("(Y)es, (N)o\n");
+            printf("Are you sure? (Y/N)\n");
             scanf("%s",&choice2);
-            if(choice2=='Y'){
+            if((choice2=='Y') || (choice2=='y')){
                 inisialisasi();
                 Add(&giliran, 1);
                 printf("Success!\n");
