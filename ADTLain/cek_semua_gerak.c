@@ -1,4 +1,4 @@
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 #define kotak (*board[F.posisiR + a*x1*x2][F.posisiC + b*x1*x2])
 int a,b,temp;

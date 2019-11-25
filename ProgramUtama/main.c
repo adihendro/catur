@@ -1,19 +1,19 @@
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 #include "start.c"
 #include "inisialisasi.c"
-#include "print_papan.c"
-#include "listlinier.c"
-#include "listposisi.c"
-#include "stack.c"
-#include "queue.c"
+#include "..//Array//print_papan.c"
+#include "..//List//listlinier.c"
+#include "..//List//listposisi.c"
+#include "..//Stack//stack.c"
+#include "..//Queue//queue.c"
 #include "ascii_checker.c"
 #include "move.c"
 #include "special_move.c"
 #include "undo.c"
 #include "save.c"
 #include "load.c"
-#include "urut_leaderboards.c"
+#include "..//ADTLain//urut_leaderboards.c"
 
 
 int main(){
@@ -235,21 +235,39 @@ int main(){
 
 
     printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
-
+    // inisialisasi data nama dan skor
+    int i;
+    int j;
+    for (i = 0 ; i <= 11 ; i++) { // inisialisasi semua skor dengan 0 dan string dengan spasi
+        skor[i] = 0;
+        for (j = 1 ; j <= 3 ; j++) {
+            nama[i][j] = ' ';
+        }
+    };
     if(poin_putih > poin_hitam){
-        printf("\n                              SELAMAT ");
+        printf("\n                         SELAMAT ");
         for (i=0; i<=2; i++) {
             printf("%c", nama_putih[i]);
         }
         printf(" MENANG\n\n");
+        nama[0][1] = putih_1;
+        nama[0][2] = putih_2;
+        nama[0][3] = putih_3;
+        skor[0] = poin_putih;
+        tampilkan_leaderboards();
     } else if(poin_putih < poin_hitam){
-        printf("\n                              SELAMAT ");
+        printf("\n                         SELAMAT ");
         for (i=0; i<=2; i++) {
             printf("%c", nama_hitam[i]);
         }
         printf(" MENANG\n\n");
+        nama[0][1] = hitam_1;
+        nama[0][2] = hitam_2;
+        nama[0][3] = hitam_3;
+        skor[0] = poin_hitam;
+        tampilkan_leaderboards();
     } else{ //poin sama
-        printf("\n");
+        printf("\n                      ");
         for (i=0; i<=2; i++) {
             printf("%c", nama_putih[i]);
         }

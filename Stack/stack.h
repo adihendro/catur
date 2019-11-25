@@ -2,7 +2,7 @@
 #define stack_H
 
 #include <stdio.h>
-#include "boolean.h"
+#include "..//ProgramUtama//boolean.h"
 
 /* MODUL STACK
 Deklarasi stack yang diimplementasi dengan tabel kontigu alokasi statik dan ukuran sama

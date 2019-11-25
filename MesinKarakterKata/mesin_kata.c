@@ -1,9 +1,3 @@
-// nama : nyoman kevin cahyadi giri
-// nim : 18218001
-// tanggal : 26 september 2019
-// topik : mesin kata
-// deskripsi : implemetasi mesin kata
-
 #include "mesin_kar.c"
 #include "mesin_kata.h"
 

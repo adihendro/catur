@@ -6,8 +6,8 @@
 /* Representasi address_list dengan pointer */
 
 #include <stdio.h>
-#include "boolean.h"
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//boolean.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 
 /* Definisi list : */

@@ -4,7 +4,7 @@
 #ifndef queue_H
 #define queue_H
 
-#include "boolean.h"
+#include "..//ProgramUtama//boolean.h"
 
 #define Nil_queue 0
 

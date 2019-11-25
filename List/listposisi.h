@@ -1,7 +1,7 @@
 #ifndef listposisi_H
 #define listposisi_H
 
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 /* Definisi list_posisi : */
 /* list_posisi kosong : First(L) = Nil */

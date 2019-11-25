@@ -1,10 +1,10 @@
 #include "tipe_bentukan.h"
 
-#include "print_semua.c"
+#include "..//ADTLain//print_semua.c"
 #include "ada_orang.c"
-#include "cek_semua_gerak.c"
-#include "cek_bisa_gerak.c"
-#include "jadi_skak.c"
+#include "..//ADTLain//cek_semua_gerak.c"
+#include "..//ADTLain//cek_bisa_gerak.c"
+#include "..//ADTLain//jadi_skak.c"
 #include "gerak_aman.c"
 
 

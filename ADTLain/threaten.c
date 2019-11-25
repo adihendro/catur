@@ -1,4 +1,4 @@
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 boolean isthreaten(list lawan, int x, int y, papan *board[10][10], address_list *P1, int *jml){ 
     //mengefound apakah suatu spot berbahaya untuk raja
