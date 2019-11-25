@@ -33,17 +33,13 @@ void inisialisasi(){
     construct('P', 1, 1, 7, 8, &list_ada_putih); //pion putih
 
     construct('K', 1, 10, 8, 5, &list_ada_putih); //raja putih
-    // construct('K', 1, 10, 6, 5, &list_ada_putih); //raja putih
     construct('Q', 1, 8, 8, 4, &list_ada_putih); //ratu putih
     construct('B', 1, 4, 8, 3, &list_ada_putih); //menteri putih
     construct('B', 1, 4, 8, 6, &list_ada_putih); //menteri putih
     construct('R', 1, 4, 8, 1, &list_ada_putih); //benteng putih
-    // construct('R', 1, 4, 5, 1, &list_ada_putih); //benteng putih
     construct('R', 1, 4, 8, 8, &list_ada_putih); //benteng putih
     construct('N', 1, 2, 8, 2, &list_ada_putih); //kuda putih
     construct('N', 1, 2, 8, 7, &list_ada_putih); //kuda putih
-
-    // construct('Q', 1, 2, 5, 5, &list_ada_putih); 
 
 
     construct('P', 2, 1, 2, 1, &list_ada_hitam); //pion hitam
@@ -57,7 +53,6 @@ void inisialisasi(){
 
     construct('K', 2, 10, 1, 5, &list_ada_hitam); //raja hitam
     construct('Q', 2, 8, 1, 4, &list_ada_hitam); //ratu hitam
-    // construct('Q', 2, 8, 3, 5, &list_ada_hitam); //ratu hitam
     construct('B', 2, 4, 1, 3, &list_ada_hitam); //menteri hitam
     construct('B', 2, 4, 1, 6, &list_ada_hitam); //menteri hitam
     construct('R', 2, 4, 1, 1, &list_ada_hitam); //benteng hitam

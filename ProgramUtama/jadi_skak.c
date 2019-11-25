@@ -1,6 +1,6 @@
 #include "..//ProgramUtama//tipe_bentukan.h"
 
-boolean isskak(list lawan, list kawan, papan *board[10][10], address_list *K, address_list *P1, int *jml);
+boolean isskak(list lawan, list kawan, papan *board[10][10], address_list *K, address_list *P1);
 
 //kalau bidak ini pindah apakah bakal jadi skak?
 boolean jadi_skak(list lawan, list kawan, papan *board[10][10], piece F, int posisiR, int posisiC){
@@ -52,20 +52,20 @@ boolean jadi_skak(list lawan, list kawan, papan *board[10][10], piece F, int pos
 
         if(P == First(lawan)){ //kalau elemen pertama list
             DelFirst(&lawan, &P);
-            jadi = isskak(lawan, kawan, board4, &K, &P1, &jml);
+            jadi = isskak(lawan, kawan, board4, &K, &P1);
             InsertFirst(&lawan, P);
         } else if(P == Last){ //kalau elemen terakhir
             DelAkhir(&lawan, P1);
-            jadi = isskak(lawan, kawan, board4, &K, &P1, &jml);
+            jadi = isskak(lawan, kawan, board4, &K, &P1);
             InsertAkhir(&lawan, P1, P);
         } else{
             DelAfter(&lawan, &P, P1); // hapus bidak lawan dari list linier lawan 
-            jadi = isskak(lawan, kawan, board4, &K, &P1, &jml);
+            jadi = isskak(lawan, kawan, board4, &K, &P1);
             InsertAfter(&lawan, P, P1);
         }
 
     } else{
-        jadi = isskak(lawan, kawan, board4, &K, &P1, &jml);
+        jadi = isskak(lawan, kawan, board4, &K, &P1);
     }
 
     if(F.nama == 'K'){ //kalau bidaknya king

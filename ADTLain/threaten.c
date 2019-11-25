@@ -1,39 +1,36 @@
 #include "..//ProgramUtama//tipe_bentukan.h"
 
-boolean isthreaten(list lawan, int x, int y, papan *board[10][10], address_list *P1, int *jml){ 
+boolean isthreaten(list lawan, int x, int y, papan *board[10][10], address_list *P1){ 
     //mengefound apakah suatu spot berbahaya untuk raja
     list_posisi dftr_posisi;
     address_posisi R;
     address_list P;
     boolean found = false;
-    (*jml)=0; //inisialisasi awal jml
     P = First(lawan);
 
-    while (P!=Nil_list && (*jml)<=1){
+    while (P!=Nil_list){
         CreateEmpty_posisi(&dftr_posisi);
         ceksemuagerak(Info(P), board, &dftr_posisi); //menyimpan semua gerakan yang mungkin dari bidak lawan
         R = First(dftr_posisi);
 
-        while (R!=Nil_list && (*jml)<=1){
+        while (R!=Nil_list){
             if((Info(R).posisiC==x)&&(Info(R).posisiR==y)){
                 found = true;
-                (*jml)++;
                 *P1 = P;
             }
             R = Next(R);
         }
-
         P = Next(P);
     }
     return found;
 }
 
-boolean isskak(list lawan, list kawan, papan *board[10][10], address_list *K, address_list *P1, int *jml){
+boolean isskak(list lawan, list kawan, papan *board[10][10], address_list *K, address_list *P1){
     *K = First(kawan);
     while ((*K!=Nil_list) && (Info(*K).nama!='K'))
         *K = Next(*K);
         
-    return (isthreaten(lawan, Info(*K).posisiC, Info(*K).posisiR, board, P1, jml));
+    return (isthreaten(lawan, Info(*K).posisiC, Info(*K).posisiR, board, P1));
 }
 
 

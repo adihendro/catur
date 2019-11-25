@@ -2,13 +2,12 @@
 
 #include "..//ADTLain//threaten.c"
 
-void gerakaman(list kawan, list lawan, papan *board[10][10], list *list_bisa_gerak, int *jml_bs_grk, boolean *endgame){
+void gerakaman(list kawan, list lawan, papan *board[10][10], list *list_bisa_gerak, boolean *endgame){
     address_list P, R, R1;
     address_posisi Q, PrecQ;
     // lihat bidak yang masih ada di papan dari list linier dan memasukkan ke list_bisa_gerak
     P = First(kawan);
     CreateEmpty_list(list_bisa_gerak);
-    *jml_bs_grk = 0;
     while (P != Nil_list) {
         if (cekbisagerak(Info(P), board)) { //Info(P) == piece
             InsVFirst(list_bisa_gerak, Info(P)); //dari list kawan dimasukkin ke list_bisa_gerak
@@ -36,10 +35,7 @@ void gerakaman(list kawan, list lawan, papan *board[10][10], list *list_bisa_ger
 
             if(IsEmpty_posisi(Gerakan(R))){ //kalo bidak tsb ga bisa gerak karena bikin skak
                 DelFirst(list_bisa_gerak, &R1); //maka didelete
-                (*jml_bs_grk)--;
             }
-
-            (*jml_bs_grk)++;
         }
         P = Next(P);
     }

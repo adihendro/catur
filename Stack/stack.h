@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "..//ProgramUtama//boolean.h"
 
+
 /* MODUL STACK
 Deklarasi stack yang diimplementasi dengan tabel kontigu alokasi statik dan ukuran sama
 TOP adalah alamat elemen puncak*/
@@ -25,7 +26,6 @@ typedef struct {
     boolean promotion; //kalau pion bisa promosi
     boolean twosteps; //kalau pion maju dua kotak (bisa en passant)
     boolean enpassant; //kalau pion udh en passant
-    address_list P; //alamat benteng kalau castling
 } infotype_stack;
 
 typedef int address_stack;

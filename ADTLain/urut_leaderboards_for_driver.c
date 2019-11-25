@@ -1,4 +1,5 @@
 #include "..//ProgramUtama//tipe_bentukan.h"
+#include "..//MesinKarakterKata//mesin_kata.c"
 
 
 void swap_skor(int skor[10] , int index_baru) {

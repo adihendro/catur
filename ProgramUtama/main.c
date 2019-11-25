@@ -153,8 +153,8 @@ int main(){
 
 
         //kondisi STALEMATE atau CHECKMATE
-        gerakaman(kawan, lawan, board2, &list_bisa_gerak, &jml_bs_grk, &endgame);
-        iskak = isskak(lawan, kawan, board2, &K, &P1, &jml);
+        gerakaman(kawan, lawan, board2, &list_bisa_gerak, &endgame);
+        iskak = isskak(lawan, kawan, board2, &K, &P1);
         if(iskak && endgame){ //lagi skak dan ga ada yg bisa gerak
             printf("\033[1;31m"); //warna merah
             printf("\nCHECKMATE\n");
@@ -202,7 +202,7 @@ int main(){
 
         if(strcmp(command,"MOVE") == 0){
             turn++;
-            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn, list_bisa_gerak, jml_bs_grk);
+            move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn, list_bisa_gerak);
             // delay(1000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){

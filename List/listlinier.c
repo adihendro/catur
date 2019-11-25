@@ -13,7 +13,6 @@ boolean IsEmpty_list (list L){
 void CreateEmpty_list (list *L){                           
     First(*L) = Nil_list;
 }
-
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 

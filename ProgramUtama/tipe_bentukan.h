@@ -71,6 +71,7 @@ typedef struct {
 #define Parent(L) (L).Parent
 
 
+//inisialisasi iterasi
 int i,j,k;
 
 boolean go; //dipake di main.c masukkan command
@@ -80,6 +81,7 @@ char* choice;
 char choice2;
 char command[100];
 
+//deklarasi buat inisialisasi
 stack history, termakan;
 list list_ada_putih, list_ada_hitam;
 queue giliran;
@@ -90,14 +92,12 @@ int turn; //berapa kali udh gerakan
 //untuk cek skak
 address_list K;
 address_list P1;
-int jml;
 boolean iskak;
 
 //asosiasi list dari list_ada_putih dan list_ada_hitam
 list kawan, lawan; //list piece apa yg ada di papan 
 list list_bisa_gerak;
 int poin;
-int jml_bs_grk;
 
 boolean endgame; //untuk STALEMATE dan CHECKMATE
 int status; //untuk STALEMATE dan CHECKMATE
@@ -109,9 +109,7 @@ char nama[11][4]; //ada 10 nama, maks 20 karakter per nama
 int skor[11];
 char putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3;
 
-// nama_putih = (char *) malloc (sizeof(4 * char));
-// nama_hitam = (char *) malloc (sizeof(4 * char));
-
+//fungsi di dalam ascii_checker
 void string2ByteArray(char* input, int* output);
 void stringToInt(char* ascii_str,int* Ret);
 

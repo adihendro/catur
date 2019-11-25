@@ -101,10 +101,31 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
     //cek kalau abis castling
     if(Info(P).nama == 'K'){
         if(abs(X.posisiC_baru-X.posisiC_lama) == 2){ //kalau raja gerak 2 kolom
-            if(Info(X.P).posisiC == 4) //kalau castling panjang
-                Info(X.P).posisiC = 1;
-            else if(Info(X.P).posisiC == 6)
-                Info(X.P).posisiC = 8;
+            address_list P1, P2;
+            boolean found = false;
+
+            if (Info(P).player == 1) //giliran putih
+                P1 = First(*list_ada_putih);
+            else //giliran hitam
+                P1 = First(*list_ada_putih);
+
+            P2 = P1;
+
+            //cari R di mana
+            while((P1!=Nil_list) && !found){
+                if(Info(P1).nama == 'R'){
+                    if((Info(P1).posisiR==Info(P).posisiR) && ((Info(P1).posisiC==4) || (Info(P1).posisiC==6))){
+                        found = true;
+                        P2 = P1;
+                    }
+                }
+                P1 = Next(P1);
+            }
+
+            if(Info(P2).posisiC == 4) //kalau castling panjang
+                Info(P2).posisiC = 1;
+            else if(Info(P2).posisiC == 6) //kalau castling pendek
+                Info(P2).posisiC = 8;
         }
     }
 }
