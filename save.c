@@ -1,6 +1,6 @@
 #include "tipe_bentukan.h"
     
-void save()
+void save(list list_ada_putih , list list_ada_hitam , int poin_putih , int poin_hitam , queue giliran , stack history , stack termakan, char putih_1, char putih_2, char putih_3, char hitam_1, char hitam_2, char hitam_3)
 {
     FILE * fp;
 
@@ -127,5 +127,18 @@ void save()
     fprintf(fp,";");
     fclose(fp);
 
+
+    // save kedua nama pemain
+    fp = fopen("save_file//namaplayer.txt","w");
+    fprintf(fp, "%c", putih_1);
+    fprintf(fp, "%c", putih_2);
+    fprintf(fp, "%c", putih_3);
+    fprintf(fp , "|");
+    fprintf(fp, "%c", hitam_1);
+    fprintf(fp, "%c", hitam_2);
+    fprintf(fp, "%c", hitam_3);
+    fprintf(fp , "|");
+    fprintf(fp , ";");
+    fclose(fp);
 }
 

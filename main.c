@@ -21,9 +21,6 @@ int main(){
     //GAME START 
     int pilihan_user;
     start(&pilihan_user);
-    // printf("%d\n",*pilihan_user);
-    char nama_putih[3];
-    char nama_hitam[3];
 
     while (pilihan_user == 51) { //3. Leaderboard
         system("clear");
@@ -54,12 +51,24 @@ int main(){
         poin_putih=0;
         poin_hitam=0;
         turn=0;
-        load (&list_ada_putih, &list_ada_hitam, &poin_putih, &poin_hitam, &giliran, &history, &termakan);
+        load (&list_ada_putih, &list_ada_hitam, &poin_putih, &poin_hitam, &giliran, &history, &termakan, &putih_1, &putih_2, &putih_3, &hitam_1, &hitam_2, &hitam_3);
+        int v;
+        nama_putih[0] = putih_1;
+        nama_putih[1] = putih_2;
+        nama_putih[2] = putih_3;
+        nama_hitam[0] = hitam_1;
+        nama_hitam[1] = hitam_2;
+        nama_hitam[2] = hitam_3;
     }
 
     else if (pilihan_user == 49){ //1. New Game
         inisialisasi();
         Add(&giliran, 1);
+
+        for (g = 0 ; g <= 3 ; g++) {
+            nama_putih[g] = ' ';
+            nama_hitam[g] = ' ';
+        }
         printf("\033[1;35m");
         printf("\nSebelum main, boleh tahu namamu dulu?\n");
         printf("\033[0m"); 
@@ -78,10 +87,18 @@ int main(){
         printf("\033[0m"); 
 
         scanf("%s",nama_hitam);
+
         printf("\033[1;33m");
         printf("\nBaiklah, SELAMAT BERMAIN!!\n\n\n");
-        printf("\033[0m"); 
+        printf("\033[0m");
 
+        putih_1 = nama_putih[0];
+        putih_2 = nama_putih[1];
+        putih_3 = nama_putih[2];
+        hitam_1 = nama_hitam[0];
+        hitam_2 = nama_hitam[1];
+        hitam_3 = nama_hitam[2];
+        
         system("clear");
         // delay(2000);
     }
@@ -167,7 +184,7 @@ int main(){
                 turn=turn-2;
         }
         else if(strcmp(command,"SAVE") == 0){
-            save();
+            save(list_ada_putih , list_ada_hitam , poin_putih , poin_hitam , giliran , history , termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3);
             printf("Save success!\n");
         }
         else if(strcmp(command,"RESET") == 0){
