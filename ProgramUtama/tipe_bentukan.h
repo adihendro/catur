@@ -58,10 +58,10 @@ typedef struct {
 
 
 #include "boolean.h"
-#include "listlinier.h"
-#include "listposisi.h"
-#include "stack.h"
-#include "queue.h"
+#include "..//List//listlinier.h"
+#include "..//List//listposisi.h"
+#include "..//Stack//stack.h"
+#include "..//Queue//queue.h"
 
 #define Nil_list NULL
 #define Info(P) (P)->info
@@ -100,10 +100,13 @@ int poin;
 int jml_bs_grk;
 
 boolean endgame; //untuk STALEMATE dan CHECKMATE
+int status; //untuk STALEMATE dan CHECKMATE
 
 // untuk menyimpan nama si putih dan hitam
 char nama_putih[4];
 char nama_hitam[4];
+char nama[11][4]; //ada 10 nama, maks 20 karakter per nama
+int skor[11];
 char putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3;
 
 // nama_putih = (char *) malloc (sizeof(4 * char));

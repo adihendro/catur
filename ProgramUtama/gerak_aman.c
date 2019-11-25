@@ -1,6 +1,6 @@
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
-#include "threaten.c"
+#include "..//ADTLain//threaten.c"
 
 void gerakaman(list kawan, list lawan, papan *board[10][10], list *list_bisa_gerak, int *jml_bs_grk, boolean *endgame){
     address_list P, R, R1;

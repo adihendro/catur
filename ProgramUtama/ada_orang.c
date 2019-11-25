@@ -1,4 +1,4 @@
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 boolean adaorang(list lawan, int x, int y, address_list *P1, address_list *P2, address_list *P){
     boolean found=false;

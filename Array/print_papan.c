@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 void PrintPapan(papan *board[10][10]){
 	/*jadi gw mikirnya board ini array yang terdiri dari tipe bentukan piece

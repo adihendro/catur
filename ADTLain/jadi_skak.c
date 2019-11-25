@@ -1,4 +1,4 @@
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 boolean isskak(list lawan, list kawan, papan *board[10][10], address_list *K, address_list *P1, int *jml);
 

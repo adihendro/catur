@@ -1,4 +1,4 @@
-#include "tipe_bentukan.h"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 piece bidak;
 list L;

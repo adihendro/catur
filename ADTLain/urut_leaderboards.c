@@ -1,7 +1,4 @@
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-// #include "mesin_kata.c"
+#include "..//ProgramUtama//tipe_bentukan.h"
 
 void swap_skor(int skor[10] , int index_baru) {
     int temp;
@@ -21,23 +18,11 @@ void swap_nama(char nama[10][4], int index_baru) {
 }
 
 void tampilkan_leaderboards () {
-    // inisialisasi data nama dan skor
-    char nama[11][4]; //ada 10 nama, maks 20 karakter per nama
-    int skor[11];
-    int i;
-    int j;
-    for (i = 0 ; i <= 11 ; i++) { // inisialisasi semua skor dengan 0 dan string dengan spasi
-        skor[i] = 0;
-        for (j = 1 ; j <= 3 ; j++) {
-            nama[i][j] = ' ';
-        }
-    };
-
     // load leaderboards yang sudah ada
     char str[50];
     char CC;
     FILE *filename;
-    strcpy(str,"leaderboards.txt");
+    strcpy(str,"..//save_file//leaderboards.txt");
     START(str);
     // filename = fopen("leaderboards.txt","r");
     i = 1;
@@ -50,13 +35,6 @@ void tampilkan_leaderboards () {
         for (j = 1 ; j <= 3 ; j++) {
             nama[i][j] = CKata.TabKata[j];
         }
-        // while (CC != '|') {
-        //     nama[i][j] = CC;
-        //     j++;
-        //     // retval = fscanf(pita,"%c",&CC);
-        //     ADV();
-        //     CC = GetCC();
-        // }
         ADV();
         CC = GetCC();
         while (CC != '^') {
@@ -69,19 +47,6 @@ void tampilkan_leaderboards () {
         ADV();
     }   
     
-    // // user memasukkan nama dan skornya : hanya untuk test nanti bakal diilangin
-    // //user input nama mereka
-    // char inputan_nama[20];
-    // printf("nama : ");
-    // scanf("%s", inputan_nama);
-    // int z;
-    // for (z = 0 ; z <= 2 ; z++) { // masukkan nama pemain yang menang ke dalam list pemain yang ada
-    //     nama[0][z+1] = inputan_nama[z];
-    // }
-    // //user input nilai
-    // int nilai;
-    // scanf("%d",&nilai);
-    // skor[0] = nilai; // nilai yang menang dimasukkan ke index 0
 
     // fungsi mengurutkan leaderboards berdasarkan skor dan nama
     int urut = 0; // ini sebenernya boolean cuma belum include booleanh
@@ -140,7 +105,13 @@ void tampilkan_leaderboards () {
     printf("###########################################################################\n");
     printf("\033[0m");
     printf("###########################################################################\n");
-    printf("\n\n\n");
+    printf("\n\n");
+    printf("\033[1;33m");
+    printf("             __    _         __                _             __            \n");
+    printf("      |     |__   /_\\   |\\  |__  |)  |)  /\\   /_\\   |)  |\\  |__            \n");
+    printf("      |__   |__  /   \\  |/  |__  |\\  |)  \\/  /   \\  |\\  |/   __|           \n");
+    printf("\n");
+    printf("\033[0m");
     i = 0;
     j = 1;
     int printed;
