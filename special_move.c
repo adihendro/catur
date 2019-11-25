@@ -106,8 +106,14 @@ void enpassant(stack *history, stack *termakan, int *poin_putih, int *poin_hitam
         Add(giliran, 1);
 }
 
-void castling(stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P){
-    
+void castling(stack *history, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list P){
+    infotype_stack X;
+    if (InfoTail(*giliran) == 1){ //giliran putih
+        *P = First(*list_ada_putih);
+        *P2 = First(*list_ada_putih);}
+    else{ //giliran == 2, hitam
+        *P = First(*list_ada_hitam);
+        *P2 = First(*list_ada_hitam);}
     if (InfoTail(*giliran) == 1) //giliran berubah
         Add(giliran, 2);
     else
