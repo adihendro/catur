@@ -116,6 +116,8 @@ void save(list list_ada_putih , list list_ada_hitam , int poin_putih , int poin_
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.player);
         fprintf(fp,"|");
+        fprintf(fp,"%d",temp.poin);
+        fprintf(fp,"|");
         fprintf(fp,"%d",temp.turn);
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.posisiR_lama);
@@ -129,6 +131,8 @@ void save(list list_ada_putih , list list_ada_hitam , int poin_putih , int poin_
         fprintf(fp,"%d",temp.promotion);
         fprintf(fp,"|");
         fprintf(fp,"%d",temp.twosteps);
+        fprintf(fp,"|");
+        fprintf(fp,"%d",temp.enpassant);
         fprintf(fp,"|");
     }
     fprintf(fp,";");
