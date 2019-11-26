@@ -14,10 +14,14 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
         printf("\nTidak ada gerakan khusus yang bisa dilakukan.\n");
 
     } else if(cek_enpassant(board, history, list_ada_putih, list_ada_hitam, giliran, &Pe) && cek_castling(history, list_ada_putih, list_ada_hitam, giliran, &P, &P1, &P2, board, &jumlah)){ //bisa dua-duanya
+        printf("\033[1;36m");
         printf("\nDaftar gerakan khusus yang bisa dilakukan:\n");
+        printf("\033[0m");
         printf("   1. Castling\n");
         printf("   2. En Passant\n");
+        printf("\033[1;33m");
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
+        printf("\033[0m");
         do{    
             choice = (char*) malloc (sizeof(100));
             scanf("%s",choice);
@@ -32,10 +36,14 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
             else if(jumlah==2) //cuman castling kiri
                 castling(history, list_ada_putih, list_ada_hitam, giliran, P, P2, turn);
             else{ //jumlah==3, castling kanan kiri
+                printf("\033[1;36m");
                 printf("\nTerdapat dua jenis Castling:\n");
+                printf("\033[0m");
                 printf("   1. Castling pendek\n");
                 printf("   2. Castling panjang\n");
+                printf("\033[1;33m");
                 printf("Pilih gerakan Castling yang ingin dilakukan: ");
+                printf("\033[0m");
                 do{    
                     choice = (char*) malloc (sizeof(100));
                     scanf("%s",choice);
@@ -57,9 +65,13 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
         }
 
     } else if(cek_enpassant(board, history, list_ada_putih, list_ada_hitam, giliran, &Pe)){
+        printf("\033[1;36m");
         printf("\nDaftar gerakan khusus yang bisa dilakukan:\n");
+        printf("\033[0m");
         printf("   1. En Passant\n");
+        printf("\033[1;33m");
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
+        printf("\033[0m");
         do{    
             choice = (char*) malloc (sizeof(100));
             scanf("%s",choice);
@@ -72,9 +84,13 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
             printf("\nEn Passant berhasil dilakukan.\n");}
 
     } else if(cek_castling(history, list_ada_putih, list_ada_hitam, giliran, &P, &P1, &P2, board, &jumlah)){
+        printf("\033[1;36m");
         printf("\nDaftar gerakan khusus yang bisa dilakukan:\n");
+        printf("\033[0m");
         printf("   1. Castling\n");
+        printf("\033[1;33m");
         printf("Pilih gerakan khusus yang ingin dilakukan: ");
+        printf("\033[0m");
         do{    
             choice = (char*) malloc (sizeof(100));
             scanf("%s",choice);
@@ -88,10 +104,14 @@ void special_move(papan *board[10][10], stack *history, stack *termakan, int *po
             else if(jumlah==2) //cuman castling kiri
                 castling(history, list_ada_putih, list_ada_hitam, giliran, P, P2, turn);
             else{ //jumlah==3, castling kanan kiri
+                printf("\033[1;36m");
                 printf("\nTerdapat dua jenis Castling:\n");
+                printf("\033[0m");
                 printf("   1. Castling pendek\n");
                 printf("   2. Castling panjang\n");
+                printf("\033[1;33m");
                 printf("Pilih gerakan Castling yang ingin dilakukan: ");
+                printf("\033[0m");
                 do{    
                     choice = (char*) malloc (sizeof(100));
                     scanf("%s",choice);

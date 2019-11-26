@@ -90,7 +90,7 @@ int main(){
         printf("Nama Hitam: ");
         printf("\033[0m"); 
 
-        scanf("%s",nama_hitam);
+        scanf("%s", nama_hitam);
 
         printf("\033[1;33m");
         printf("\nBaiklah, SELAMAT BERMAIN!!\n\n\n");
@@ -249,16 +249,16 @@ int main(){
 
     printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
     // inisialisasi data nama dan skor
-    for (i = 0 ; i <= 11 ; i++) { // inisialisasi semua skor dengan 0 dan string dengan spasi
+    for (i=0; i<=11; i++) { // inisialisasi semua skor dengan 0 dan string dengan spasi
         skor[i] = 0;
-        for (j = 1 ; j <= 3 ; j++) {
+        for (j=1; j<=3; j++) {
             nama[i][j] = ' ';
         }
     }
 
     if(poin_putih > poin_hitam){
         printf("\033[1;33m");
-        printf("\n                         SELAMAT ");
+        printf("\n                            SELAMAT ");
         for (i=0; i<=2; i++) {
             printf("%c", nama_putih[i]);
         }
@@ -271,7 +271,7 @@ int main(){
         tampilkan_leaderboards();
     } else if(poin_putih < poin_hitam){
         printf("\033[1;33m");
-        printf("\n                         SELAMAT ");
+        printf("\n                            SELAMAT ");
         for (i=0; i<=2; i++) {
             printf("%c", nama_hitam[i]);
         }
@@ -284,7 +284,7 @@ int main(){
         tampilkan_leaderboards();
     } else{ //poin sama
         printf("\033[1;33m");
-        printf("\n                      ");
+        printf("\n                         ");
         for (i=0; i<=2; i++) {
             printf("%c", nama_putih[i]);
         }

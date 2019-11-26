@@ -242,8 +242,10 @@ piece promotion(piece P, boolean *ispromoted)
 
     if(((P.posisiR == 2) && (P.player == 1)) || ((P.posisiR == 7) && (P.player == 2)))
     {
+        printf("\033[1;36m");
         printf("\nPion telah mencapai ujung\n");
         printf("Terjadi special move promosi\n");
+        printf("\033[0m");
         
         printf("   1. Ratu\n");
         printf("   2. Menteri\n");
@@ -255,7 +257,9 @@ piece promotion(piece P, boolean *ispromoted)
         int X;
         do{    
             choice = (char*) malloc (sizeof(100));
+            printf("\033[1;33m");
             printf("Masukkan nomor perwira yang hendak dipilih: ");
+            printf("\033[0m");
             scanf("%s",choice);
             stringToInt(choice,&X);
             n = atoi(choice);
