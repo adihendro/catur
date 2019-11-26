@@ -224,7 +224,7 @@ int main(){
         }
         else if(strcmp(command,"SAVE") == 0){
             save(list_ada_putih, list_ada_hitam, poin_putih, poin_hitam, giliran, history, termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3, turn);
-            printf("Save success!\n");
+            printf("Permainan berhasil disimpan.\n");
             delay(1000);
         }
         else if(strcmp(command,"RESET") == 0){
@@ -240,6 +240,7 @@ int main(){
         }
 
         printf("\n\n");
+        
     } while(turn <= 100);
 
 
