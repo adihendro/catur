@@ -160,7 +160,7 @@ int main(){
         iskak = isskak(lawan, kawan, board2, &K, &P1);
         if(iskak && endgame){ //lagi skak dan ga ada yg bisa gerak
             printf("\033[1;31m"); //warna merah
-            printf("\nCHECKMATE\n");
+            printf("\n                                CHECKMATE\n");
             printf("\033[0m"); 
             if (InfoTail(giliran) == 1) //putih
                 poin_hitam += 20; //hitam yg nyekakmat
@@ -171,14 +171,14 @@ int main(){
             break;
         } else if(endgame){ //tidak lagi skak dan ga ada yg bisa gerak
             printf("\033[1;33m"); //warna kuning
-            printf("\nSTALEMATE\n");
+            printf("\n                                STALEMATE\n");
             printf("\033[0m"); 
             status = 2;
             delay(1000);
             break;
         } else if(iskak){ //skak biasa
             printf("\033[1;31m"); //warna merah
-            printf("\nSKAK\n\n");
+            printf("\n                                  SKAK\n\n");
             printf("\033[0m"); 
         }
         
