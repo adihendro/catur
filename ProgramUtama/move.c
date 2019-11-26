@@ -15,7 +15,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
     infotype_stack X;
 
     // list_posisi daftar_posisi;
-    address_list P, R, A, A1, A2, Last;
+    address_list P, R, A, A1, Last;
     address_posisi Q, PrecQ;
 
     boolean ispromoted = false;
@@ -107,7 +107,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         PrintBaris(Info(Q).posisiR);
         printf(")");
 
-        if(adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR, &A1, &A2, &A)){
+        if(adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR, &A1, &A)){
             printf(" X ");
 
             if (InfoTail(*giliran) == 1) { //putih
@@ -166,7 +166,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
 
 
     // lakukan fungsi swap
-    if (adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR, &A1, &A2, &A)) { //cek apakah ada bidak lawan
+    if (adaorang(lawan, Info(Q).posisiC, Info(Q).posisiR, &A1, &A)) { //cek apakah ada bidak lawan
 
         if(A == First(lawan)) //kalau elemen pertama list
             DelFirst(&lawan, &A);

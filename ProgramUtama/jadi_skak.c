@@ -4,7 +4,7 @@ boolean isskak(list lawan, list kawan, papan *board[10][10], address_list *K, ad
 
 //kalau bidak ini pindah apakah bakal jadi skak?
 boolean jadi_skak(list lawan, list kawan, papan *board[10][10], piece F, int posisiR, int posisiC){
-    address_list P, P1, P2, Last, K1;
+    address_list P, P1, Last, K1;
     boolean jadi;
     int tempR, tempC;
     papan board3[10][10];
@@ -42,7 +42,7 @@ boolean jadi_skak(list lawan, list kawan, papan *board[10][10], piece F, int pos
         Info(K1).posisiR = posisiR;
     }
 
-    if(adaorang(lawan, posisiC, posisiR, &P1, &P2, &P)){ //kalau di kotak itu ada musuh
+    if(adaorang(lawan, posisiC, posisiR, &P1, &P)){ //kalau di kotak itu ada musuh
 
         //cari elemen terakhir
         Last = First(lawan);

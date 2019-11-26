@@ -116,6 +116,7 @@ int main(){
 
     status = 0;
 
+
     //LOOP GAME
     do{
         //melakukan update pada papan
@@ -246,9 +247,9 @@ int main(){
     } while(turn <= 100);
 
 
-
+    //Akhir permainan
     printf("\nPoin Putih: %d\nPoin Hitam: %d\n", poin_putih, poin_hitam);
-    // inisialisasi data nama dan skor
+    //inisialisasi data nama dan skor
     for (i=0; i<=11; i++) { // inisialisasi semua skor dengan 0 dan string dengan spasi
         skor[i] = 0;
         for (j=1; j<=3; j++) {
