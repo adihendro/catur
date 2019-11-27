@@ -41,11 +41,11 @@ void start(int *pilihan_user) {
 
     printf("\033[1;36m");
     printf("\n");
-    delay(1000);
+    delay(500);
     printf("                                  Choose Wisely\n");
-    delay(1000);
+    delay(500);
     printf("                                      1/2/3\n\n");
-    delay(1000);
+    delay(500);
     printf("\033[0m");
 
     

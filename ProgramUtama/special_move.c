@@ -173,19 +173,19 @@ void enpassant(papan *board[10][10], stack *history, stack *termakan, int *poin_
 
     if (InfoTail(*giliran) == 1){ //giliran putih
         Info(Pe).posisiR--;
-        *poin_putih = *poin_putih + 1;
+        (*poin_putih)++;
 
         A1 = Search(*list_ada_hitam, Info(Pe).posisiC, tempR); //address sebelum bidak lawan yang termakan
         A = Next(A1); //address bidak lawan yang termakan
-        DelAfter(list_ada_hitam, &A, A1); // hapus bidak lawan dari list linier lawan 
+        DelAfter(list_ada_hitam, &A, A1); //hapus bidak lawan dari list linier lawan 
 
     } else{ //giliran == 2, hitam
         Info(Pe).posisiR++;
-        *poin_hitam = *poin_hitam + 1;
+        (*poin_hitam)++;
         
         A1 = Search(*list_ada_putih, Info(Pe).posisiC, tempR); //address sebelum bidak lawan yang termakan
         A = Next(A1); //address bidak lawan yang termakan
-        DelAfter(list_ada_putih, &A, A1); // hapus bidak lawan dari list linier lawan 
+        DelAfter(list_ada_putih, &A, A1); //hapus bidak lawan dari list linier lawan 
     }
 
     //bidak lawan yg termakan

@@ -208,12 +208,12 @@ int main(){
         if(strcmp(command,"MOVE") == 0){
             turn++;
             move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn, list_bisa_gerak);
-            delay(1000);
+            // delay(1000);
         }
         else if(strcmp(command,"SPECIAL_MOVE") == 0){
             turn++;
             special_move(board2, &history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
-            delay(1500);
+            // delay(1000);
         }
         else if(strcmp(command,"UNDO") == 0){
             undo(&history, &termakan, &poin_putih, &poin_hitam, &list_ada_putih, &list_ada_hitam, &giliran, turn);
@@ -221,14 +221,14 @@ int main(){
                 turn--;
             else if(turn>=2)
                 turn=turn-2;
-            delay(1000);
+            // delay(1000);
         }
         else if(strcmp(command,"SAVE") == 0){
             printf("Masukkan nama file penyimpanan: ");
             scanf("%s",command);
             save(list_ada_putih, list_ada_hitam, poin_putih, poin_hitam, giliran, history, termakan, putih_1, putih_2, putih_3, hitam_1, hitam_2, hitam_3, turn);
             printf("Permainan berhasil disimpan.\n");
-            delay(1000);
+            // delay(1000);
         }
         else if(strcmp(command,"RESET") == 0){
             printf("Are you sure? (Y/N)\n");
@@ -239,7 +239,7 @@ int main(){
                 printf("Success!\n");
             } else
                 printf("Canceled.\n");
-            delay(1500);
+            // delay(1000);
         }
 
         printf("\n\n");

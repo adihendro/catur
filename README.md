@@ -13,6 +13,6 @@ Tambahan:
 	untuk dapat menghapus tampilan sebelumnya agar program terlihat lebih rapi. Kode ini
 	dapat dijumpai pada file start.c
 
-	Program ini menggunakan prosedur delay() yang memberikan jeda 1-1,5 detik setiap
+	Program ini menggunakan prosedur delay() yang memberikan jeda satu detik setiap
 	saat pemain selesai melakukan gerakan. Delay dapat dinonaktifkan dengan menghapus/
 	menjadikan komentar kode delay() di file main.c dan start.c
