@@ -173,7 +173,7 @@ void move(papan *board[10][10], stack *history, stack *termakan, int *poin_putih
         else if(A == Last) //kalau elemen terakhir
             DelAkhir(&lawan, A1);
         else
-            DelAfter(&lawan, &A, A1); // hapus bidak lawan dari list linier lawan 
+            DelAfter(&lawan, &A, A1); //hapus bidak lawan dari list linier lawan 
 
         poin += Info(A).poin;
 

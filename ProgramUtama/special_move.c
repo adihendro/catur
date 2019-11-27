@@ -165,7 +165,7 @@ boolean cek_enpassant(papan *board[10][10], stack* history, list *list_ada_putih
 
 void enpassant(papan *board[10][10], stack *history, stack *termakan, int *poin_putih, int *poin_hitam, list *list_ada_putih, list *list_ada_hitam, queue *giliran, int turn, address_list Pe){
     infotype_stack X;
-    address_list A, A1;
+    address_list A, A1, Last;
     int tempR = Info(Pe).posisiR;
     int tempC = Info(Pe).posisiC;
 
@@ -175,17 +175,41 @@ void enpassant(papan *board[10][10], stack *history, stack *termakan, int *poin_
         Info(Pe).posisiR--;
         (*poin_putih)++;
 
+        //cari elemen terakhir
+        Last = First(*list_ada_hitam);
+        while (Last != Nil_list) {
+            Last = Next(Last);
+        }
+
         A1 = Search(*list_ada_hitam, Info(Pe).posisiC, tempR); //address sebelum bidak lawan yang termakan
         A = Next(A1); //address bidak lawan yang termakan
-        DelAfter(list_ada_hitam, &A, A1); //hapus bidak lawan dari list linier lawan 
+
+        if(A == First(*list_ada_hitam)) //kalau elemen pertama list
+            DelFirst(list_ada_hitam, &A);
+        else if(A == Last) //kalau elemen terakhir
+            DelAkhir(list_ada_hitam, A1);
+        else
+            DelAfter(list_ada_hitam, &A, A1); //hapus bidak lawan dari list linier lawan 
 
     } else{ //giliran == 2, hitam
         Info(Pe).posisiR++;
         (*poin_hitam)++;
+
+        //cari elemen terakhir
+        Last = First(*list_ada_putih);
+        while (Last != Nil_list) {
+            Last = Next(Last);
+        }
         
         A1 = Search(*list_ada_putih, Info(Pe).posisiC, tempR); //address sebelum bidak lawan yang termakan
         A = Next(A1); //address bidak lawan yang termakan
-        DelAfter(list_ada_putih, &A, A1); //hapus bidak lawan dari list linier lawan 
+        
+        if(A == First(*list_ada_putih)) //kalau elemen pertama list
+            DelFirst(list_ada_putih, &A);
+        else if(A == Last) //kalau elemen terakhir
+            DelAkhir(list_ada_putih, A1);
+        else
+            DelAfter(list_ada_putih, &A, A1); //hapus bidak lawan dari list linier lawan 
     }
 
     //bidak lawan yg termakan
@@ -216,18 +240,18 @@ void enpassant(papan *board[10][10], stack *history, stack *termakan, int *poin_
 }
 
 
-boolean hasmoved(piece P, stack history){ //ngecek apakah raja ada di stack history ato ngga
+boolean hasmoved(piece P, stack history){ //ngecek apakah bidak ada di stack history ato ngga
     infotype_stack X;
     int counter = 1;
-    boolean Moved = false;
+    boolean moved = false;
     int jml = history.TOP;
-    while ((!Moved) && (counter <= jml)){   
+    while (!moved && (counter <= jml)){   
         X = (history).T[counter];
         counter++;
-        if (X.nama == P.nama)
-            Moved = true;
+        if ((X.nama == P.nama) && (X.player == P.player))
+            moved = true;
     }
-    return Moved;
+    return moved;
 }
 
 boolean cek_castling(stack* history, list *list_ada_putih, list *list_ada_hitam, queue *giliran, address_list *P, address_list *P1, address_list *P2, papan *board[10][10], int *jumlah){
@@ -250,13 +274,13 @@ boolean cek_castling(stack* history, list *list_ada_putih, list *list_ada_hitam,
     }
 
     while((Pt != Nil_list) && !can){
-        if((Info(Pt).nama == 'K') && !hasmoved(Info(Pt),*history)){
+        if((Info(Pt).nama == 'K') && !hasmoved(Info(Pt), *history)){
             *P = Pt;
             while(P1t != Nil_list){
-                if((Info(P1t).nama == 'R') && !hasmoved(Info(Pt),*history)){
+                if((Info(P1t).nama == 'R') && !hasmoved(Info(Pt), *history)){
                     //castling kanan
                     if(((Info(P1t).posisiC==(Info(Pt).posisiC+3)) && !isthreaten(lawan, Info(Pt).posisiC, Info(Pt).posisiR, board, &P3) && 
-                    !isthreaten(lawan, (Info(Pt).posisiC+1), Info(Pt).posisiR, board, &P3) && !isthreaten(lawan, Info(Pt).posisiC+2, Info(Pt).posisiR, board, &P3) 
+                    !isthreaten(lawan, Info(Pt).posisiC+1, Info(Pt).posisiR, board, &P3) && !isthreaten(lawan, Info(Pt).posisiC+2, Info(Pt).posisiR, board, &P3) 
                     && (*board[Info(Pt).posisiR][Info(Pt).posisiC+1]).nama==' ' && (*board[Info(Pt).posisiR][Info(Pt).posisiC+2]).nama==' ' )){
                         (*jumlah) += 1;
                         *P1 = P1t;
@@ -265,7 +289,7 @@ boolean cek_castling(stack* history, list *list_ada_putih, list *list_ada_hitam,
                     if(((Info(P2t).posisiC==(Info(Pt).posisiC-4)) && !isthreaten(lawan, Info(Pt).posisiC, Info(Pt).posisiR, board, &P3) && 
                     !isthreaten(lawan, Info(Pt).posisiC-1, Info(Pt).posisiR, board, &P3) && !isthreaten(lawan, Info(Pt).posisiC-2, Info(Pt).posisiR, board, &P3) 
                     && !isthreaten(lawan, Info(Pt).posisiC-3, Info(Pt).posisiR, board, &P3) && (*board[Info(Pt).posisiR][Info(Pt).posisiC-1]).nama==' ' 
-                    && (*board[Info(Pt).posisiR][Info(Pt).posisiC-2]).nama==' '  && (*board[Info(Pt).posisiR][Info(Pt).posisiC-2]).nama==' ' )){
+                    && (*board[Info(Pt).posisiR][Info(Pt).posisiC-2]).nama==' '  && (*board[Info(Pt).posisiR][Info(Pt).posisiC-3]).nama==' ' )){
                         (*jumlah) += 2;
                         *P2 = P2t;
                     }

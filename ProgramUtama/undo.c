@@ -107,7 +107,7 @@ void balik(address_list P, infotype_stack X, stack *termakan, int *poin_putih, i
             if (Info(P).player == 1) //giliran putih
                 P1 = First(*list_ada_putih);
             else //giliran hitam
-                P1 = First(*list_ada_putih);
+                P1 = First(*list_ada_hitam);
 
             P2 = P1;
 
