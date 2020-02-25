@@ -1,5 +1,5 @@
 # catur
-Tugas Besar Alstrukdat
+Game catur menggunakan bahasa C
 
 Cara kompilasi:
 	->	Buka terminal
