@@ -14,9 +14,6 @@ Program ini menggunakan prosedur delay() yang memberikan jeda satu detik setiap 
 
 Screenshot:<br>
 ![Main Menu](/Screenshot/MainMenu.png?raw=true "Main Menu")
-
 ![New Game](/Screenshot/NewGame.png?raw=true "New Game")
-
 ![Move](/Screenshot/Move.png?raw=true "Move")
-
 ![Checkmate](/Screenshot/Checkmate.png?raw=true "Checkmate")
