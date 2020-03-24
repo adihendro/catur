@@ -13,4 +13,10 @@ Untuk pengguna Windows, ganti seluruh kode 'system('clear')' menjadi 'system('cl
 Program ini menggunakan prosedur delay() yang memberikan jeda satu detik setiap saat pemain selesai melakukan gerakan. Delay dapat dinonaktifkan dengan menghapus/menjadikan komentar kode delay() di file main.c dan start.c
 
 Screenshot:<br>
-![Main Menu](/Screenshot/Main\ Menu.png?raw=true "Main Menu")
+![Main Menu](/Screenshot/MainMenu.png?raw=true "Main Menu")
+
+![New Game](/Screenshot/NewGame.png?raw=true "New Game")
+
+![Move](/Screenshot/Move.png?raw=true "Move")
+
+![Checkmate](/Screenshot/Checkmate.png?raw=true "Checkmate")
